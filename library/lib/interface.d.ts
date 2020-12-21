@@ -1128,11 +1128,6 @@ export declare interface IProps extends AddEventOptions {
   class?: string | string[] | ((e: any) => string | string[]);
   className?: string | string[] | ((e: any) => string | string[]);
   replace?: boolean;
-  /** 用于扩展类的class，可以很好的组织class或者class数组，并且可以组合props.class 的关系 */
-  // classExtends?: [string | string[] | (() => string | string[]), any?];
-  // classAdd?: string | ((e: any) => string);
-  classAdd?: string;
-  classReplace?: string[] | ((e: any) => string[]);
   classPick?: { [key: string]: any } | ((e: any) => { [key: string]: any });
   href?: string | ((e: any) => string);
   rel?: string | ((e: any) => string);

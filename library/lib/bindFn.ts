@@ -1,5 +1,4 @@
 import { stringToHex } from "./stringToHex";
-import { cssInJs } from "./cssInJs";
 
 const attrKeys: any = {
   autofocus: true,
@@ -40,10 +39,7 @@ export function bindFn(ele: any, key: string, value: any): any {
         return;
       }
       Object.keys(v).forEach((k) => {
-        const pesudo = (cssInJs as any)[k];
-        if (pesudo) {
-          pesudo(ele, v[k]);
-        } else if (/-/.test(k)) {
+        if (/-/.test(k)) {
           (ele as HTMLElement).style.setProperty(k, v[k]);
         } else {
           ele.style[k] = v[k];
@@ -58,25 +54,6 @@ export function bindFn(ele: any, key: string, value: any): any {
       }
       if ((ele as HTMLElement).className !== v) {
         (ele as HTMLElement).className = v;
-      }
-    };
-  } else if (key === "classAdd") {
-    if (typeof ele.className === "undefined") {
-      ele.className = " ";
-    }
-    fn = () => {
-      ele.className += " " + value;
-    };
-  } else if (key === "classReplace") {
-    fn = () => {
-      const v = getValue(value);
-      if (!Array.isArray(v)) {
-        console.error("classReplace need return [string, string]");
-        return;
-      }
-      const newVal = ele.className.replace(v[0], v[1]);
-      if (newVal !== ele.className) {
-        ele.className = newVal;
       }
     };
   } else if (key === "classPick") {

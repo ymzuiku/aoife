@@ -13,24 +13,18 @@ import { stringToHex } from "./stringToHex";
 const ignoreKeys: any = {
   class: 1,
   className: 1,
-  classAdd: 1,
   classPick: 1,
-  classExtends: 1,
   onsubmit: 1,
-  for: 1,
-  fixFor: 1,
-  replace: 1,
   oncreate: 1,
   onappend: 1,
   child: 1,
   children: 1,
   length: 1,
-  // __propsKeys: 1,
   __proxy: 1,
   __proxyEle: 1,
 };
 
-const classKeys = ["className", "classReplace", "classPick", "classAdd"];
+const classKeys = ["className", "classPick"];
 
 export const aoife = (tag: ChildOne, attrs?: ChildOne, ...child: ChildOne[]): HTMLElement => {
   let props = {} as IProps;
