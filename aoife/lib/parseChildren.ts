@@ -1,18 +1,10 @@
 import { isElement, isString } from "./helper";
 import { subscribeElement } from "./state";
 
-function deepCloneElement(old: Element, next: Element) {
-  old.replaceWith(next);
-  return;
-}
-
 export function parseChildren(_childs: any[], ele: HTMLElement) {
   if (!Array.isArray(_childs)) {
     return;
   }
-
-  // ele.innerText = "";
-  // 递归 Array
 
   const childs = (_childs as any).filter((v: any) => v !== undefined && v !== null);
 
@@ -77,7 +69,7 @@ export function parseChildren(_childs: any[], ele: HTMLElement) {
             const oldEl = oldKeys[c.key] as HTMLElement;
             if (oldEl) {
               if (!oldEl.isEqualNode(c)) {
-                deepCloneElement(oldEl, c);
+                oldEl.replaceWith(c);
               }
             } else {
               ele.insertBefore(c, temp);
@@ -92,7 +84,7 @@ export function parseChildren(_childs: any[], ele: HTMLElement) {
           let isHave = false;
           ele.childNodes.forEach((e) => {
             if ((e as any).key === child.key) {
-              deepCloneElement(e as any, child);
+              e.replaceWith(child);
               isHave = true;
             }
           });

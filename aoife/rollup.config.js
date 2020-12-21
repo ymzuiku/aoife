@@ -45,7 +45,7 @@ const watchOptions = [
     output: {
       file: "./umd/index.js",
       format: "umd",
-      name: "$verk",
+      name: "aoife",
       sourcemap: false,
     },
     plugins: [
