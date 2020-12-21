@@ -1,0 +1,41 @@
+{
+  "typedocOptions": {
+    "mode": "modules",
+    "out": "docs"
+  },
+  "compilerOptions": {
+    "baseUrl": "./src",
+    "target": "es5",
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext",
+      "webworker"
+    ],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmitHelpers": false,
+    "importHelpers": true,
+    "noResolve": false,
+    "noEmit": true,
+    "inlineSourceMap": false,
+    "declaration": false,
+    "outDir": "./umd",
+    "jsx": "preserve",
+    "noFallthroughCasesInSwitch": true
+  },
+  "exclude": [
+    "node_modules"
+  ],
+  "include": [
+    "src"
+  ]
+}
