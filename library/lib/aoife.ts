@@ -119,3 +119,5 @@ aoife.next = next;
 aoife.events = events;
 aoife.registerTag = registerTag;
 aoife.propFn = propFn;
+
+(window as any).aoife = aoife;

@@ -1,4 +1,4 @@
-import aoife from "aoife";
+import "aoife";
 
 function App({ name }: { name: string }) {
   let num = 0;

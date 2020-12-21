@@ -6,3 +6,4 @@ const pwd = (...args) => resolve(process.cwd(), ...args);
 const argv = process.argv.splice(2);
 
 fs.copySync(resolve(__dirname, "project"), pwd(argv[0]));
+fs.copyFile(resolve(__dirname, "gitignore"), pwd(argv[0], ".gitignore"));

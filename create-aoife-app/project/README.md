@@ -1,70 +1,124 @@
-# Getting Started with Create React App
+# aoife
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+使用 jsx 开发 native-js 程序, 每个组建都是一个原始的 HTMLElment，可以和所有原生 js 库很好的兼容使用。
 
-## Available Scripts
+aoife 非常小, gzip: 3.5kb
 
-In the project directory, you can run:
+## 安装 / 启动
 
-### `yarn start`
+安装
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+```sh
+$ npm init aoife-app <project-name>
+$ cd <project-name>
+$ yarn install
+```
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+启动：
 
-### `yarn test`
+```sh
+$ yarn start # 开发环境
+$ yarn build # 编译
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+其它扩展
 
-### `yarn build`
+```sh
+$ hard=1 yarn start # 开发环境 (使用缓存编译)
+$ hard=1 monaco=1 yarn start # 开发环境 (使用缓存编译、应用 monaco 插件)
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## API
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+aoife 是一个全局函数, 用于 jsx 解析，其中 aoife.next 用于更新元素
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```ts
+declare const aoife: {
+  (tag: any, attrs?: any, ...child: any[]): HTMLElement;
+  stringToHex(str: string, start?: string): string;
+  waitAppend(ele: HTMLElement, max?: number): Promise<HTMLElement>;
+  subscribe: (fn: any) => () => void;
+  next: (
+    focusUpdateTargets?: string | undefined,
+    ignoreUpdateTargets?: string | any[] | undefined
+  ) => HTMLElement[];
+  events: Set<Function>;
+  registerTag(data: { [key: string]: any }): void;
+  propFn(
+    target: any,
+    fn: (val: any) => IStyled | string | boolean | number | any[] | object
+  ): any;
+};
+```
 
-### `yarn eject`
+## 很短且完整的教程
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+如果你会 React，学习 aoife 只需要 5 分钟，`注意 aoife 并不是 React 的轮子`。
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+aoife 仅仅保留了 JSX 相关的概念，移除了 React 所有非 JSX 相关的概念，所以 aoife 没有生命周期，hooks、diffDOM。
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+但是 aoife 可以完成所有 React 能完成的项目，为了弥补缺少 React 相关的概念，看看我们是怎么做的：
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+前端开发可以抽象为两部分：页面绘制、页面更新；在 aoife 中，页面绘制就是使用 jsx 语法组织原始的 HTMLElement；然后使用 `函数赋值` 来解决元素更新。
 
-## Learn More
+`函数赋值`: 即在声明元素的过程中，给属性绑定一个函数，jsx 解析过程中，若发现属性是一个函数，记录一个发布订阅任务，然后则执行函数，并且赋值；在未来需要更新此属性时，使用 `aoife.next` 函数对文档进行选择，命中的**元素及其子元素**会执行之前订阅的任务，更新属性。
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+我们看一个例子
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```tsx
+import "aoife"; // 在项目入口处引入一次，注册全局 dom 对象
 
-### Code Splitting
+// 这是一个普通的 jsx 组件
+function App() {
+  return (
+    <div class="app">
+      <h1>Hello World</h1>
+      {/* 传递 props.name */}
+      <StatefulExample name="Add Num" />
+    </div>
+  );
+}
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+// 这是一个用于演示 函数赋值/更新 的组件
+function StatefulExample({ name }: { name: string }) {
+  console.log(
+    "这个日志仅会打印一次，因为 aoife.next 更新仅仅会派发元素的子属性，不会重绘整个组件"
+  );
+  let num = 0;
+  return (
+    <div>
+      <button
+        onclick={() => {
+          num += 1;
+          // aoife.next 会使用 document.body.querySelectorAll() 查询并更新 `.add` 匹配的元素及子元素
+          aoife.next(".add");
+        }}
+      >
+        {name}
+      </button>
+      {/* 使用【函数赋值】更新样式 */}
+      <div
+        class="add"
+        style={() => ({
+          fontSize: 20 + num + "px",
+        })}
+      >
+        {/* 使用【函数赋值】文字 */}
+        <p>{() => num}</p>
+      </div>
+    </div>
+  );
+}
 
-### Analyzing the Bundle Size
+document.body.append(App());
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## 设计细节
 
-### Making a Progressive Web App
+1. 为了延续声明式的开发方式，`aoife.next` 函数并没有传递值，仅仅是派发了更新命令，元素的属性还是由内部状态管理的逻辑来解决状态分支问题
+2. 我们移除了类似 React 中 SCU，purecomponent、memo 等解决重绘问题的概念，因为**一次** aoife.next 执行仅仅更新**一次**局部元素的**属性**，并不会造成大规模重绘
+3. `aoife.next` 已经是全局可选则的更新，所以失去了传统的状态管理库的必要；合理规范好 `aoife.next` 的调用即可。
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## 生态
 
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+aoife 的核心设计理念就是用原生 JS 解决生态问题，任何一个函数，其返回值是一个 HTMLElement，就可以在 aoife 中作为标签进行使用。

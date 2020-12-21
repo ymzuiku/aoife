@@ -1,3 +1,3 @@
 import "./polyfillIE";
-import { aoife } from "./dom";
+import { aoife } from "./aoife";
 export default aoife;

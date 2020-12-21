@@ -30,7 +30,7 @@ $ hard=1 monaco=1 yarn start # 开发环境 (使用缓存编译、应用 monaco 
 
 ## API
 
-aoife 是一个函数, 用于 jsx 解析，其中 aoife.next 用于更新元素
+aoife 是一个全局函数, 用于 jsx 解析，其中 aoife.next 用于更新元素
 
 ```ts
 declare const aoife: {
@@ -66,7 +66,7 @@ aoife 仅仅保留了 JSX 相关的概念，移除了 React 所有非 JSX 相关
 我们看一个例子
 
 ```tsx
-import aoife from "aoife"; // jsx 解析需要引入 aoife
+import "aoife"; // 在项目入口处引入一次，注册全局 dom 对象
 
 // 这是一个普通的 jsx 组件
 function App() {
