@@ -2,7 +2,7 @@
 
 使用 jsx 开发 native-js 程序, 每个组建都是一个原始的 HTMLElment，可以和所有原生 js 库很好的兼容使用。
 
-aoife 非常小, gzip: 3.5kb
+aoife 非常小, gzip 2kb
 
 ## 安装 / 启动
 

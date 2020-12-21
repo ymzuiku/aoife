@@ -1,2 +1,2 @@
-declare const aoifeSvg: (html: string) => (props: IProps) => HTMLElement;
+declare const aoifeSvg: (html: string, width?: string, height?: string) => (props: IProps) => HTMLElement;
 export default aoifeSvg;
