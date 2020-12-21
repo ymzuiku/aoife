@@ -99,7 +99,7 @@ module.exports = function (api, opts, env) {
           // runtime: opts.runtime || 'classic',
           runtime: opts.runtime || "classic",
           pragma: opts.pragma || "aoife",
-          pragmaFrag: opts.pragmaFrag || "aoifeDrag",
+          pragmaFrag: opts.pragmaFrag || "aoife.jsxFrag",
         },
       ],
       isTypeScriptEnabled && [require("@babel/preset-typescript").default],

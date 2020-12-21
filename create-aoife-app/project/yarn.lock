@@ -2189,10 +2189,10 @@ anymatch@^3.0.3, anymatch@~3.1.1:
     normalize-path "^3.0.0"
     picomatch "^2.0.4"
 
-aoife-scripts@^4.0.1:
-  version "4.0.1"
-  resolved "https://registry.yarnpkg.com/aoife-scripts/-/aoife-scripts-4.0.1.tgz#57727bcef68b46f33595a43e4fb5859b2e7ef0d3"
-  integrity sha512-PEMELpYRqvRyz/5NHPSDXnASLoLKOE415B+0K3v1YG7ez4eW2lFza7erkkVISKdQJbQenBwRpWihxWMhRwYV4Q==
+aoife-scripts@^4.0.2:
+  version "4.0.2"
+  resolved "https://registry.yarnpkg.com/aoife-scripts/-/aoife-scripts-4.0.2.tgz#f2be53083e0dadffd073a10e4273000aa0fb4ddc"
+  integrity sha512-nwbaGXe9c6qTzXPBgsyXyjIrTXPb/jBrYgWSwtO2dAh/7umPpUgFCibbfUG1erzQhecIblN3EmUdM1/DkijTVA==
   dependencies:
     "@babel/core" "7.12.3"
     "@pmmmwh/react-refresh-webpack-plugin" "0.4.2"
@@ -2203,7 +2203,7 @@ aoife-scripts@^4.0.1:
     babel-jest "^26.6.0"
     babel-loader "8.1.0"
     babel-plugin-named-asset-import "^0.3.7"
-    babel-preset-aoife "^10.0.0"
+    babel-preset-aoife "^10.0.1"
     bfj "^7.0.2"
     camelcase "^6.1.0"
     case-sensitive-paths-webpack-plugin "2.3.0"
@@ -2259,10 +2259,10 @@ aoife-scripts@^4.0.1:
   optionalDependencies:
     fsevents "^2.1.3"
 
-aoife@^1.2.8:
-  version "1.2.8"
-  resolved "https://registry.yarnpkg.com/aoife/-/aoife-1.2.8.tgz#ac98ee09be16e22cd40527f011c5ee3c52450ef4"
-  integrity sha512-40HYERZvfaoA/kdo49jatyh4jjycS/x3cRb1GqaiJpf2EErUAUNaMfBRvE94z9ccsZOwxvnx3Gah2NG4u5mQOg==
+aoife@^1.3.0:
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/aoife/-/aoife-1.3.0.tgz#b6f6a37254895074448a4597912fe0ea12e00a06"
+  integrity sha512-6p+bNcUdQvEFZh/LSUL+zAbgDErJaoQu9nPOLKM4UpO9CagBkA/gjSo/OtUYHw9btA3xJwErMQwMpHSvaWfi3A==
 
 aproba@^1.1.1:
   version "1.2.0"
@@ -2588,10 +2588,10 @@ babel-plugin-transform-react-remove-prop-types@0.4.24:
   resolved "https://registry.yarnpkg.com/babel-plugin-transform-react-remove-prop-types/-/babel-plugin-transform-react-remove-prop-types-0.4.24.tgz#f2edaf9b4c6a5fbe5c1d678bfb531078c1555f3a"
   integrity sha512-eqj0hVcJUR57/Ug2zE1Yswsw4LhuqqHhD+8v120T1cl3kjg76QwtyBrdIk4WVwK+lAhBJVYCd/v+4nc4y+8JsA==
 
-babel-preset-aoife@^10.0.0:
-  version "10.0.0"
-  resolved "https://registry.yarnpkg.com/babel-preset-aoife/-/babel-preset-aoife-10.0.0.tgz#a066bae308648f14a4b96ad05034b65058a3885f"
-  integrity sha512-+OTpz7yBB0P+ve6PKKtDy1tm47eULl3iO7ao+RgcrdE90Z/GbVRB6JihlDbQNlVIXzqb+9hwArezNFG9mYs66A==
+babel-preset-aoife@^10.0.1:
+  version "10.0.1"
+  resolved "https://registry.yarnpkg.com/babel-preset-aoife/-/babel-preset-aoife-10.0.1.tgz#743503d0e5da3a8ebeb775777e8a9edbff7ca500"
+  integrity sha512-ho0e7ga6EKQxr6GzzoN3f8mhKaUiKDPfSgfj137+9zWP9DNMg4N6rmU1ESYIBHUkcBfGkOz8d5Y8Uhfv+EpuRQ==
   dependencies:
     "@babel/core" "7.12.3"
     "@babel/plugin-proposal-class-properties" "7.12.1"

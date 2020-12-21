@@ -1,5 +1,4 @@
 /// <reference types="aoife-scripts" />
-/// <reference types="aoife" />
 /// <reference path="../../aoife/jsx.d.ts" />
 
 declare module "*.css" {

@@ -107,13 +107,11 @@ export const aoife = (tag: ChildOne, attrs?: ChildOne, ...child: ChildOne[]): HT
   return ele as any;
 };
 
-export const aoifeFrag = (...attrs: any[]) => {
+export const jsxFrag = (...attrs: any[]) => {
   console.error("Dont Use Frag JSX");
 };
 
-(window as any).aoife = aoife;
-(window as any).aoifeFrag = aoifeFrag;
-
+aoife.jsxFrag = jsxFrag;
 aoife.stringToHex = stringToHex;
 aoife.waitAppend = waitAppend;
 aoife.subscribe = subscribe;

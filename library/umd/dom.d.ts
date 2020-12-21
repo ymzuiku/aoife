@@ -4,6 +4,7 @@ import { propFn } from "./propFn";
 import { stringToHex } from "./stringToHex";
 export declare const aoife: {
     (tag: any, attrs?: any, ...child: any[]): HTMLElement;
+    jsxFrag: (...attrs: any[]) => void;
     stringToHex: typeof stringToHex;
     waitAppend: typeof waitAppend;
     subscribe: (fn: any) => () => void;
@@ -12,4 +13,4 @@ export declare const aoife: {
     registerTag: typeof registerTag;
     propFn: typeof propFn;
 };
-export declare const aoifeFrag: (...attrs: any[]) => void;
+export declare const jsxFrag: (...attrs: any[]) => void;

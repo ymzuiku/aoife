@@ -419,7 +419,7 @@ module.exports = function (webpackEnv) {
                     {
                       // runtime: hasJsxRuntime ? "automatic" : "classic",
                       pragma: "aoife",
-                      pragmaFrag: "aoifeFrag",
+                      pragmaFrag: "aoife.jsxFrag",
                       runtime: "classic",
                     },
                   ],

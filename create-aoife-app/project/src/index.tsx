@@ -1,4 +1,4 @@
-import "dom-jsx";
+import aoife from "aoife";
 
 function App({ name }: { name: string }) {
   let num = 0;
@@ -9,7 +9,7 @@ function App({ name }: { name: string }) {
       <button
         onclick={() => {
           num += 1;
-          dom.next(".app");
+          aoife.next(".app");
         }}
       >
         Add num
