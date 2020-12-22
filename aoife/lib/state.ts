@@ -1,39 +1,54 @@
 export const events = new Set<Function>();
 
-export const next = (
-  focusUpdateTargets?: string,
-  ignoreUpdateTargets?: any[] | string
-): HTMLElement[] => {
-  let ignoreList: Set<any>;
+export const next = (focusUpdateTargets?: string | HTMLElement[], ignoreUpdateTargets?: string | HTMLElement[]) => {
+  let ignoreList: any[];
   if (ignoreUpdateTargets) {
     if (typeof ignoreUpdateTargets === "string") {
       const list = document.body.querySelectorAll(ignoreUpdateTargets) as any;
-      ignoreList = new Set(list);
+      // ignoreList = new Set(list);
+      ignoreList = list;
     } else {
-      ignoreList = new Set(ignoreUpdateTargets) as any;
+      // ignoreList = new Set(ignoreUpdateTargets) as any;
+      ignoreList = ignoreUpdateTargets;
     }
   }
 
-  const outEle: HTMLElement[] = [];
+  let outElement = [] as HTMLElement[];
+
   if (focusUpdateTargets) {
-    let eleList = document.body.querySelectorAll(
-      `${focusUpdateTargets}[data-next], ${focusUpdateTargets} [data-next]`
-       
-    ) as any;
+    let eleList: any[];
+    if (typeof focusUpdateTargets !== "string") {
+      eleList = focusUpdateTargets;
+    } else {
+      eleList = document.body.querySelectorAll(
+        `${focusUpdateTargets}[aoife-next], ${focusUpdateTargets} [aoife-next]`
+      ) as any;
+    }
+
     eleList.forEach((ele: any) => {
-      if (ignoreList && ignoreList.has(ele)) {
-        return;
-      }
       if (ele.__next) {
-        (ele.__next as Map<string, Function>).forEach((fn) => {
-          fn();
-        });
-        outEle.push(ele);
+        // 判断元素是否存在
+        if (document.body.contains(ele)) {
+          // 忽略元素及其子元素的更新
+          if (ignoreList) {
+            const len = ignoreList.length;
+            for (let i = 0; i < len; i++) {
+              const parent = ignoreList[i] as HTMLElement;
+              if (parent === ele || parent.contains(ele)) {
+                return;
+              }
+            }
+          }
+          (ele.__next as Map<string, Function>).forEach((fn) => {
+            fn();
+          });
+          outElement.push(ele);
+        }
       }
     });
   }
   events.forEach((fn) => fn());
-  return outEle;
+  return outElement;
 };
 
 export const subscribe = (fn: any) => {
@@ -45,7 +60,7 @@ export const subscribe = (fn: any) => {
 
 export const subscribeElement = (ele: any, key: string, fn: any) => {
   if (!ele.__next) {
-    (ele as HTMLElement).setAttribute("data-next", key);
+    (ele as HTMLElement).setAttribute("aoife-next", "");
     ele.__next = new Map<string, Function>();
   }
   (ele.__next as Map<string, Function>).set(key, fn);

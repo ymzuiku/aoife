@@ -4,8 +4,8 @@ const attrKeys: any = {
   autofocus: true,
 };
 
-function getValue(value: any) {
-  return typeof value === "function" ? value() : value;
+function getValue(ele: any, value: any) {
+  return typeof value === "function" ? value(ele) : value;
 }
 
 export function bindFn(ele: any, key: string, value: any): any {
@@ -20,7 +20,7 @@ export function bindFn(ele: any, key: string, value: any): any {
   let fn: Function;
   if (attrKeys[key] || /-/.test(key)) {
     fn = () => {
-      const v = getValue(value);
+      const v = getValue(ele, value);
       if (ele.getAttribute(key) !== v) {
         ele.setAttribute(key, v);
       }
@@ -30,7 +30,7 @@ export function bindFn(ele: any, key: string, value: any): any {
       ele.className = " ";
     }
     fn = () => {
-      const v = getValue(value);
+      const v = getValue(ele, value);
       if (!v) {
         return;
       }
@@ -48,7 +48,7 @@ export function bindFn(ele: any, key: string, value: any): any {
     };
   } else if (key === "className") {
     fn = () => {
-      let v = getValue(value);
+      let v = getValue(ele, value);
       if (Array.isArray(v)) {
         v = v.join(" ");
       }
@@ -61,7 +61,7 @@ export function bindFn(ele: any, key: string, value: any): any {
       ele.className = " ";
     }
     fn = () => {
-      const v = getValue(value);
+      const v = getValue(ele, value);
       if (!v) {
         return;
       }
@@ -86,7 +86,7 @@ export function bindFn(ele: any, key: string, value: any): any {
     };
   } else {
     fn = () => {
-      const v = getValue(value);
+      const v = getValue(ele, value);
       if (ele[key] !== v) {
         ele[key] = v;
       }
@@ -97,5 +97,11 @@ export function bindFn(ele: any, key: string, value: any): any {
   if (typeof value !== "function") {
     return null;
   }
+  // return () => {
+  //   if (!document.body.contains(ele)) {
+  //     return;
+  //   }
+  //   fn();
+  // };
   return fn;
 }
