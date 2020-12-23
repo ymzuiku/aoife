@@ -1,0 +1,46 @@
+{
+  "defaultSeverity": "error",
+  "globals": {
+    "barm": true,
+    "barmTag": true,
+    "barmRoute": true
+  },
+  "extends": ["tslint:all", "tslint-react", "tslint-config-prettier"],
+  "jsRules": {
+    "react-hooks/exhaustive-deps": false
+  },
+  "rulesDirectory": [],
+  "rules": {
+    "no-empty-interface": false,
+    "no-object-literal-type-assertion": false,
+    "no-non-null-assertion": false,
+    "strict-comparisons": false,
+    "object-literal-sort-keys": false,
+    "no-floating-promises": false,
+    "prefer-for-of": false,
+    "prefer-switch": false,
+    "comment-format": false,
+    "no-submodule-imports": false,
+    "completed-docs": false,
+    "no-parameter-reassignment": false,
+    "no-unsafe-any": false,
+    "no-magic-numbers": false,
+    "increment-decrement": false,
+    "no-unnecessary-callback-wrapper": false,
+    "strict-type-predicates": false,
+    "no-null-keyword": false,
+    "no-null-undefined-union": false,
+    "strict-boolean-expressions": false,
+    "only-arrow-functions": false,
+    "no-any": false,
+    "react-hooks/exhaustive-deps": false,
+    "jsx-no-lambda": false,
+    "no-void-expression": false,
+    "typedef": false,
+    "no-implicit-dependencies": false,
+    "arrow-return-shorthand": false,
+    "variable-name": false,
+    "file-name-casing": [false, "camel-case"],
+    "no-import-side-effect": [false, { "ignore-module": "(\\.html|\\.css|\\.scss|\\.less)$" }]
+  }
+}
