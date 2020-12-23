@@ -97,11 +97,5 @@ export function bindFn(ele: any, key: string, value: any): any {
   if (typeof value !== "function") {
     return null;
   }
-  // return () => {
-  //   if (!document.body.contains(ele)) {
-  //     return;
-  //   }
-  //   fn();
-  // };
   return fn;
 }

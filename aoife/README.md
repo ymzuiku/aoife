@@ -122,3 +122,27 @@ document.body.append(App());
 ## 生态
 
 aoife 的核心设计理念就是用原生 JS 解决生态问题，任何一个函数，其返回值是一个 HTMLElement，就可以在 aoife 中作为标签进行使用。
+
+### 非原生 JS 和 aoife 混用的例子
+
+aoife-pop 组件是一个由 tippy.js 封装的函数，内部并无引入 aoife， 使用方法：
+
+```jsx
+// npm i --save aoife-app
+import Pop from "aoife-pop";
+
+const App = () => {
+  return (
+    <Pop placement="top">
+      <div>label</div>
+      <div>pop tip</div>
+    </Pop>
+  );
+};
+```
+
+从这个案例可以看到，一个原生 JS 组件，本身可以不需要包含 aoife，也可以被 aoife 使用；只需要此组件满足 3 个规则：
+
+- 1. 组件是一个函数，返回值是一个 HTMLElement 类型
+- 2. 组件的参数是一个对象
+- 3. 若 JSX 传递了 children，在组件第一个参数中会包含 children 字段，值是一个 HTMLElement 数组
