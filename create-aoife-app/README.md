@@ -73,7 +73,6 @@ function App() {
   return (
     <div class="app">
       <h1>Hello World</h1>
-      {/* 传递 props.name */}
       <StatefulExample name="Add Num" />
     </div>
   );
@@ -90,20 +89,17 @@ function StatefulExample({ name }: { name: string }) {
       <button
         onclick={() => {
           num += 1;
-          // aoife.next 会使用 document.body.querySelectorAll() 查询并更新 `.add` 匹配的元素及子元素
           aoife.next(".add");
         }}
       >
         {name}
       </button>
-      {/* 使用【函数赋值】更新样式 */}
       <div
         class="add"
         style={() => ({
           fontSize: 20 + num + "px",
         })}
       >
-        {/* 使用【函数赋值】文字 */}
         <p>{() => num}</p>
       </div>
     </div>
@@ -111,6 +107,47 @@ function StatefulExample({ name }: { name: string }) {
 }
 
 document.body.append(App());
+```
+
+## 异步 JSX
+
+aoife 可以异步取值和异步插入 children，这可以简化远程获取数据渲染的业务。
+注意，aoife.next 仅仅是一个派发更新，并不会等待所有异步更新的回调
+
+```jsx
+import "aoife";
+
+function App() {
+  return (
+    <div>
+      <input
+        placeholder="Input"
+        value={() => {
+          // 异步取值
+          return new Promise((res) => {
+            setTimeout(() => res("hello"), 500);
+          });
+        }}
+      />
+      {() => {
+        // 异步插入元素
+        return new Promise((res) => {
+          setTimeout(() => {
+            res(<div>list-a</div>);
+          }, 1000);
+        });
+      }}
+      {() => {
+        // 异步插入元素
+        return new Promise((res) => {
+          setTimeout(() => {
+            res(<div>list-b</div>);
+          }, 300);
+        });
+      }}
+    </div>
+  );
+}
 ```
 
 ## 设计细节

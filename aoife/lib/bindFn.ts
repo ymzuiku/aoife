@@ -5,7 +5,7 @@ const attrKeys: any = {
 };
 
 function getValue(ele: any, value: any) {
-  return typeof value === "function" ? value(ele) : value;
+  return typeof value === "function" ? Promise.resolve(value(ele)) : value;
 }
 
 export function bindFn(ele: any, key: string, value: any): any {
@@ -19,8 +19,8 @@ export function bindFn(ele: any, key: string, value: any): any {
   }
   let fn: Function;
   if (attrKeys[key] || /-/.test(key)) {
-    fn = () => {
-      const v = getValue(ele, value);
+    fn = async () => {
+      const v = await getValue(ele, value);
       if (ele.getAttribute(key) !== v) {
         ele.setAttribute(key, v);
       }
@@ -29,8 +29,8 @@ export function bindFn(ele: any, key: string, value: any): any {
     if (typeof ele.className === "undefined") {
       ele.className = " ";
     }
-    fn = () => {
-      const v = getValue(ele, value);
+    fn = async () => {
+      const v = await getValue(ele, value);
       if (!v) {
         return;
       }
@@ -47,8 +47,8 @@ export function bindFn(ele: any, key: string, value: any): any {
       });
     };
   } else if (key === "className") {
-    fn = () => {
-      let v = getValue(ele, value);
+    fn = async () => {
+      let v = await getValue(ele, value);
       if (Array.isArray(v)) {
         v = v.join(" ");
       }
@@ -60,8 +60,8 @@ export function bindFn(ele: any, key: string, value: any): any {
     if (typeof ele.className === "undefined") {
       ele.className = " ";
     }
-    fn = () => {
-      const v = getValue(ele, value);
+    fn = async () => {
+      const v = await getValue(ele, value);
       if (!v) {
         return;
       }
@@ -85,8 +85,8 @@ export function bindFn(ele: any, key: string, value: any): any {
       ele.__isFirstClassPick = true;
     };
   } else {
-    fn = () => {
-      const v = getValue(ele, value);
+    fn = async () => {
+      const v = await getValue(ele, value);
       if (ele[key] !== v) {
         ele[key] = v;
       }

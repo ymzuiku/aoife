@@ -16,8 +16,8 @@ export function parseChildren(_childs: any[], ele: HTMLElement) {
     } else if (typeof ch === "function") {
       const temp = document.createTextNode("");
       ele.append(temp);
-      const fn = () => {
-        const child = ch();
+      const fn = async () => {
+        const child = await Promise.resolve(ch());
         if (isString(child)) {
           const text = document.createTextNode(child) as any;
           text.key = index;

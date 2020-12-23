@@ -1,6 +1,6 @@
 {
   "name": "aoife-svg",
-  "version": "1.0.4",
+  "version": "1.0.6",
   "main": "umd/index.js",
   "types": "umd/index.d.ts",
   "private": false,

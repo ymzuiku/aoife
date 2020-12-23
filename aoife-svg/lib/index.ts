@@ -1,3 +1,14 @@
+const style = document.createElement("style");
+style.textContent = `
+.aoife-svg {
+  display:flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+`;
+document.head.append(style);
+
 const aoifeSvg = (html: string, width = "1em", height = "1em") => {
   const ele = document.createElement("div");
   ele.innerHTML = html;
@@ -17,7 +28,7 @@ const aoifeSvg = (html: string, width = "1em", height = "1em") => {
 
   html = ele.innerHTML;
 
-  return (props: IProps) => aoife("span", { ...props, innerHTML: html });
+  return (props: IProps) => aoife("span", { className: "aoife-svg", ...props, innerHTML: html });
 };
 
 export default aoifeSvg;
