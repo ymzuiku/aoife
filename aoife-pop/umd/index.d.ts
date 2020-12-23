@@ -46,7 +46,7 @@ export interface IPop {
     trigger?: "hover" | "click" | "mouseenter focus" | "focusin" | "mouseenter click" | "manual";
     triggerTarget?: Element | Element[];
     zIndex?: number;
-    children?: ChildOne[];
+    children?: any[];
 }
 declare const _default: ({ onCreate, padding, children, onHidden, trigger, zIndex, ...rest }: IPop) => any;
 export default _default;

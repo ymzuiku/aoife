@@ -1,6 +1,6 @@
 {
   "name": "aoife-pop",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "main": "umd/index.js",
   "types": "umd/index.d.ts",
   "private": false,
