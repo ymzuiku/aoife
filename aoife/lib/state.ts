@@ -20,9 +20,18 @@ export const next = (focusUpdateTargets?: string | HTMLElement[], ignoreUpdateTa
     if (typeof focusUpdateTargets !== "string") {
       eleList = focusUpdateTargets;
     } else {
-      eleList = document.body.querySelectorAll(
-        `${focusUpdateTargets}[aoife-next], ${focusUpdateTargets} [aoife-next]`
-      ) as any;
+      // 处理逗号分割query
+      let query = "";
+      const list = focusUpdateTargets.split(", ");
+      list.forEach((v, i) => {
+        v = v.trim();
+        if (i === list.length - 1) {
+          query += `${v}[aoife-next], ${v} [aoife-next]`;
+        } else {
+          query += `${v}[aoife-next], ${v} [aoife-next],`;
+        }
+      });
+      eleList = document.body.querySelectorAll(query) as any;
     }
 
     eleList.forEach((ele: any) => {
