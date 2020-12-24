@@ -18,4 +18,4 @@ function App({ name }: { name: string }) {
   );
 }
 
-document.body.append(App({ name: "World" }));
+document.body.append(<App name="World" />);

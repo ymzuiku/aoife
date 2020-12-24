@@ -95,7 +95,7 @@ export function parseChildren(_childs: any[], ele: HTMLElement) {
         }
       };
       fn();
-      subscribeElement(ele, "childfn-" + index, fn);
+      subscribeElement(ele, "children", fn);
     } else if (isElement(ch)) {
       ele.append(ch);
     } else {

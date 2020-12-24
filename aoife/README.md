@@ -106,7 +106,7 @@ function StatefulExample({ name }: { name: string }) {
   );
 }
 
-document.body.append(App());
+document.body.append(<App />);
 ```
 
 ## 异步 JSX

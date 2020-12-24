@@ -42,7 +42,17 @@ export const aoife = (tag: ChildOne, attrs?: ChildOne, ...child: ChildOne[]): HT
   }
 
   if (typeof tag === "function") {
-    return (tag as any)(props, ...child) as any;
+    const out = (tag as any)(props, ...child) as any;
+    // 适配 promise 类型的组件
+    if (out && typeof out.then === "function") {
+      const temp = document.createElement("span");
+      temp.setAttribute("promise-span", "");
+      out.then((el: any) => {
+        temp.replaceWith(el);
+      });
+      return temp;
+    }
+    return out;
   }
   if (Array.isArray(tag)) {
     return (aoife as any)(...tag);

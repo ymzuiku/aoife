@@ -8,7 +8,7 @@ export declare const aoife: {
     stringToHex: typeof stringToHex;
     waitAppend: typeof waitAppend;
     subscribe: (fn: any) => () => void;
-    next: (focusUpdateTargets?: string | undefined, ignoreUpdateTargets?: string | any[] | undefined) => HTMLElement[];
+    next: (focusUpdateTargets?: string | HTMLElement[] | undefined, ignoreUpdateTargets?: string | HTMLElement[] | undefined) => HTMLElement[];
     events: Set<Function>;
     registerTag: typeof registerTag;
     propFn: typeof propFn;
