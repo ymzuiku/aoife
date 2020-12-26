@@ -59,6 +59,7 @@ const reactRefreshOverlayEntry = require.resolve(
 const shouldInlineRuntimeChunk = process.env.INLINE_RUNTIME_CHUNK !== "false";
 const useMonaco = process.env.monaco !== void 0;
 const useHard = process.env.hard !== void 0;
+const useSingle = process.env.single !== void 0;
 
 const imageInlineSizeLimit = parseInt(
   process.env.IMAGE_INLINE_SIZE_LIMIT || "10000"
@@ -107,7 +108,7 @@ module.exports = function (webpackEnv) {
   const env = getClientEnvironment(paths.publicUrlOrPath.slice(0, -1));
 
   // const shouldUseReactRefresh = env.raw.FAST_REFRESH;
-  const shouldUseReactRefresh = true;
+  const shouldUseReactRefresh = false;
 
   // common function to get style loaders
   const getStyleLoaders = (cssOptions, preProcessor) => {
@@ -310,16 +311,20 @@ module.exports = function (webpackEnv) {
       // Automatically split vendor and commons
       // https://twitter.com/wSokra/status/969633336732905474
       // https://medium.com/webpack/webpack-4-code-splitting-chunk-graph-and-the-splitchunks-optimization-be739a861366
-      splitChunks: {
-        chunks: "all",
-        name: false,
-      },
+      splitChunks: useSingle
+        ? void 0
+        : {
+            chunks: "all",
+            name: false,
+          },
       // Keep the runtime chunk separated to enable long term caching
       // https://twitter.com/wSokra/status/969679223278505985
       // https://github.com/facebook/create-react-app/issues/5358
-      runtimeChunk: {
-        name: (entrypoint) => `runtime-${entrypoint.name}`,
-      },
+      runtimeChunk: useSingle
+        ? void 0
+        : {
+            name: (entrypoint) => `runtime-${entrypoint.name}`,
+          },
     },
     resolve: {
       // This allows you to set a fallback for where webpack should look for modules.
