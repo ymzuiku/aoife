@@ -17,8 +17,10 @@ export const next = (focusUpdateTargets?: string | HTMLElement[], ignoreUpdateTa
 
   if (focusUpdateTargets) {
     let eleList: any[];
+    let isEle = false;
     if (typeof focusUpdateTargets !== "string") {
       eleList = focusUpdateTargets;
+      isEle = true;
     } else {
       // 处理逗号分割query
       let query = "";
@@ -37,7 +39,7 @@ export const next = (focusUpdateTargets?: string | HTMLElement[], ignoreUpdateTa
     eleList.forEach((ele: any) => {
       if (ele.__next) {
         // 判断元素是否存在
-        if (document.body.contains(ele)) {
+        if (isEle || document.body.contains(ele)) {
           // 忽略元素及其子元素的更新
           if (ignoreList) {
             const len = ignoreList.length;
