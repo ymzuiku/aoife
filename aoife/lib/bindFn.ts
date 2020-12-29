@@ -2,6 +2,7 @@ import { stringToHex } from "./stringToHex";
 
 const attrKeys: any = {
   autofocus: true,
+  role: true,
 };
 
 function getValue(ele: any, value: any) {
