@@ -1,12 +1,11 @@
 {
   "name": "create-aoife-app",
-  "version": "1.4.10",
+  "version": "1.4.11",
   "bin": {
     "create-aoife-app": "bin.js"
   },
   "dependencies": {
     "@types/fs-extra": "^9.0.5",
-    "aoife-scripts": "^4.0.3",
     "fs-extra": "^9.0.1"
   },
   "repository": {
