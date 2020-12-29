@@ -2189,10 +2189,10 @@ anymatch@^3.0.3, anymatch@~3.1.1:
     normalize-path "^3.0.0"
     picomatch "^2.0.4"
 
-aoife-scripts@^4.0.2:
-  version "4.0.2"
-  resolved "https://registry.yarnpkg.com/aoife-scripts/-/aoife-scripts-4.0.2.tgz#f2be53083e0dadffd073a10e4273000aa0fb4ddc"
-  integrity sha512-nwbaGXe9c6qTzXPBgsyXyjIrTXPb/jBrYgWSwtO2dAh/7umPpUgFCibbfUG1erzQhecIblN3EmUdM1/DkijTVA==
+aoife-scripts@^4.0.3:
+  version "4.0.3"
+  resolved "https://registry.yarnpkg.com/aoife-scripts/-/aoife-scripts-4.0.3.tgz#5cc0ab8d0dfe83ad2f2c29570a7641fd8cbc001f"
+  integrity sha512-KujRd4hWUEO7oE7GD94RkbLeHQKMHb0HGUzXuDuuKGDXUYIRXRTFX30SsYsbOsTSPMcmJIL7e6i/abWAtb83aQ==
   dependencies:
     "@babel/core" "7.12.3"
     "@pmmmwh/react-refresh-webpack-plugin" "0.4.2"

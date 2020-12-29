@@ -4,7 +4,7 @@ function App({ name }: { name: string }) {
   let num = 0;
   return (
     <div class="app">
-      <h1>Hello2 {name}</h1>
+      <h1>Hello811111111 {name}</h1>
       <p>{() => num}</p>
       <button
         onclick={() => {
@@ -18,4 +18,4 @@ function App({ name }: { name: string }) {
   );
 }
 
-document.body.append(<App name="World" />);
+document.body.append(<App name="World2" />);
