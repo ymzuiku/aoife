@@ -483,6 +483,7 @@ export declare interface IStyled {
     | "400"
     | "500"
     | "600"
+    | "700"
     | "800"
     | "900"
     | keyof GlobalValuesOptions;
