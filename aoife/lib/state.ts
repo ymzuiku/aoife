@@ -1,14 +1,13 @@
-import { waitValue } from "./waitAppend";
-
 export const events = new Set<Function>();
 function getId() {
   return "id" + Date.now() + Math.random();
 }
 function getCloseMemoList(ele: Element, list: Element[]) {
-  const parent = ele.closest("[aoife-memo]");
-  if (parent && (parent as any)._memoFn) {
-    list.unshift(parent);
-    if (parent !== ele) {
+  const close = ele.closest("[aoife-memo]");
+  if (close) {
+    list.unshift(close);
+    const parent = close.parentNode as Element;
+    if (parent) {
       getCloseMemoList(parent, list);
     }
   }

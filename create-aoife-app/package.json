@@ -1,6 +1,6 @@
 {
   "name": "create-aoife-app",
-  "version": "1.5.0",
+  "version": "1.5.1",
   "bin": {
     "create-aoife-app": "bin.js"
   },

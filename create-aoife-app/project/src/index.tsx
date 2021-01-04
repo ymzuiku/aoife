@@ -1,13 +1,18 @@
 import "aoife";
 
+function Label() {
+  return new Promise((res) => {
+    setTimeout(() => res(<div>Label</div>), 1000);
+  });
+}
+
 function App({ name }: { name: string }) {
   let num = 0;
   let age = 0;
   return (
     <div class="app">
       <h1>Hello {name}</h1>
-      {/* <p>num:{() => num}</p>
-      <p>age:{() => age}</p> */}
+      <Label />
       <button
         onclick={() => {
           num += 1;
@@ -24,16 +29,11 @@ function App({ name }: { name: string }) {
       >
         Add age
       </button>
-      <div memo={() => [num]}>
-        <h1 memo={() => [age]}>
-          <h5>num:{() => num}</h5>
-          <h5>age:{() => age}</h5>
-        </h1>
-      </div>
-      {/* <h1>
-        <h5 memo={() => [num]}>num:{() => num}</h5>
+
+      <h1 memo={() => [num, age]}>
+        <h5>num:{() => num}</h5>
         <h5>age:{() => age}</h5>
-      </h1> */}
+      </h1>
     </div>
   );
 }
