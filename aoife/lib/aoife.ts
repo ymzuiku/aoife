@@ -4,7 +4,7 @@ import { loadable } from "./loadable";
 import { bindFn } from "./bindFn";
 import { isElement, isString, uiCaches, registerTag } from "./helper";
 import { parseChildren } from "./parseChildren";
-import { waitAppend } from "./waitAppend";
+import { waitAppend, waitValue } from "./waitAppend";
 
 import { events, next, subscribe } from "./state";
 import { propFn } from "./propFn";
@@ -20,6 +20,10 @@ const ignoreKeys: any = {
   child: 1,
   children: 1,
   length: 1,
+  memo: 1,
+  _memoFn: 1,
+  _memoLast: 1,
+  _memoLen: 1,
   __proxy: 1,
   __proxyEle: 1,
 };
@@ -28,7 +32,6 @@ const classKeys = ["className", "classPick"];
 
 export const aoife = (tag: ChildOne, attrs?: ChildOne, ...child: ChildOne[]): HTMLElement => {
   let props = {} as IProps;
-  // 兼容第二个参数，attrs是child
 
   if (attrs && (typeof attrs === "function" || Array.isArray(attrs) || isString(attrs) || isElement(attrs))) {
     child = [attrs, ...child];
@@ -60,8 +63,9 @@ export const aoife = (tag: ChildOne, attrs?: ChildOne, ...child: ChildOne[]): HT
 
   let ele: any;
 
-  // 若 tag 是一个函数组件，attrs 就作为 props 使用，并且实力化这个组件
+  // 兼容第二个参数，attrs是child
   if (typeof tag === "string") {
+    // 若 tag 是一个函数组件，attrs 就作为 props 使用，并且实力化这个组件
     if (uiCaches[tag]) {
       ele = loadable(uiCaches[tag], [props, ...child]);
       return ele;
@@ -87,6 +91,13 @@ export const aoife = (tag: ChildOne, attrs?: ChildOne, ...child: ChildOne[]): HT
       }
     }
   });
+
+  if (typeof props.memo === "function") {
+    (ele as HTMLElement).setAttribute("aoife-memo", "");
+    ele._memoFn = props.memo;
+    ele._memoLast = ele._memoFn();
+    ele._memoLen = ele._memoLast.length;
+  }
 
   Object.keys(props).forEach((key) => {
     if (ignoreKeys[key]) {
@@ -123,5 +134,6 @@ aoife.next = next;
 aoife.events = events;
 aoife.registerTag = registerTag;
 aoife.propFn = propFn;
+aoife.waitValue = waitValue;
 
 (window as any).aoife = aoife;

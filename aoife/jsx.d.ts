@@ -1119,7 +1119,7 @@ declare interface IProps extends AddEventOptions {
   // 当 next 时，重绘整个 children
   // render?: (v?: any) => ChildOne;
   children?: ChildOne[];
-  memo?: () => any[];
+  memo?: () => any[] | Promise<any[]>;
   /** 当元素更新时执行 */
   watch?: () => any;
   /** 当元素 onappend 到文档中时执行 */

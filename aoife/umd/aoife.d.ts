@@ -1,5 +1,5 @@
 import { registerTag } from "./helper";
-import { waitAppend } from "./waitAppend";
+import { waitAppend, waitValue } from "./waitAppend";
 import { propFn } from "./propFn";
 import { stringToHex } from "./stringToHex";
 export declare const aoife: {
@@ -8,9 +8,10 @@ export declare const aoife: {
     stringToHex: typeof stringToHex;
     waitAppend: typeof waitAppend;
     subscribe: (fn: any) => () => void;
-    next: (focusUpdateTargets?: string | HTMLElement[] | undefined, ignoreUpdateTargets?: string | HTMLElement[] | undefined) => HTMLElement[];
+    next: (focusUpdateTargets?: string | HTMLElement[] | undefined, ignoreUpdateTargets?: string | HTMLElement[] | undefined) => Promise<HTMLElement[]>;
     events: Set<Function>;
     registerTag: typeof registerTag;
     propFn: typeof propFn;
+    waitValue: typeof waitValue;
 };
 export declare const jsxFrag: (...attrs: any[]) => void;

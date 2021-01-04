@@ -1620,6 +1620,11 @@ v8-compile-cache@^2.0.3:
   resolved "https://registry.yarnpkg.com/v8-compile-cache/-/v8-compile-cache-2.1.1.tgz#54bc3cdd43317bca91e35dcaf305b1a7237de745"
   integrity sha512-8OQ9CL+VWyt3JStj7HX7/ciTL2V3Rl1Wf5OL+SNTm0yK1KvtReVulksyeRnCANHHuUxHlQig+JJDlUhBt1NQDQ==
 
+wait-value@^0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/wait-value/-/wait-value-0.1.0.tgz#3567b4075e9be9647bc641559d2ec9fbe8f6bab3"
+  integrity sha512-CbNOdBqsOuS/Q+3Vu9xZxdQEXfLjdINfpbP8loF4ZrBjLBal6u6y0K/4dP20QGPTjeDFhsilR+gTOvztYXWYFQ==
+
 which-pm-runs@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/which-pm-runs/-/which-pm-runs-1.0.0.tgz#670b3afbc552e0b55df6b7780ca74615f23ad1cb"

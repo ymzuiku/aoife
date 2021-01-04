@@ -1,27 +1,31 @@
-export function waitAppend(ele: HTMLElement | string, max = 300): Promise<HTMLElement> {
-  let n = 0;
+export function waitValue<T>(fn: () => T, max = 5000): Promise<T> {
   return new Promise((res, rej) => {
-    let fn: Function;
-    if (typeof ele === "string") {
-      fn = () => document.querySelector(ele);
-    } else {
-      fn = () => {
-        if (document.body.contains(ele)) {
-          return ele;
-        }
-      };
-    }
+    let n = 0;
     const check = () => {
-      const target = fn();
-      if (target) {
-        res(target);
+      const v = fn();
+      if (v) {
+        res(v);
       } else if (n < max) {
         n++;
-        requestAnimationFrame(check);
+        setTimeout(check, 20 + n);
       } else {
-        rej(ele);
+        rej();
       }
     };
     check();
   });
+}
+
+export function waitAppend(ele: HTMLElement | string, max = 300): Promise<HTMLElement> {
+  let fn: any;
+  if (typeof ele === "string") {
+    fn = () => document.querySelector(ele);
+  } else {
+    fn = () => {
+      if (document.body.contains(ele)) {
+        return ele;
+      }
+    };
+  }
+  return waitValue(fn);
 }
