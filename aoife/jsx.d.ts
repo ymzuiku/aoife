@@ -1326,4 +1326,5 @@ declare const aoife: {
   events: Set<Function>;
   registerTag(data: { [key: string]: any }): void;
   propFn(target: any, fn: (val: any) => IStyled | string | boolean | number | any[] | object): any;
+  waitValue<T>(fn: () => T, max?: number): Promise<T>;
 };
