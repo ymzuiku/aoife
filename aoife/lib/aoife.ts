@@ -1,4 +1,3 @@
-import { ChildOne, IProps } from "./interface";
 import { subscribeElement } from "./state";
 import { loadable } from "./loadable";
 import { bindFn } from "./bindFn";

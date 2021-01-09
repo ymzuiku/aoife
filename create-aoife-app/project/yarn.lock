@@ -2189,10 +2189,10 @@ anymatch@^3.0.3, anymatch@~3.1.1:
     normalize-path "^3.0.0"
     picomatch "^2.0.4"
 
-aoife-scripts@^4.0.3:
-  version "4.0.3"
-  resolved "https://registry.yarnpkg.com/aoife-scripts/-/aoife-scripts-4.0.3.tgz#5cc0ab8d0dfe83ad2f2c29570a7641fd8cbc001f"
-  integrity sha512-KujRd4hWUEO7oE7GD94RkbLeHQKMHb0HGUzXuDuuKGDXUYIRXRTFX30SsYsbOsTSPMcmJIL7e6i/abWAtb83aQ==
+aoife-scripts@^4.0.5:
+  version "4.0.5"
+  resolved "https://registry.yarnpkg.com/aoife-scripts/-/aoife-scripts-4.0.5.tgz#5043bdb78da8ca27b8eba4fc52a059f929beaaf7"
+  integrity sha512-jVzmPPqkK1/bSNcxEhFTKsXUy/BhmR9tyfyHkV024L0r/NS1k3X+b0WEP/5/up7sNjHdkDux8NJRwJw5ot2s+A==
   dependencies:
     "@babel/core" "7.12.3"
     "@pmmmwh/react-refresh-webpack-plugin" "0.4.2"
@@ -2203,7 +2203,7 @@ aoife-scripts@^4.0.3:
     babel-jest "^26.6.0"
     babel-loader "8.1.0"
     babel-plugin-named-asset-import "^0.3.7"
-    babel-preset-aoife "^10.0.1"
+    babel-preset-custom-jsx "^10.0.1"
     bfj "^7.0.2"
     camelcase "^6.1.0"
     case-sensitive-paths-webpack-plugin "2.3.0"
@@ -2259,10 +2259,10 @@ aoife-scripts@^4.0.3:
   optionalDependencies:
     fsevents "^2.1.3"
 
-aoife@^1.5.1:
-  version "1.5.1"
-  resolved "https://registry.yarnpkg.com/aoife/-/aoife-1.5.1.tgz#bcb526cdd31d63bc873da3f84557ec36d6df8f78"
-  integrity sha512-8L0qM3RjYT7+NlWAwfRrzVYiQl3LXe3PMZ8/pnyUVReYexuuuzaFzjGeQeGj04y9jZuJHKn1PnDhgXABLM7GEg==
+aoife@^1.6.0:
+  version "1.6.0"
+  resolved "https://registry.yarnpkg.com/aoife/-/aoife-1.6.0.tgz#4214a7a70d1e0880bcd4fba8e78c64133b044edc"
+  integrity sha512-UmFpZUXoGuFtFDOkEbhPApILHxOr60Cy2ER4maZtaC1lu6/49aqykanD3xqkkSf+cEMmwRPeYiVM56/ritptOg==
 
 aproba@^1.1.1:
   version "1.2.0"
@@ -2588,27 +2588,6 @@ babel-plugin-transform-react-remove-prop-types@0.4.24:
   resolved "https://registry.yarnpkg.com/babel-plugin-transform-react-remove-prop-types/-/babel-plugin-transform-react-remove-prop-types-0.4.24.tgz#f2edaf9b4c6a5fbe5c1d678bfb531078c1555f3a"
   integrity sha512-eqj0hVcJUR57/Ug2zE1Yswsw4LhuqqHhD+8v120T1cl3kjg76QwtyBrdIk4WVwK+lAhBJVYCd/v+4nc4y+8JsA==
 
-babel-preset-aoife@^10.0.1:
-  version "10.0.1"
-  resolved "https://registry.yarnpkg.com/babel-preset-aoife/-/babel-preset-aoife-10.0.1.tgz#743503d0e5da3a8ebeb775777e8a9edbff7ca500"
-  integrity sha512-ho0e7ga6EKQxr6GzzoN3f8mhKaUiKDPfSgfj137+9zWP9DNMg4N6rmU1ESYIBHUkcBfGkOz8d5Y8Uhfv+EpuRQ==
-  dependencies:
-    "@babel/core" "7.12.3"
-    "@babel/plugin-proposal-class-properties" "7.12.1"
-    "@babel/plugin-proposal-decorators" "7.12.1"
-    "@babel/plugin-proposal-nullish-coalescing-operator" "7.12.1"
-    "@babel/plugin-proposal-numeric-separator" "7.12.1"
-    "@babel/plugin-proposal-optional-chaining" "7.12.1"
-    "@babel/plugin-transform-flow-strip-types" "7.12.1"
-    "@babel/plugin-transform-react-display-name" "7.12.1"
-    "@babel/plugin-transform-runtime" "7.12.1"
-    "@babel/preset-env" "7.12.1"
-    "@babel/preset-react" "7.12.1"
-    "@babel/preset-typescript" "7.12.1"
-    "@babel/runtime" "7.12.1"
-    babel-plugin-macros "2.8.0"
-    babel-plugin-transform-react-remove-prop-types "0.4.24"
-
 babel-preset-current-node-syntax@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/babel-preset-current-node-syntax/-/babel-preset-current-node-syntax-1.0.0.tgz#cf5feef29551253471cfa82fc8e0f5063df07a77"
@@ -2626,6 +2605,27 @@ babel-preset-current-node-syntax@^1.0.0:
     "@babel/plugin-syntax-optional-catch-binding" "^7.8.3"
     "@babel/plugin-syntax-optional-chaining" "^7.8.3"
     "@babel/plugin-syntax-top-level-await" "^7.8.3"
+
+babel-preset-custom-jsx@^10.0.1:
+  version "10.0.1"
+  resolved "https://registry.yarnpkg.com/babel-preset-custom-jsx/-/babel-preset-custom-jsx-10.0.1.tgz#11ae2a6395c18d3612542528f53710c77dce64cc"
+  integrity sha512-jXSrKuEgfNYCD+Al5Wr4eCEn22C54zZ6PIEhziQiVelxOCvwFOpJcM+pURdAos2RL+AS0rEj9fO/4ejgZxgPeQ==
+  dependencies:
+    "@babel/core" "7.12.3"
+    "@babel/plugin-proposal-class-properties" "7.12.1"
+    "@babel/plugin-proposal-decorators" "7.12.1"
+    "@babel/plugin-proposal-nullish-coalescing-operator" "7.12.1"
+    "@babel/plugin-proposal-numeric-separator" "7.12.1"
+    "@babel/plugin-proposal-optional-chaining" "7.12.1"
+    "@babel/plugin-transform-flow-strip-types" "7.12.1"
+    "@babel/plugin-transform-react-display-name" "7.12.1"
+    "@babel/plugin-transform-runtime" "7.12.1"
+    "@babel/preset-env" "7.12.1"
+    "@babel/preset-react" "7.12.1"
+    "@babel/preset-typescript" "7.12.1"
+    "@babel/runtime" "7.12.1"
+    babel-plugin-macros "2.8.0"
+    babel-plugin-transform-react-remove-prop-types "0.4.24"
 
 babel-preset-jest@^26.6.2:
   version "26.6.2"

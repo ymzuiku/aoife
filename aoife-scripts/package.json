@@ -1,6 +1,6 @@
 {
   "name": "aoife-scripts",
-  "version": "4.0.3",
+  "version": "4.0.5",
   "description": "Configuration and scripts for Create Aoife App, fork react-scripts.",
   "repository": {
     "type": "git",
@@ -36,7 +36,7 @@
     "babel-jest": "^26.6.0",
     "babel-loader": "8.1.0",
     "babel-plugin-named-asset-import": "^0.3.7",
-    "babel-preset-aoife": "^10.0.1",
+    "babel-preset-custom-jsx": "^10.0.1",
     "bfj": "^7.0.2",
     "camelcase": "^6.1.0",
     "case-sensitive-paths-webpack-plugin": "2.3.0",

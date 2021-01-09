@@ -1,1 +1,1 @@
-/// <reference types="aoife-scripts" />
+/// <reference types="aoife" />

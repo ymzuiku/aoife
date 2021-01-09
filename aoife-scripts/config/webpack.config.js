@@ -416,11 +416,11 @@ module.exports = function (webpackEnv) {
               loader: require.resolve("babel-loader"),
               options: {
                 customize: require.resolve(
-                  "babel-preset-aoife/webpack-overrides"
+                  "babel-preset-custom-jsx/webpack-overrides"
                 ),
                 presets: [
                   [
-                    require.resolve("babel-preset-aoife"),
+                    require.resolve("babel-preset-custom-jsx"),
                     {
                       // runtime: hasJsxRuntime ? "automatic" : "classic",
                       pragma: "aoife",
@@ -437,14 +437,14 @@ module.exports = function (webpackEnv) {
                 // side of caution.
                 // We remove this when the user ejects because the default
                 // is sane and uses Babel options. Instead of options, we use
-                // the react-scripts and babel-preset-aoife versions.
+                // the react-scripts and babel-preset-custom-jsx versions.
                 cacheIdentifier: getCacheIdentifier(
                   isEnvProduction
                     ? "production"
                     : isEnvDevelopment && "development",
                   [
                     "babel-plugin-named-asset-import",
-                    "babel-preset-aoife",
+                    "babel-preset-custom-jsx",
                     "react-dev-utils",
                     "react-scripts",
                   ]
@@ -487,7 +487,7 @@ module.exports = function (webpackEnv) {
                 compact: false,
                 presets: [
                   [
-                    require.resolve("babel-preset-aoife/dependencies"),
+                    require.resolve("babel-preset-custom-jsx/dependencies"),
                     { helpers: true },
                   ],
                 ],
@@ -501,7 +501,7 @@ module.exports = function (webpackEnv) {
                     : isEnvDevelopment && "development",
                   [
                     "babel-plugin-named-asset-import",
-                    "babel-preset-aoife",
+                    "babel-preset-custom-jsx",
                     "react-dev-utils",
                     "react-scripts",
                   ]

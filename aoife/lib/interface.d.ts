@@ -90,7 +90,7 @@ type JustifyAlignItems =
   | "evenly-stretch"
   | "evenly-baseline";
 
-export declare interface IStyled {
+declare interface IStyled {
   // -------------css-in-js-start
   onExtraSmall?: IStyled;
   onSmall?: IStyled;
@@ -1113,7 +1113,7 @@ type ChildJsx = ChildOne[];
 
 type ChildFn = (list: any[], i: number) => ChildOne;
 
-export declare interface IProps extends AddEventOptions {
+declare interface IProps extends AddEventOptions {
   tabIndex?: number | ((e: any) => number | Promise<number>);
   tag?: string | ((e: any) => string | Promise<string>) | HTMLInputElement | Function;
   // 当 next 时，重绘整个 children
@@ -1194,125 +1194,18 @@ export declare interface IProps extends AddEventOptions {
 
 declare namespace JSX {
   interface IntrinsicElements {
-    a: IProps;
-    abbr: IProps;
-    address: IProps;
-    applet: IProps;
-    area: IProps;
-    article: IProps;
-    aside: IProps;
-    audio: IProps;
-    b: IProps;
-    base: IProps;
-    basefont: IProps;
-    bdi: IProps;
-    bdo: IProps;
-    blockquote: IProps;
-    body: IProps;
-    br: IProps;
-    button: IProps;
-    canvas: IProps;
-    caption: IProps;
-    cite: IProps;
-    code: IProps;
-    col: IProps;
-    colgroup: IProps;
-    data: IProps;
-    datalist: IProps;
-    dd: IProps;
-    del: IProps;
-    details: IProps;
-    dfn: IProps;
-    dialog: IProps;
-    dir: IProps;
-    div: IProps;
-    dl: IProps;
-    dt: IProps;
-    em: IProps;
-    embed: IProps;
-    fieldset: IProps;
-    figcaption: IProps;
-    figure: IProps;
-    font: IProps;
-    footer: IProps;
-    form: IProps;
-    frame: IProps;
-    frameset: IProps;
-    h1: IProps;
-    h2: IProps;
-    h3: IProps;
-    h4: IProps;
-    h5: IProps;
-    h6: IProps;
-    head: IProps;
-    header: IProps;
-    hgroup: IProps;
-    hr: IProps;
-    html: IProps;
-    i: IProps;
-    iframe: IProps;
-    img: IProps;
-    input: IProps;
-    ins: IProps;
-    kbd: IProps;
-    label: IProps;
-    legend: IProps;
-    li: IProps;
-    link: IProps;
-    main: IProps;
-    map: IProps;
-    mark: IProps;
-    marquee: IProps;
-    menu: IProps;
-    meta: IProps;
-    meter: IProps;
-    nav: IProps;
-    noscript: IProps;
-    object: IProps;
-    ol: IProps;
-    optgroup: IProps;
-    option: IProps;
-    output: IProps;
-    p: IProps;
-    param: IProps;
-    picture: IProps;
-    pre: IProps;
-    progress: IProps;
-    q: IProps;
-    rp: IProps;
-    rt: IProps;
-    ruby: IProps;
-    s: IProps;
-    samp: IProps;
-    script: IProps;
-    section: IProps;
-    select: IProps;
-    slot: IProps;
-    small: IProps;
-    source: IProps;
-    span: IProps;
-    strong: IProps;
-    style: IProps;
-    sub: IProps;
-    summary: IProps;
-    sup: IProps;
-    table: IProps;
-    tbody: IProps;
-    td: IProps;
-    template: IProps;
-    textarea: IProps;
-    tfoot: IProps;
-    th: IProps;
-    thead: IProps;
-    time: IProps;
-    title: IProps;
-    tr: IProps;
-    track: IProps;
-    u: IProps;
-    ul: IProps;
-    var: IProps;
-    video: IProps;
-    wbr: IProps;
     [key: string]: IProps;
   }
 }
+
+declare const aoife: {
+  (tag: any, attrs?: ChildOne, ...child: ChildOne[]): HTMLElement;
+  stringToHex(str: string, start?: string): string;
+  waitAppend(ele: HTMLElement | string, max?: number): Promise<HTMLElement>;
+  subscribe: (fn: any) => () => void;
+  next: (focusUpdateTargets?: string | undefined, ignoreUpdateTargets?: string | any[] | undefined) => HTMLElement[];
+  events: Set<Function>;
+  registerTag(data: { [key: string]: any }): void;
+  propFn(target: any, fn: (val: any) => IStyled | string | boolean | number | any[] | object): any;
+  waitValue<T>(fn: () => T, max?: number): Promise<T>;
+};

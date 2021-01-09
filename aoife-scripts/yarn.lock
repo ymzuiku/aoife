@@ -2558,6 +2558,27 @@ babel-preset-current-node-syntax@^1.0.0:
     "@babel/plugin-syntax-optional-chaining" "^7.8.3"
     "@babel/plugin-syntax-top-level-await" "^7.8.3"
 
+babel-preset-custom-jsx@^10.0.1:
+  version "10.0.1"
+  resolved "https://registry.yarnpkg.com/babel-preset-custom-jsx/-/babel-preset-custom-jsx-10.0.1.tgz#11ae2a6395c18d3612542528f53710c77dce64cc"
+  integrity sha512-jXSrKuEgfNYCD+Al5Wr4eCEn22C54zZ6PIEhziQiVelxOCvwFOpJcM+pURdAos2RL+AS0rEj9fO/4ejgZxgPeQ==
+  dependencies:
+    "@babel/core" "7.12.3"
+    "@babel/plugin-proposal-class-properties" "7.12.1"
+    "@babel/plugin-proposal-decorators" "7.12.1"
+    "@babel/plugin-proposal-nullish-coalescing-operator" "7.12.1"
+    "@babel/plugin-proposal-numeric-separator" "7.12.1"
+    "@babel/plugin-proposal-optional-chaining" "7.12.1"
+    "@babel/plugin-transform-flow-strip-types" "7.12.1"
+    "@babel/plugin-transform-react-display-name" "7.12.1"
+    "@babel/plugin-transform-runtime" "7.12.1"
+    "@babel/preset-env" "7.12.1"
+    "@babel/preset-react" "7.12.1"
+    "@babel/preset-typescript" "7.12.1"
+    "@babel/runtime" "7.12.1"
+    babel-plugin-macros "2.8.0"
+    babel-plugin-transform-react-remove-prop-types "0.4.24"
+
 babel-preset-jest@^26.6.2:
   version "26.6.2"
   resolved "https://registry.yarnpkg.com/babel-preset-jest/-/babel-preset-jest-26.6.2.tgz#747872b1171df032252426586881d62d31798fee"

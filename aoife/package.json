@@ -1,8 +1,8 @@
 {
   "name": "aoife",
-  "version": "1.5.3",
+  "version": "1.6.0",
   "main": "umd/index.js",
-  "types": "umd/index.d.ts",
+  "types": "aoife.d.ts",
   "private": false,
   "scripts": {
     "eslint": "eslint --ext .tsx,.ts --fix ./lib",
