@@ -901,14 +901,14 @@ declare interface IStyled {
 //   target: HTMLInputElement & EventTarget;
 // }
 
-interface HTMLInputCustomeEvent extends HTMLElementEventMap {
+declare interface IInputEvnet extends HTMLElementEventMap {
   target: HTMLInputElement;
   preventDefault: any;
   stopPropagation: any;
 }
 
 interface HTMLElementCustomeEventMap {
-  [key: string]: HTMLInputCustomeEvent;
+  [key: string]: IInputEvnet;
 }
 
 // type HTMLInputEvent = typeof HTMLElementCustomeEventMap & HTMLInputEventTarget;
