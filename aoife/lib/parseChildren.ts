@@ -1,6 +1,12 @@
 import { isElement, isString } from "./helper";
 import { subscribeElement } from "./state";
 
+function replace(old: HTMLElement, ele: HTMLElement) {
+  if (!old.isEqualNode(ele)) {
+    old.replaceWith(ele);
+  }
+}
+
 export function parseChildren(_childs: any[], ele: HTMLElement) {
   if (!Array.isArray(_childs)) {
     return;
@@ -29,7 +35,7 @@ export function parseChildren(_childs: any[], ele: HTMLElement) {
                 isHave = true;
                 return;
               }
-              e.replaceWith(text);
+              replace(e as any, text);
               isHave = true;
             }
           });
@@ -69,7 +75,7 @@ export function parseChildren(_childs: any[], ele: HTMLElement) {
             const oldEl = oldKeys[c.key] as HTMLElement;
             if (oldEl) {
               if (!oldEl.isEqualNode(c)) {
-                oldEl.replaceWith(c);
+                replace(oldEl, c);
               }
             } else {
               ele.insertBefore(c, temp);
@@ -84,7 +90,7 @@ export function parseChildren(_childs: any[], ele: HTMLElement) {
           let isHave = false;
           ele.childNodes.forEach((e) => {
             if ((e as any).key === child.key) {
-              e.replaceWith(child);
+              replace(e as any, child);
               isHave = true;
             }
           });
@@ -99,10 +105,6 @@ export function parseChildren(_childs: any[], ele: HTMLElement) {
     } else if (isElement(ch)) {
       ele.append(ch);
     } else {
-      // 如果不用 jsx， 就需要使用此方法
-      // if (dom.noUseJSX) {
-      // ele.append((dom as any)(...ch));
-      // }
       ele.append(...ch);
     }
   });

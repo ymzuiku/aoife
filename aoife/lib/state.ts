@@ -1,25 +1,11 @@
-export const events = new Set<Function>();
-function getId() {
-  return "id" + Date.now() + Math.random();
-}
-function getCloseMemoList(ele: Element, list: Element[]) {
-  const close = ele.closest("[aoife-memo]");
-  if (close) {
-    list.unshift(close);
-    const parent = close.parentNode as Element;
-    if (parent) {
-      getCloseMemoList(parent, list);
-    }
-  }
-}
+import { equal } from "./equal";
 
-let lastNextId = getId();
+export const events = new Set<Function>();
 
 export const next = (focusUpdateTargets?: string | HTMLElement[], ignoreUpdateTargets?: string | HTMLElement[]) => {
   if (!focusUpdateTargets) {
     focusUpdateTargets = "*";
   }
-  lastNextId = getId();
   let ignoreList: any;
   if (ignoreUpdateTargets) {
     if (typeof ignoreUpdateTargets === "string") {
@@ -59,58 +45,6 @@ export const next = (focusUpdateTargets?: string | HTMLElement[], ignoreUpdateTa
       if ((ele as any).__next) {
         // 判断元素是否存在
         if (isEle || document.body.contains(ele)) {
-          // check memo block
-          const closeList = [] as any[];
-          getCloseMemoList(ele, closeList);
-
-          if (closeList.length) {
-            let isBlock = false;
-
-            // if this next fixed, use lastFix block;
-            for (let u = 0; u < closeList.length; u++) {
-              const closeEl = closeList[u];
-              if (closeEl._memoId === lastNextId) {
-                if (closeEl._memoBlock) {
-                  isBlock = true;
-                  break;
-                } else {
-                  continue;
-                }
-              }
-
-              // get old memo and new memo
-              const memo = closeEl._memoFn();
-
-              // save new fixId
-              closeEl._memoId = lastNextId;
-
-              // create block open;
-              closeEl._memoBlock = true;
-
-              // fix is have diff and close block
-              for (let i = 0; i < closeEl._memoLen; i++) {
-                if (closeEl._memoLast[i] !== memo[i]) {
-                  closeEl._memoBlock = false;
-                  break;
-                }
-              }
-
-              // useNewMemo;
-              closeEl._memoLast = memo;
-
-              // if block save status
-              if (closeEl._memoBlock) {
-                isBlock = true;
-                break;
-              }
-            }
-
-            // is have block, keep this for
-            if (isBlock) {
-              continue;
-            }
-          }
-
           // 忽略元素及其子元素的更新
           if (ignoreList) {
             const len = ignoreList.length;
@@ -127,9 +61,21 @@ export const next = (focusUpdateTargets?: string | HTMLElement[], ignoreUpdateTa
             }
           }
 
-          ((ele as any).__next as Map<string, Function>).forEach((fn) => {
-            fn();
-          });
+          if (ele.__memo) {
+            Promise.resolve(ele.__memo()).then((data) => {
+              const isUpdate = !equal(ele.__memoLast, data);
+              ele.__memoLast = data;
+              if (isUpdate) {
+                ((ele as any).__next as Map<string, Function>).forEach((fn) => {
+                  fn();
+                });
+              }
+            });
+          } else {
+            ((ele as any).__next as Map<string, Function>).forEach((fn) => {
+              fn();
+            });
+          }
           outElement.push(ele);
         }
       }
@@ -137,7 +83,6 @@ export const next = (focusUpdateTargets?: string | HTMLElement[], ignoreUpdateTa
   }
 
   events.forEach((fn) => fn());
-  lastNextId = getId();
 
   return outElement;
 };

@@ -8,6 +8,8 @@ import { waitAppend, waitValue } from "./waitAppend";
 import { events, next, subscribe } from "./state";
 import { propFn } from "./propFn";
 import { stringToHex } from "./stringToHex";
+import { memo } from "./memo";
+import { equal } from "./equal";
 
 const ignoreKeys: any = {
   class: 1,
@@ -20,9 +22,9 @@ const ignoreKeys: any = {
   children: 1,
   length: 1,
   memo: 1,
-  _memoFn: 1,
-  _memoLast: 1,
-  _memoLen: 1,
+  __memo: 1,
+  __memoLast: 1,
+  __memoSeted: 1,
   __proxy: 1,
   __proxyEle: 1,
 };
@@ -75,6 +77,14 @@ export const aoife = (tag: ChildOne, attrs?: ChildOne, ...child: ChildOne[]): HT
     ele = tag as any;
   }
 
+  if (props.memo) {
+    ele.__memo = props.memo;
+    ele.__memoSeted = 1;
+    Promise.resolve(props.memo()).then((res) => {
+      ele.__memoLast = res;
+    });
+  }
+
   if (props.onsubmit) {
     ele.onsubmit = (e: any) => {
       e.preventDefault();
@@ -86,24 +96,25 @@ export const aoife = (tag: ChildOne, attrs?: ChildOne, ...child: ChildOne[]): HT
     if (props[key]) {
       const fn = bindFn(ele, key, props[key]);
       if (fn) {
+        // if (props.memo) {
+        //   subscribeElement(ele, key, memo(props.memo)(fn));
+        // } else {
+        // }
         subscribeElement(ele, key, fn);
       }
     }
   });
 
-  if (typeof props.memo === "function") {
-    (ele as HTMLElement).setAttribute("aoife-memo", "");
-    ele._memoFn = props.memo;
-    ele._memoLast = ele._memoFn();
-    ele._memoLen = ele._memoLast.length;
-  }
-
   Object.keys(props).forEach((key) => {
     if (ignoreKeys[key]) {
       return;
     }
-    const fn = bindFn(ele, key, props[key]);
+    let fn = bindFn(ele, key, props[key]);
     if (fn) {
+      // if (props.memo) {
+      //   subscribeElement(ele, key, memo(props.memo)(fn));
+      // } else {
+      // }
       subscribeElement(ele, key, fn);
     }
   });
@@ -134,5 +145,7 @@ aoife.events = events;
 aoife.registerTag = registerTag;
 aoife.propFn = propFn;
 aoife.waitValue = waitValue;
+aoife.memo = memo;
+aoife.equal = equal;
 
 (window as any).aoife = aoife;

@@ -1120,7 +1120,7 @@ declare interface IProps extends AddEventOptions {
   // render?: (v?: any) => ChildOne;
   children?: ChildOne[];
   // 拦截更新
-  memo?: () => any[];
+  memo?: () => any;
   /** 当元素更新时执行 */
   watch?: () => any;
   /** 当元素 onappend 到文档中时执行 */
@@ -1208,4 +1208,6 @@ declare const aoife: {
   registerTag(data: { [key: string]: any }): void;
   propFn(target: any, fn: (val: any) => IStyled | string | boolean | number | any[] | object): any;
   waitValue<T>(fn: () => T, max?: number): Promise<T>;
+  memo: (blocker: () => any) => (fn: any) => Promise<any>;
+  equal: (a: any, b: any) => boolean;
 };

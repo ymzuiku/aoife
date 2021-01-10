@@ -2,6 +2,7 @@ import { registerTag } from "./helper";
 import { waitAppend, waitValue } from "./waitAppend";
 import { propFn } from "./propFn";
 import { stringToHex } from "./stringToHex";
+import { equal } from "./equal";
 export declare const aoife: {
     (tag: any, attrs?: any, ...child: any[]): HTMLElement;
     jsxFrag: (...attrs: any[]) => void;
@@ -13,5 +14,7 @@ export declare const aoife: {
     registerTag: typeof registerTag;
     propFn: typeof propFn;
     waitValue: typeof waitValue;
+    memo: (blocker: () => any) => (fn: any) => () => Promise<any>;
+    equal: typeof equal;
 };
 export declare const jsxFrag: (...attrs: any[]) => void;
