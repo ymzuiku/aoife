@@ -132,8 +132,8 @@ export const aoife = (tag: ChildOne, attrs?: ChildOne, ...child: ChildOne[]): HT
   return ele as any;
 };
 
-export const jsxFrag = (...attrs: any[]) => {
-  console.error("Dont Use Frag JSX");
+export const jsxFrag = (children: any, ...attrs: any[]) => {
+  return attrs;
 };
 
 aoife.jsxFrag = jsxFrag;

@@ -5,7 +5,7 @@ import { stringToHex } from "./stringToHex";
 import { equal } from "./equal";
 export declare const aoife: {
     (tag: any, attrs?: any, ...child: any[]): HTMLElement;
-    jsxFrag: (...attrs: any[]) => void;
+    jsxFrag: (children: any, ...attrs: any[]) => any[];
     stringToHex: typeof stringToHex;
     waitAppend: typeof waitAppend;
     subscribe: (fn: any) => () => void;
@@ -17,4 +17,4 @@ export declare const aoife: {
     memo: (blocker: () => any) => (fn: any) => () => Promise<any>;
     equal: typeof equal;
 };
-export declare const jsxFrag: (...attrs: any[]) => void;
+export declare const jsxFrag: (children: any, ...attrs: any[]) => any[];
