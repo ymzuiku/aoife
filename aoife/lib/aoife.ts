@@ -45,24 +45,24 @@ export const aoife = (tag: ChildOne, attrs?: ChildOne, ...child: ChildOne[]): HT
     props.className = props.class;
   }
 
-  if (typeof tag === "function") {
-    const out = (tag as any)(props, ...child) as any;
-    // 适配 promise 类型的组件
-    if (out && typeof out.then === "function") {
-      const temp = document.createElement("span");
-      temp.setAttribute("promise-span", "");
-      out.then((el: any) => {
-        temp.replaceWith(el);
-      });
-      return temp;
-    }
-    return out;
-  }
   if (Array.isArray(tag)) {
     return (aoife as any)(...tag);
   }
 
   let ele: any;
+
+  if (typeof tag === "function") {
+    ele = (tag as any)(props, ...child) as any;
+    // 适配 promise 类型的组件
+    if (ele && typeof ele.then === "function") {
+      const temp = document.createElement("span");
+      temp.setAttribute("promise-span", "");
+      ele.then((el: any) => {
+        temp.replaceWith(el);
+      });
+      return temp;
+    }
+  }
 
   // 兼容第二个参数，attrs是child
   if (typeof tag === "string") {

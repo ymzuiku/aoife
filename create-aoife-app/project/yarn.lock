@@ -2259,10 +2259,10 @@ aoife-scripts@^4.0.5:
   optionalDependencies:
     fsevents "^2.1.3"
 
-aoife@^1.6.5:
-  version "1.6.5"
-  resolved "https://registry.yarnpkg.com/aoife/-/aoife-1.6.5.tgz#8096a6fdee4cadbf76d8c4a9675618d57a676ba9"
-  integrity sha512-zG8WjzbBjTK8UHkwhIrM8aatPl01ZJb2u1QmNRGh/VAfsNdZgBJekybBgPb6z3A+uM5VlEdK8fOiBY3CiauqSg==
+aoife@^1.6.7:
+  version "1.6.7"
+  resolved "https://registry.yarnpkg.com/aoife/-/aoife-1.6.7.tgz#750323239b8eb8652461688ed489cbdb7a54c859"
+  integrity sha512-IqZ3EQHi16BvqPnfF9rloJiJFlNXLTXKQjRq9EO/nZLxHG5/R/ebA6qEPIZLklGPLHYxIv9u3KhHEiWfvxPvHg==
 
 aproba@^1.1.1:
   version "1.2.0"
