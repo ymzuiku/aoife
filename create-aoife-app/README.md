@@ -6,10 +6,18 @@ aoife 非常小, gzip 3kb
 
 ## 安装 / 启动
 
-安装
+安装 vite 风格项目
 
 ```sh
-$ npm init aoife-app <project-name>
+$ npm init aoife-app <project-name> --vite
+$ cd <project-name>
+$ yarn install
+```
+
+安装 webpack 风格项目
+
+```sh
+$ npm init aoife-app <project-name> --webpack
 $ cd <project-name>
 $ yarn install
 ```
