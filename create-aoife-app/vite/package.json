@@ -1,0 +1,15 @@
+{
+  "name": "client-wf",
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build"
+  },
+  "dependencies": {
+    "aoife": "^1.6.8",
+    "monaco-editor": "^0.21.2"
+  },
+  "devDependencies": {
+    "vite": "^2.0.0-beta.12"
+  }
+}
