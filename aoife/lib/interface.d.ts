@@ -1210,4 +1210,11 @@ declare const aoife: {
   waitValue<T>(fn: () => T, max?: number): Promise<T>;
   memo: (blocker: () => any) => (fn: any) => Promise<any>;
   equal: (a: any, b: any) => boolean;
+  styles<
+    T extends {
+      [key: string]: IStyled;
+    }
+  >(
+    sheet: T
+  ): T;
 };
