@@ -91,7 +91,7 @@ function makeCss(ele: any, style: any, type: string, fn: (cssName: string) => st
     cssName = oldCssNameNum;
   } else {
     cssKeyNum += 1;
-    cssKeyMap[cssName] = "cssinjs-" + cssKeyNum;
+    cssKeyMap[cssName] = "cssinjs-" + type + "-" + cssKeyNum;
     cssName = cssKeyMap[cssName];
   }
   styleAddCss({
