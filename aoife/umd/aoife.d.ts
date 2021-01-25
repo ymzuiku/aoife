@@ -16,7 +16,7 @@ export declare const aoife: {
     waitValue: typeof waitValue;
     memo: (blocker: () => any) => (fn: any) => () => Promise<any>;
     equal: typeof equal;
-    sheet<T extends {
+    styles<T extends {
         [key: string]: IStyled;
     }>(sheet: T): T;
 };
