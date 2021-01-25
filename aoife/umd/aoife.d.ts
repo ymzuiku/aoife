@@ -16,5 +16,8 @@ export declare const aoife: {
     waitValue: typeof waitValue;
     memo: (blocker: () => any) => (fn: any) => () => Promise<any>;
     equal: typeof equal;
+    sheet<T extends {
+        [key: string]: IStyled;
+    }>(sheet: T): T;
 };
 export declare const jsxFrag: (children: any, ...attrs: any[]) => any[];

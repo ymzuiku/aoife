@@ -147,5 +147,6 @@ aoife.propFn = propFn;
 aoife.waitValue = waitValue;
 aoife.memo = memo;
 aoife.equal = equal;
+aoife.sheet = <T extends { [key: string]: IStyled }>(sheet: T): T => sheet;
 
-(window as any).aoife = aoife;
+document.createElement(window as any).aoife = aoife;
