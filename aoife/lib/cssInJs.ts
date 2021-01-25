@@ -80,10 +80,18 @@ function styleAddCss({ ele, elKey, select, cssName, style }: IStyleAddCss) {
   el.id = cssName;
   el.textContent = css;
   cssCache[cssName] = true;
+  if (/media/.test(css)) {
+    console.log(css);
+  }
   document.head.appendChild(el);
 }
 
-function makeCss(ele: any, style: any, type: string, fn: (cssName: string) => string) {
+function makeCss(
+  ele: any,
+  style: any,
+  type: string,
+  fn: (cssName: string) => string
+) {
   let cssName = stringToHex(JSON.stringify(style), type);
   // cssName 转化 为有序短名
   const oldCssNameNum = cssKeyMap[cssName];
@@ -112,6 +120,7 @@ const mediaKeys = {
 } as any;
 
 const pesudoKeys = {
+  onHover: ":hover",
   onFocus: ":focus",
   onActive: ":active",
   onFirstChild: ":first-child",
@@ -130,19 +139,35 @@ const pesudoKeys = {
   onPlaceholderShown: ":placeholder-shown",
 } as any;
 
-const _pseudoStyle = {} as any;
+// 伪类
+const _pseudoStyle = {
+  onHover: (ele: any, style: any) => {
+    makeCss(
+      ele,
+      style,
+      "onHover",
+      (c) => `@media (min-width:${mediaKeys.onMd}) {.${c}:hover`
+    );
+  },
+} as any;
 Object.keys(pesudoKeys).forEach((k) => {
-  const v = pesudoKeys[k];
-  _pseudoStyle[k] = (ele: any, style: any) => {
-    makeCss(ele, style, k, (c) => `.${c}${v}`);
-  };
+  if (k !== "onHover") {
+    const v = pesudoKeys[k];
+    _pseudoStyle[k] = (ele: any, style: any) => {
+      makeCss(ele, style, k, (c) => `.${c}${v}`);
+    };
+  }
 });
 
+// const _pseudoStyleKeys = Object.keys(_pseudoStyle);
+
+// 媒体查询
 const _mediaStyle = {} as any;
+
 Object.keys(mediaKeys).forEach((k) => {
   const v = mediaKeys[k];
   _mediaStyle[k] = (ele: any, style: any) => {
-    makeCss(ele, style, k, (c) => `@media (min-width:${v}) {.${c}`);
+    makeCss(ele, style, k, (c) => `@media (max-width:${v}) {.${c}`);
   };
 });
 
@@ -170,9 +195,6 @@ function setJustItem(ele: HTMLElement, val: string) {
 }
 
 const fixCssInJsKey = {
-  onHover: (ele: any, style: any) => {
-    makeCss(ele, style, "onHover", (c) => `@media (min-width:640px) {.${c}:hover`);
-  },
   ..._pseudoStyle,
   ..._mediaStyle,
   setRow: (ele: HTMLElement, val: string) => {

@@ -90,30 +90,7 @@ type JustifyAlignItems =
   | "evenly-stretch"
   | "evenly-baseline";
 
-declare interface IStyled {
-  // -------------css-in-js-start
-  onExtraSmall?: IStyled;
-  onSmall?: IStyled;
-  onMiddle?: IStyled;
-  onLarge?: IStyled;
-  onExtraLager?: IStyled;
-  onActive?: IStyled;
-  onFocus?: IStyled;
-  onHover?: IStyled;
-  onFirstChild?: IStyled;
-  onLastChild?: IStyled;
-  onBlank?: IStyled;
-  onChecked?: IStyled;
-  onCurrent?: IStyled;
-  onDisabled?: IStyled;
-  onFocusWithin?: IStyled;
-  onPlaceholderShown?: IStyled;
-  onInRange?: IStyled;
-  onVisited?: IStyled;
-  onAfter?: IStyled;
-  onBefore?: IStyled;
-  onEven?: IStyled;
-  onOdd?: IStyled;
+interface SimpleStyle {
   setNowrap?: "clip" | "ellipsis";
   setRow?: JustifyAlignItems;
   setCol?: JustifyAlignItems;
@@ -307,7 +284,14 @@ declare interface IStyled {
   "--mono"?: string;
   // -------------css-value-end
   all?: string;
-  contain?: "none" | "strict" | "content" | "size" | "layout" | "style" | "paint";
+  contain?:
+    | "none"
+    | "strict"
+    | "content"
+    | "size"
+    | "layout"
+    | "style"
+    | "paint";
   alignContent?:
     | "flex-start"
     | "flex-end"
@@ -316,8 +300,21 @@ declare interface IStyled {
     | "space-between"
     | "space-around"
     | keyof GlobalValuesOptions;
-  alignItems?: "flex-start" | "flex-end" | "center" | "stretch" | "baseline" | keyof GlobalValuesOptions;
-  alignSelf?: "auto" | "flex-start" | "flex-end" | "center" | "stretch" | "baseline" | keyof GlobalValuesOptions;
+  alignItems?:
+    | "flex-start"
+    | "flex-end"
+    | "center"
+    | "stretch"
+    | "baseline"
+    | keyof GlobalValuesOptions;
+  alignSelf?:
+    | "auto"
+    | "flex-start"
+    | "flex-end"
+    | "center"
+    | "stretch"
+    | "baseline"
+    | keyof GlobalValuesOptions;
   alignmentBaseline?: string | null;
   animation?: string;
   animation__snippet?:
@@ -337,13 +334,24 @@ declare interface IStyled {
   background?: string | null;
   backdropFilter__snippet?: "saturate(180%) blur(5px)";
   backdropFilter?: string | null;
-  background__snippet?: "rgba(0,0,0,0)" | "#fff" | "linear-gradient(180deg, red, blue)";
+  background__snippet?:
+    | "rgba(0,0,0,0)"
+    | "#fff"
+    | "linear-gradient(180deg, red, blue)";
   backgroundAttachment?: "scroll" | "fixed" | "local";
-  backgroundClip?: "padding-box" | "border-box" | "content-box" | keyof GlobalValuesOptions;
+  backgroundClip?:
+    | "padding-box"
+    | "border-box"
+    | "content-box"
+    | keyof GlobalValuesOptions;
   backgroundColor?: string | null;
   backgroundImage?: string | null;
   backgroundImage__snippet?: "url(bgimage.gif)";
-  backgroundOrigin?: "padding-box" | "border-box" | "content-box" | keyof GlobalValuesOptions;
+  backgroundOrigin?:
+    | "padding-box"
+    | "border-box"
+    | "content-box"
+    | keyof GlobalValuesOptions;
   backgroundPosition?: string | null;
   backgroundPosition__snippet?: "inherit" | "0% 50%";
   backgroundPositionX?: string | null;
@@ -545,9 +553,27 @@ declare interface IStyled {
   imageOrientation?: string;
   imageRendering?: string;
   imeMode?: string | null;
-  justifyContent?: "flex-start" | "flex-end" | "center" | "space-between" | "space-around" | keyof GlobalValuesOptions;
-  justifyItems?: "flex-start" | "flex-end" | "center" | "space-between" | "space-around" | keyof GlobalValuesOptions;
-  justifySelf?: "flex-start" | "flex-end" | "center" | "space-between" | "space-around" | keyof GlobalValuesOptions;
+  justifyContent?:
+    | "flex-start"
+    | "flex-end"
+    | "center"
+    | "space-between"
+    | "space-around"
+    | keyof GlobalValuesOptions;
+  justifyItems?:
+    | "flex-start"
+    | "flex-end"
+    | "center"
+    | "space-between"
+    | "space-around"
+    | keyof GlobalValuesOptions;
+  justifySelf?:
+    | "flex-start"
+    | "flex-end"
+    | "center"
+    | "space-between"
+    | "space-around"
+    | keyof GlobalValuesOptions;
   kerning?: string | null;
   /** ios 不支持 */
   overscrollBehavior?: "auto" | "contain" | "none";
@@ -643,11 +669,29 @@ declare interface IStyled {
   outlineOffset?: string;
   outlineStyle?: string;
   outlineWidth?: string;
-  overflow?: "visible" | "hidden" | "scroll" | "auto" | "inherit" | "hidden scroll";
+  overflow?:
+    | "visible"
+    | "hidden"
+    | "scroll"
+    | "auto"
+    | "inherit"
+    | "hidden scroll";
   overflowAnchor?: string;
   overflowWrap?: string;
-  overflowX?: "visible" | "hidden" | "scroll" | "auto" | "inherit" | "hidden scroll";
-  overflowY?: "visible" | "hidden" | "scroll" | "auto" | "inherit" | "hidden scroll";
+  overflowX?:
+    | "visible"
+    | "hidden"
+    | "scroll"
+    | "auto"
+    | "inherit"
+    | "hidden scroll";
+  overflowY?:
+    | "visible"
+    | "hidden"
+    | "scroll"
+    | "auto"
+    | "inherit"
+    | "hidden scroll";
   padding?: string | null;
   paddingBottom?: string | null;
   paddingLeft?: string | null;
@@ -676,9 +720,23 @@ declare interface IStyled {
     | "fill"
     | "stroke"
     | "all";
-  position?: "block" | "fixed" | "absolute" | "relative" | "static" | "inherit" | "sticky";
+  position?:
+    | "block"
+    | "fixed"
+    | "absolute"
+    | "relative"
+    | "static"
+    | "inherit"
+    | "sticky";
   quotes?: string | null;
-  resize?: "none" | "both" | "horizontal" | "vertical" | "block" | "inline" | keyof GlobalValuesOptions;
+  resize?:
+    | "none"
+    | "both"
+    | "horizontal"
+    | "vertical"
+    | "block"
+    | "inline"
+    | keyof GlobalValuesOptions;
   right?: string | null;
   rotate?: string | null;
   rowGap?: string;
@@ -699,14 +757,49 @@ declare interface IStyled {
   strokeWidth?: string | null;
   tabSize?: string;
   tableLayout?: "auto" | "fixed" | keyof GlobalValuesOptions;
-  textAlign?: "start" | "end" | "left" | "right" | "center" | "justify" | "inherit";
-  textAlignLast?: "auto" | "left" | "right" | "center" | "justify" | "inherit" | "start" | "end" | "initial";
+  textAlign?:
+    | "start"
+    | "end"
+    | "left"
+    | "right"
+    | "center"
+    | "justify"
+    | "inherit";
+  textAlignLast?:
+    | "auto"
+    | "left"
+    | "right"
+    | "center"
+    | "justify"
+    | "inherit"
+    | "start"
+    | "end"
+    | "initial";
   textAnchor?: string | null;
   textCombineUpright?: string;
-  textDecoration?: "none" | "underline" | "overline" | "line-through" | "blink" | "inherit";
+  textDecoration?:
+    | "none"
+    | "underline"
+    | "overline"
+    | "line-through"
+    | "blink"
+    | "inherit";
   textDecorationColor?: string;
-  textDecorationLine?: "none" | "underline" | "overline" | "line-through" | "blink" | "inherit";
-  textDecorationStyle?: "solid" | "double" | "dotted" | "dashed" | "wavy" | "initial" | "inherit";
+  textDecorationLine?:
+    | "none"
+    | "underline"
+    | "overline"
+    | "line-through"
+    | "blink"
+    | "inherit";
+  textDecorationStyle?:
+    | "solid"
+    | "double"
+    | "dotted"
+    | "dashed"
+    | "wavy"
+    | "initial"
+    | "inherit";
   textEmphasis?: string;
   textEmphasisColor?: string;
   textEmphasisPosition?: string;
@@ -747,13 +840,25 @@ declare interface IStyled {
   transitionTimingFunction?: string;
   translate?: string | null;
   unicodeBidi?: string;
-  userSelect?: "none" | "auto" | "text" | "contain" | "all" | keyof GlobalValuesOptions;
+  userSelect?:
+    | "none"
+    | "auto"
+    | "text"
+    | "contain"
+    | "all"
+    | keyof GlobalValuesOptions;
   verticalAlign?: string | null;
   visibility?: string | null;
   /** @deprecated */
   webkitAlignContent?: string;
   /** @deprecated */
-  webkitAlignItems?: "flex-start" | "flex-end" | "center" | "stretch" | "baseline" | GlobalValuesOptions;
+  webkitAlignItems?:
+    | "flex-start"
+    | "flex-end"
+    | "center"
+    | "stretch"
+    | "baseline"
+    | GlobalValuesOptions;
   /** @deprecated */
   webkitAlignSelf?: string;
   /** @deprecated */
@@ -929,6 +1034,35 @@ declare interface IStyled {
   [key: string]: any;
 }
 
+interface PesudoStyle extends SimpleStyle {
+  onActive?: SimpleStyle;
+  onFocus?: SimpleStyle;
+  onHover?: SimpleStyle;
+  onFirstChild?: SimpleStyle;
+  onLastChild?: SimpleStyle;
+  onBlank?: SimpleStyle;
+  onChecked?: SimpleStyle;
+  onCurrent?: SimpleStyle;
+  onDisabled?: SimpleStyle;
+  onFocusWithin?: SimpleStyle;
+  onPlaceholderShown?: SimpleStyle;
+  onInRange?: SimpleStyle;
+  onVisited?: SimpleStyle;
+  onAfter?: SimpleStyle;
+  onBefore?: SimpleStyle;
+  onEven?: SimpleStyle;
+  onOdd?: SimpleStyle;
+}
+
+declare interface IStyled extends PesudoStyle {
+  // -------------css-in-js-start
+  onXs?: SimpleStyle;
+  onSm?: SimpleStyle;
+  onMd?: SimpleStyle;
+  onLg?: SimpleStyle;
+  onXl?: SimpleStyle;
+}
+
 // interface HTMLInputEvent extends HTMLElementCustomeEventMap["input"] {
 //   target: HTMLInputElement & EventTarget;
 // }
@@ -1016,7 +1150,9 @@ interface EventOptions {
   onreset?: (ev: HTMLElementEventMap["reset"]) => any;
   onresize?: (ev: HTMLElementEventMap["resize"]) => any;
   onscroll?: (ev: HTMLElementEventMap["scroll"]) => any;
-  onsecuritypolicyviolation?: (ev: HTMLElementEventMap["securitypolicyviolation"]) => any;
+  onsecuritypolicyviolation?: (
+    ev: HTMLElementEventMap["securitypolicyviolation"]
+  ) => any;
   onseeked?: (ev: HTMLElementEventMap["seeked"]) => any;
   onseeking?: (ev: HTMLElementEventMap["seeking"]) => any;
   onselect?: (ev: HTMLElementEventMap["select"]) => any;
@@ -1034,7 +1170,9 @@ interface EventOptions {
   ontransitioncancel?: (ev: HTMLElementEventMap["transitioncancel"]) => any;
   ontransitionend?: (ev: HTMLElementEventMap["transitionend"]) => any;
   ontransitionrun?: (ev: HTMLElementEventMap["transitionrun"]) => any;
-  ontransitionstart?: (ev: HTMLElementCustomeEventMap["transitionstart"]) => any;
+  ontransitionstart?: (
+    ev: HTMLElementCustomeEventMap["transitionstart"]
+  ) => any;
   onvolumechange?: (ev: HTMLElementEventMap["volumechange"]) => any;
   onwaiting?: (ev: HTMLElementEventMap["waiting"]) => any;
   onwheel?: (ev: HTMLElementEventMap["wheel"]) => any;
@@ -1045,7 +1183,9 @@ interface AddEventOptions extends EventOptions {
   listenabort?: (ev: HTMLElementEventMap["abort"]) => any;
   listenanimationcancel?: (ev: HTMLElementEventMap["animationcancel"]) => any;
   listenanimationend?: (ev: HTMLElementEventMap["animationend"]) => any;
-  listenanimationiteration?: (ev: HTMLElementEventMap["animationiteration"]) => any;
+  listenanimationiteration?: (
+    ev: HTMLElementEventMap["animationiteration"]
+  ) => any;
   listenanimationstart?: (ev: HTMLElementEventMap["animationstart"]) => any;
   listenauxclick?: (ev: HTMLElementEventMap["auxclick"]) => any;
   listenblur?: (ev: HTMLElementEventMap["blur"]) => any;
@@ -1077,7 +1217,9 @@ interface AddEventOptions extends EventOptions {
   listenfocusout?: (ev: HTMLElementEventMap["focusout"]) => any;
   listenfullscreenchange?: (ev: HTMLElementEventMap["fullscreenchange"]) => any;
   listenfullscreenerror?: (ev: HTMLElementEventMap["fullscreenerror"]) => any;
-  listengotpointercapture?: (ev: HTMLElementEventMap["gotpointercapture"]) => any;
+  listengotpointercapture?: (
+    ev: HTMLElementEventMap["gotpointercapture"]
+  ) => any;
   listeninput?: (ev: HTMLElementCustomeEventMap["input"]) => any;
   listeninvalid?: (ev: HTMLElementCustomeEventMap["invalid"]) => any;
   listenkeydown?: (ev: HTMLElementEventMap["keydown"]) => any;
@@ -1087,7 +1229,9 @@ interface AddEventOptions extends EventOptions {
   listenloadeddata?: (ev: HTMLElementEventMap["loadeddata"]) => any;
   listenloadedmetadata?: (ev: HTMLElementEventMap["loadedmetadata"]) => any;
   listenloadstart?: (ev: HTMLElementEventMap["loadstart"]) => any;
-  listenlostpointercapture?: (ev: HTMLElementEventMap["lostpointercapture"]) => any;
+  listenlostpointercapture?: (
+    ev: HTMLElementEventMap["lostpointercapture"]
+  ) => any;
   listenmousedown?: (ev: HTMLElementCustomeEventMap["mousedown"]) => any;
   listenmouseenter?: (ev: HTMLElementCustomeEventMap["mouseenter"]) => any;
   listenmouseleave?: (ev: HTMLElementCustomeEventMap["mouseleave"]) => any;
@@ -1099,7 +1243,9 @@ interface AddEventOptions extends EventOptions {
   listenpause?: (ev: HTMLElementEventMap["pause"]) => any;
   listenplay?: (ev: HTMLElementEventMap["play"]) => any;
   listenplaying?: (ev: HTMLElementEventMap["playing"]) => any;
-  listenpointercancel?: (ev: HTMLElementCustomeEventMap["pointercancel"]) => any;
+  listenpointercancel?: (
+    ev: HTMLElementCustomeEventMap["pointercancel"]
+  ) => any;
   listenpointerdown?: (ev: HTMLElementCustomeEventMap["pointerdown"]) => any;
   listenpointerenter?: (ev: HTMLElementCustomeEventMap["pointerenter"]) => any;
   listenpointerleave?: (ev: HTMLElementCustomeEventMap["pointerleave"]) => any;
@@ -1112,7 +1258,9 @@ interface AddEventOptions extends EventOptions {
   listenreset?: (ev: HTMLElementEventMap["reset"]) => any;
   listenresize?: (ev: HTMLElementEventMap["resize"]) => any;
   listenscroll?: (ev: HTMLElementEventMap["scroll"]) => any;
-  listensecuritypolicyviolation?: (ev: HTMLElementEventMap["securitypolicyviolation"]) => any;
+  listensecuritypolicyviolation?: (
+    ev: HTMLElementEventMap["securitypolicyviolation"]
+  ) => any;
   listenseeked?: (ev: HTMLElementEventMap["seeked"]) => any;
   listenseeking?: (ev: HTMLElementEventMap["seeking"]) => any;
   listenselect?: (ev: HTMLElementEventMap["select"]) => any;
@@ -1140,14 +1288,26 @@ interface AddEventOptions extends EventOptions {
 type RefOne = (e: HTMLInputElement) => any;
 type RefList = ((e: HTMLInputElement) => any)[];
 
-type ChildOne = Element | string | number | boolean | undefined | IProps | ChildFn | ChildJsx;
+type ChildOne =
+  | Element
+  | string
+  | number
+  | boolean
+  | undefined
+  | IProps
+  | ChildFn
+  | ChildJsx;
 type ChildJsx = ChildOne[];
 
 type ChildFn = (list: any[], i: number) => ChildOne;
 
 declare interface IProps extends AddEventOptions {
   tabIndex?: number | ((e: any) => number | Promise<number>);
-  tag?: string | ((e: any) => string | Promise<string>) | HTMLInputElement | Function;
+  tag?:
+    | string
+    | ((e: any) => string | Promise<string>)
+    | HTMLInputElement
+    | Function;
   // 当 next 时，重绘整个 children
   // render?: (v?: any) => ChildOne;
   children?: ChildOne[];
@@ -1159,14 +1319,29 @@ declare interface IProps extends AddEventOptions {
   onappend?: RefOne;
   /** 当元素 create 时回调 */
   oncreate?: RefOne;
-  class?: string | string[] | ((e: any) => string | string[] | Promise<string | string[]>);
-  className?: string | string[] | ((e: any) => string | string[] | Promise<string | string[]>);
-  classPick?: { [key: string]: any } | ((e: any) => { [key: string]: any } | Promise<{ [key: string]: any }>);
+  class?:
+    | string
+    | string[]
+    | ((e: any) => string | string[] | Promise<string | string[]>);
+  className?:
+    | string
+    | string[]
+    | ((e: any) => string | string[] | Promise<string | string[]>);
+  classPick?:
+    | { [key: string]: any }
+    | ((e: any) => { [key: string]: any } | Promise<{ [key: string]: any }>);
   href?: string | ((e: any) => string | Promise<string>);
   rel?: string | ((e: any) => string | Promise<string>);
   // cssText?: string | ((e: any) => string);
-  id?: string | number | ((e: any) => (string | number) | Promise<string | number>);
-  style?: string | (() => string | Promise<string>) | IStyled | (() => IStyled | Promise<IStyled>);
+  id?:
+    | string
+    | number
+    | ((e: any) => (string | number) | Promise<string | number>);
+  style?:
+    | string
+    | (() => string | Promise<string>)
+    | IStyled
+    | (() => IStyled | Promise<IStyled>);
   textContent?: any | ((e: any) => any);
   accessKey?: string | ((e: any) => any);
   autocapitalize?: string | ((e: any) => any);
@@ -1235,10 +1410,16 @@ declare const aoife: {
   stringToHex(str: string, start?: string): string;
   waitAppend(ele: HTMLElement | string, max?: number): Promise<HTMLElement>;
   subscribe: (fn: any) => () => void;
-  next: (focusUpdateTargets?: string | undefined, ignoreUpdateTargets?: string | any[] | undefined) => HTMLElement[];
+  next: (
+    focusUpdateTargets?: string | undefined,
+    ignoreUpdateTargets?: string | any[] | undefined
+  ) => HTMLElement[];
   events: Set<Function>;
   registerTag(data: { [key: string]: any }): void;
-  propFn(target: any, fn: (val: any) => IStyled | string | boolean | number | any[] | object): any;
+  propFn(
+    target: any,
+    fn: (val: any) => IStyled | string | boolean | number | any[] | object
+  ): any;
   waitValue<T>(fn: () => T, max?: number): Promise<T>;
   memo: (blocker: () => any) => (fn: any) => Promise<any>;
   equal: (a: any, b: any) => boolean;
