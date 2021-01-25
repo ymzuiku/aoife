@@ -22,7 +22,8 @@ function clearDir(dir) {
 
 fs.copySync("../README.md", "./README.md");
 fs.copySync("../README.md", "../create-aoife-app/README.md");
-fs.copySync("../README.md", "../create-aoife-app/project/README.md");
+fs.copySync("../README.md", "../create-aoife-app/vite/README.md");
+fs.copySync("../README.md", "../create-aoife-app/webpack/README.md");
 
 function haveArgv(...args) {
   let isHave = false;
