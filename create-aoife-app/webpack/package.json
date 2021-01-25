@@ -9,7 +9,7 @@
     "eject": "aoife-scripts eject"
   },
   "dependencies": {
-    "aoife": "^1.6.7"
+    "aoife": "^1.6.16"
   },
   "devDependencies": {
     "aoife-scripts": "^4.0.5",

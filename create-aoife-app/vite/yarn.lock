@@ -2,10 +2,10 @@
 # yarn lockfile v1
 
 
-aoife@^1.6.8:
-  version "1.6.8"
-  resolved "https://registry.yarnpkg.com/aoife/-/aoife-1.6.8.tgz#a2e38ea0de5df161c9c913cc6a0b826fc22e9c10"
-  integrity sha512-15bpkBlShDcvJYZhKTPVIb8CbOXGGWF9PUokHGCw/lKyg3Noec1iZZcLUAK3SIrpobsYeD+D94dXygGVH3+MDA==
+aoife@^1.6.16:
+  version "1.6.16"
+  resolved "https://registry.yarnpkg.com/aoife/-/aoife-1.6.16.tgz#93b7111682a53fa95a90d58de2ab4ad2a82ac56f"
+  integrity sha512-rL4hHKKppBkuPBwEBqYH/jfyU0ezXVXO+DD7xMVn8GseHGyANBhgVbLTCMprdqBfPBY3/3AVJau32jXM+5OieA==
 
 colorette@^1.2.1:
   version "1.2.1"
