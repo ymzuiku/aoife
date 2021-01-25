@@ -112,8 +112,8 @@ const mediaKeys = {
 } as any;
 
 const pesudoKeys = {
-  onActive: ":active",
   onFocus: ":focus",
+  onActive: ":active",
   onFirstChild: ":first-child",
   onLastChild: ":last-child",
   onBlank: ":blank",
@@ -173,8 +173,8 @@ const fixCssInJsKey = {
   onHover: (ele: any, style: any) => {
     makeCss(ele, style, "onHover", (c) => `@media (min-width:640px) {.${c}:hover`);
   },
-  ..._mediaStyle,
   ..._pseudoStyle,
+  ..._mediaStyle,
   setRow: (ele: HTMLElement, val: string) => {
     setJustItem(ele, val);
     ele.style.flexDirection = "row";
@@ -192,10 +192,14 @@ const fixCssInJsKey = {
 };
 
 export const cssInJs = (ele: HTMLElement, value: any) => {
-  Object.keys(value).forEach((k) => {
+  Object.keys(fixCssInJsKey).forEach((k) => {
     const pesudo = (fixCssInJsKey as any)[k];
     if (pesudo) {
       pesudo(ele, value[k]);
+    }
+  });
+  Object.keys(value).forEach((k) => {
+    if (fixCssInJsKey[k]) {
     } else if (/-/.test(k)) {
       (ele as HTMLElement).style.setProperty(k, value[k]);
     } else {

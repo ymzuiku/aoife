@@ -1,6 +1,6 @@
 {
   "name": "aoife",
-  "version": "1.6.16",
+  "version": "1.6.17",
   "main": "umd/index.js",
   "types": "aoife.d.ts",
   "private": false,
