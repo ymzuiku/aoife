@@ -434,7 +434,29 @@ declare interface IStyled {
     | "wait"
     | "help";
   direction?: string;
-  display?: "fixed" | "block" | "inline-block" | any;
+  display?: (
+    | "none"
+    | "block"
+    | "grid"
+    | "table"
+    | "inline"
+    | "inline-block"
+    | "inline-flex"
+    | "inline-grid"
+    | "inline-table"
+    | "table-row-group"
+    | "table-header-group"
+    | "table-footer-group"
+    | "table-row"
+    | "table-column-group"
+    | "table-column"
+    | "table-cell"
+    | "table-caption"
+    | "list-item"
+    | "unset"
+    | "inherit"
+  ) &
+    string;
   dominantBaseline?: string | null;
   emptyCells?: string | null;
   enableBackground?: string | null;
