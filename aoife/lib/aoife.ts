@@ -149,4 +149,4 @@ aoife.memo = memo;
 aoife.equal = equal;
 aoife.styles = <T extends { [key: string]: IStyled }>(sheet: T): T => sheet;
 
-document.createElement(window as any).aoife = aoife;
+(window as any).aoife = aoife;
