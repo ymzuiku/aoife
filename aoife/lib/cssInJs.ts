@@ -191,10 +191,12 @@ const fixCssInJsKey = {
   },
 };
 
+const fixCssInJsKeys = Object.keys(fixCssInJsKey);
+
 export const cssInJs = (ele: HTMLElement, value: any) => {
-  Object.keys(fixCssInJsKey).forEach((k) => {
-    const pesudo = (fixCssInJsKey as any)[k];
-    if (pesudo) {
+  fixCssInJsKeys.forEach((k) => {
+    if (value[k]) {
+      const pesudo = (fixCssInJsKey as any)[k];
       pesudo(ele, value[k]);
     }
   });
