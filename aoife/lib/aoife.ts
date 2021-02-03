@@ -10,6 +10,7 @@ import { propFn } from "./propFn";
 import { stringToHex } from "./stringToHex";
 import { memo } from "./memo";
 import { equal } from "./equal";
+import { svgList } from "./svgList";
 
 const ignoreKeys: any = {
   class: 1,
@@ -71,7 +72,12 @@ export const aoife = (tag: ChildOne, attrs?: ChildOne, ...child: ChildOne[]): HT
       ele = loadable(uiCaches[tag], [props, ...child]);
       return ele;
     } else {
-      ele = document.createElement(tag as any);
+      if (svgList[tag]) {
+        ele = document.createElementNS("http://www.w3.org/2000/svg", tag as any);
+        ele.__isSvg = true;
+      } else {
+        ele = document.createElement(tag as any);
+      }
     }
   } else if (isElement(tag)) {
     ele = tag as any;

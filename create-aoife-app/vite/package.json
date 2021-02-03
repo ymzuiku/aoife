@@ -6,7 +6,7 @@
     "build": "tsc && vite build"
   },
   "dependencies": {
-    "aoife": "^1.6.19",
+    "aoife": "^1.6.20",
     "monaco-editor": "^0.21.2"
   },
   "devDependencies": {

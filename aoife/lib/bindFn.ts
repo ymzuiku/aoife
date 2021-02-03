@@ -4,6 +4,7 @@ import { cssInJs } from "./cssInJs";
 const attrKeys: any = {
   autofocus: true,
   role: true,
+  viewBox: true,
 };
 
 function getValue(ele: any, value: any) {
@@ -20,7 +21,7 @@ export function bindFn(ele: any, key: string, value: any): any {
     return null;
   }
   let fn: Function;
-  if (attrKeys[key] || /-/.test(key)) {
+  if (ele.__isSvg || attrKeys[key] || /-/.test(key)) {
     fn = async () => {
       const v = await getValue(ele, value);
       if (ele.getAttribute(key) !== v) {
