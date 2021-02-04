@@ -77,9 +77,8 @@ export function parseChildren(_childs: any[], ele: HTMLElement) {
               if (!oldEl.isEqualNode(c)) {
                 replace(oldEl, c);
               }
-            } else {
+            } else if (c !== false) {
               ele.insertBefore(c, temp);
-              // ele.append(c);
             }
           });
           return "for-list-" + index;
@@ -104,8 +103,8 @@ export function parseChildren(_childs: any[], ele: HTMLElement) {
       subscribeElement(ele, "children", fn);
     } else if (isElement(ch)) {
       ele.append(ch);
-    } else {
-      ele.append(...ch);
+    } else if (ch !== false) {
+      ele.append(ch);
     }
   });
 }
