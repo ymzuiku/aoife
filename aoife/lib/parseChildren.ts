@@ -104,7 +104,18 @@ export function parseChildren(_childs: any[], ele: HTMLElement) {
     } else if (isElement(ch)) {
       ele.append(ch);
     } else if (ch !== false) {
-      ele.append(ch);
+      if (Object.prototype.toString.call(ch) === "[object Array]") {
+        let nextCh = [];
+        for (let i = 0; i < ch.length; i++) {
+          const c = ch[i];
+          if (c !== false) {
+            nextCh.push(c);
+          }
+        }
+        ele.append(...nextCh);
+      } else {
+        ele.appendChild(ch);
+      }
     }
   });
 }

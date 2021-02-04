@@ -1,5 +1,4 @@
 import { stringToHex } from "./stringToHex";
-import { cssInJs } from "./cssInJs";
 
 const attrKeys: any = {
   autofocus: true,
@@ -41,7 +40,13 @@ export function bindFn(ele: any, key: string, value: any): any {
         (ele as HTMLElement).style.cssText = v;
         return;
       }
-      cssInJs(ele, v);
+      Object.keys(value).forEach((k) => {
+        if (/-/.test(k)) {
+          (ele as HTMLElement).style.setProperty(k, value[k]);
+        } else {
+          (ele.style as any)[k] = value[k];
+        }
+      });
     };
   } else if (key === "className") {
     fn = async () => {

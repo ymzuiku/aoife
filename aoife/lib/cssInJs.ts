@@ -86,12 +86,7 @@ function styleAddCss({ ele, elKey, select, cssName, style }: IStyleAddCss) {
   document.head.appendChild(el);
 }
 
-function makeCss(
-  ele: any,
-  style: any,
-  type: string,
-  fn: (cssName: string) => string
-) {
+function makeCss(ele: any, style: any, type: string, fn: (cssName: string) => string) {
   let cssName = stringToHex(JSON.stringify(style), type);
   // cssName 转化 为有序短名
   const oldCssNameNum = cssKeyMap[cssName];
@@ -142,12 +137,7 @@ const pesudoKeys = {
 // 伪类
 const _pseudoStyle = {
   onHover: (ele: any, style: any) => {
-    makeCss(
-      ele,
-      style,
-      "onHover",
-      (c) => `@media (min-width:${mediaKeys.onMd}) {.${c}:hover`
-    );
+    makeCss(ele, style, "onHover", (c) => `@media (min-width:${mediaKeys.onMd}) {.${c}:hover`);
   },
 } as any;
 Object.keys(pesudoKeys).forEach((k) => {
