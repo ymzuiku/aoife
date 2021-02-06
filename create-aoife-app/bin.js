@@ -9,3 +9,6 @@ const build = argv[1] === "--webpack" ? "webpack" : "vite";
 
 fs.copySync(resolve(__dirname, build), pwd(argv[0]));
 fs.copyFile(resolve(__dirname, "gitignore"), pwd(argv[0], ".gitignore"));
+
+console.log("create aoife done!");
+console.log("Please run:", `cd ${argv[0]} && yarn install`);
