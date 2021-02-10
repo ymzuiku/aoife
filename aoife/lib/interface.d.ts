@@ -59,230 +59,44 @@ interface IDisplay {
 }
 
 type JustifyAlignItems =
-  | "start-start"
-  | "start-center"
-  | "start-end"
-  | "start-stretch"
-  | "start-baseline"
-  | "center-start"
-  | "center-center"
-  | "center-end"
-  | "center-stretch"
-  | "center-baseline"
-  | "end-start"
-  | "end-center"
-  | "end-end"
-  | "end-stretch"
-  | "end-baseline"
-  | "around-start"
-  | "around-center"
-  | "around-end"
-  | "around-stretch"
-  | "around-baseline"
-  | "between-start"
-  | "between-center"
-  | "between-end"
-  | "between-stretch"
-  | "between-baseline"
-  | "evenly-start"
-  | "evenly-center"
-  | "evenly-end"
-  | "evenly-stretch"
-  | "evenly-baseline";
+  | "col-start-start"
+  | "col-start-center"
+  | "col-start-end"
+  | "col-center-start"
+  | "col-center-center"
+  | "col-center-end"
+  | "col-end-start"
+  | "col-end-center"
+  | "col-end-end"
+  | "col-between-start"
+  | "col-between-center"
+  | "col-between-end"
+  | "col-around-start"
+  | "col-around-center"
+  | "col-around-end"
+  | "col-stretch-start"
+  | "col-stretch-center"
+  | "col-stretch-end"
+  | "row-start-start"
+  | "row-start-center"
+  | "row-start-end"
+  | "row-center-start"
+  | "row-center-center"
+  | "row-center-end"
+  | "row-end-start"
+  | "row-end-center"
+  | "row-end-end"
+  | "row-between-start"
+  | "row-between-center"
+  | "row-between-end"
+  | "row-around-start"
+  | "row-around-center"
+  | "row-around-end"
+  | "row-stretch-start"
+  | "row-stretch-center"
+  | "row-stretch-end";
 
 interface SimpleStyle {
-  setNowrap?: "clip" | "ellipsis";
-  setRow?: JustifyAlignItems;
-  setCol?: JustifyAlignItems;
-  // -------------css-in-js-end
-  // -------------css-value-start
-  "--xs"?: string;
-  "--sm"?: string;
-  "--md"?: string;
-  "--lg"?: string;
-  "--xl"?: string;
-  "--t1"?: string;
-  "--t2"?: string;
-  "--t3"?: string;
-  "--t4"?: string;
-  "--t5"?: string;
-  "--t6"?: string;
-  "--t7"?: string;
-  "--t8"?: string;
-  "--t9"?: string;
-  "--h1"?: string;
-  "--h2"?: string;
-  "--h3"?: string;
-  "--h4"?: string;
-  "--h5"?: string;
-  "--h6"?: string;
-  "--0"?: string;
-  "--auto"?: string;
-  "--px"?: string;
-  "--a1"?: string;
-  "--a2"?: string;
-  "--a3"?: string;
-  "--a4"?: string;
-  "--a5"?: string;
-  "--a6"?: string;
-  "--a7"?: string;
-  "--a8"?: string;
-  "--a9"?: string;
-  "--b1"?: string;
-  "--b2"?: string;
-  "--b3"?: string;
-  "--b4"?: string;
-  "--b5"?: string;
-  "--b6"?: string;
-  "--b7"?: string;
-  "--b8"?: string;
-  "--b9"?: string;
-  "--c1"?: string;
-  "--c2"?: string;
-  "--c3"?: string;
-  "--c4"?: string;
-  "--c5"?: string;
-  "--c6"?: string;
-  "--c7"?: string;
-  "--c8"?: string;
-  "--c9"?: string;
-  "--max"?: string;
-  "--white"?: string;
-  "--black"?: string;
-  "--primary1"?: string;
-  "--primary2"?: string;
-  "--primary3"?: string;
-  "--primary4"?: string;
-  "--primary5"?: string;
-  "--primary6"?: string;
-  "--primary7"?: string;
-  "--primary8"?: string;
-  "--primary9"?: string;
-  "--gray1"?: string;
-  "--gray2"?: string;
-  "--gray3"?: string;
-  "--gray4"?: string;
-  "--gray5"?: string;
-  "--gray6"?: string;
-  "--gray7"?: string;
-  "--gray8"?: string;
-  "--gray9"?: string;
-  "--red1"?: string;
-  "--red2"?: string;
-  "--red3"?: string;
-  "--red4"?: string;
-  "--red5"?: string;
-  "--red6"?: string;
-  "--red7"?: string;
-  "--red8"?: string;
-  "--red9"?: string;
-  "--orange1"?: string;
-  "--orange2"?: string;
-  "--orange3"?: string;
-  "--orange4"?: string;
-  "--orange5"?: string;
-  "--orange6"?: string;
-  "--orange7"?: string;
-  "--orange8"?: string;
-  "--orange9"?: string;
-  "--yellow1"?: string;
-  "--yellow2"?: string;
-  "--yellow3"?: string;
-  "--yellow4"?: string;
-  "--yellow5"?: string;
-  "--yellow6"?: string;
-  "--yellow7"?: string;
-  "--yellow8"?: string;
-  "--yellow9"?: string;
-  "--green1"?: string;
-  "--green2"?: string;
-  "--green3"?: string;
-  "--green4"?: string;
-  "--green5"?: string;
-  "--green6"?: string;
-  "--green7"?: string;
-  "--green8"?: string;
-  "--green9"?: string;
-  "--teal1"?: string;
-  "--teal2"?: string;
-  "--teal3"?: string;
-  "--teal4"?: string;
-  "--teal5"?: string;
-  "--teal6"?: string;
-  "--teal7"?: string;
-  "--teal8"?: string;
-  "--teal9"?: string;
-  "--blue1"?: string;
-  "--blue2"?: string;
-  "--blue3"?: string;
-  "--blue4"?: string;
-  "--blue5"?: string;
-  "--blue6"?: string;
-  "--blue7"?: string;
-  "--blue8"?: string;
-  "--blue9"?: string;
-  "--indigo1"?: string;
-  "--indigo2"?: string;
-  "--indigo3"?: string;
-  "--indigo4"?: string;
-  "--indigo5"?: string;
-  "--indigo6"?: string;
-  "--indigo7"?: string;
-  "--indigo8"?: string;
-  "--indigo9"?: string;
-  "--purple1"?: string;
-  "--purple2"?: string;
-  "--purple3"?: string;
-  "--purple4"?: string;
-  "--purple5"?: string;
-  "--purple6"?: string;
-  "--purple7"?: string;
-  "--purple8"?: string;
-  "--purple9"?: string;
-  "--pink1"?: string;
-  "--pink2"?: string;
-  "--pink3"?: string;
-  "--pink4"?: string;
-  "--pink5"?: string;
-  "--pink6"?: string;
-  "--pink7"?: string;
-  "--pink8"?: string;
-  "--pink9"?: string;
-  "--light1"?: string;
-  "--light2"?: string;
-  "--light3"?: string;
-  "--light4"?: string;
-  "--light5"?: string;
-  "--light6"?: string;
-  "--light7"?: string;
-  "--light8"?: string;
-  "--light9"?: string;
-  "--dark1"?: string;
-  "--dark2"?: string;
-  "--dark3"?: string;
-  "--dark4"?: string;
-  "--dark5"?: string;
-  "--dark6"?: string;
-  "--dark7"?: string;
-  "--dark8"?: string;
-  "--dark9"?: string;
-  "--shadow1"?: string;
-  "--shadow2"?: string;
-  "--shadow3"?: string;
-  "--shadow4"?: string;
-  "--shadow5"?: string;
-  "--shadow6"?: string;
-  "--shadow7"?: string;
-  "--shadow8"?: string;
-  "--shadow9"?: string;
-  "--ease"?: string;
-  "--ease-in"?: string;
-  "--ease-out"?: string;
-  "--ease-in-out"?: string;
-  "--sans"?: string;
-  "--serif"?: string;
-  "--mono"?: string;
-  // -------------css-value-end
   all?: string;
   contain?:
     | "none"
@@ -1035,32 +849,37 @@ interface SimpleStyle {
 }
 
 interface PesudoStyle extends SimpleStyle {
-  onActive?: SimpleStyle;
-  onFocus?: SimpleStyle;
-  onHover?: SimpleStyle;
-  onFirstChild?: SimpleStyle;
-  onLastChild?: SimpleStyle;
-  onBlank?: SimpleStyle;
-  onChecked?: SimpleStyle;
-  onCurrent?: SimpleStyle;
-  onDisabled?: SimpleStyle;
-  onFocusWithin?: SimpleStyle;
-  onPlaceholderShown?: SimpleStyle;
-  onInRange?: SimpleStyle;
-  onVisited?: SimpleStyle;
-  onAfter?: SimpleStyle;
-  onBefore?: SimpleStyle;
-  onEven?: SimpleStyle;
-  onOdd?: SimpleStyle;
+  // ":hover"?: SimpleStyle;
+  // ":focus"?: SimpleStyle;
+  // ":active"?: SimpleStyle;
+  // ":first-child"?: SimpleStyle;
+  // ":last-child"?: SimpleStyle;
+  // ":blank"?: SimpleStyle;
+  // ":checked"?: SimpleStyle;
+  // ":current"?: SimpleStyle;
+  // ":disabled"?: SimpleStyle;
+  // ":focus-within"?: SimpleStyle;
+  // ":in-range"?: SimpleStyle;
+  // ":visited"?: SimpleStyle;
+  // ":nth-child(even)"?: SimpleStyle;
+  // ":nth-child(odd)"?: SimpleStyle;
+  // ":placeholder-shown"?: SimpleStyle;
+  // "::after"?: SimpleStyle;
+  // "::before"?: SimpleStyle;
 }
 
 declare interface IStyled extends PesudoStyle {
   // -------------css-in-js-start
-  onXs?: SimpleStyle;
-  onSm?: SimpleStyle;
-  onMd?: SimpleStyle;
-  onLg?: SimpleStyle;
-  onXl?: SimpleStyle;
+  // "media-xs"?: SimpleStyle;
+  // "media-sm"?: SimpleStyle;
+  // "media-md"?: SimpleStyle;
+  // "media-lg"?: SimpleStyle;
+  // "media-xl"?: SimpleStyle;
+  // "media-2xl"?: SimpleStyle;
+  // "media-android"?: SimpleStyle;
+  // "media-ios"?: SimpleStyle;
+  // "media-pc"?: SimpleStyle;
+  // "media-pone"?: SimpleStyle;
 }
 
 // interface HTMLInputEvent extends HTMLElementCustomeEventMap["input"] {
@@ -1319,6 +1138,8 @@ declare interface IProps extends AddEventOptions {
   onappend?: RefOne;
   /** 当元素 create 时回调 */
   oncreate?: RefOne;
+  /** 自动 append style 至 body.head */
+  global?: boolean | string;
   class?:
     | string
     | string[]
@@ -1340,8 +1161,8 @@ declare interface IProps extends AddEventOptions {
   style?:
     | string
     | (() => string | Promise<string>)
-    | IStyled
-    | (() => IStyled | Promise<IStyled>);
+    | (IStyled | IStyled[])
+    | (() => (IStyled | IStyled[]) | Promise<IStyled | IStyled[]>);
   textContent?: any | ((e: any) => any);
   accessKey?: string | ((e: any) => any);
   autocapitalize?: string | ((e: any) => any);
@@ -1422,7 +1243,8 @@ declare const aoife: {
   ): any;
   waitValue<T>(fn: () => T, max?: number): Promise<T>;
   memo: (blocker: () => any) => (fn: any) => Promise<any>;
-  equal: (a: any, b: any) => boolean;
+  deepEqual: (a: any, b: any) => boolean;
+  deepMerge: <T, U>(a: T, b: U) => T & U;
   styles<
     T extends {
       [key: string]: IStyled;

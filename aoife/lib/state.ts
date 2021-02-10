@@ -1,83 +1,84 @@
-import { equal } from "./equal";
+import { deepEqual } from "./deepEqual";
 
 export const events = new Set<Function>();
 
-export const next = (focusUpdateTargets?: string | HTMLElement[], ignoreUpdateTargets?: string | HTMLElement[]) => {
-  if (!focusUpdateTargets) {
-    focusUpdateTargets = "*";
-  }
-  let ignoreList: any;
-  if (ignoreUpdateTargets) {
-    if (typeof ignoreUpdateTargets === "string") {
-      const list = document.body.querySelectorAll(ignoreUpdateTargets) as any;
-      ignoreList = list;
-    } else {
-      ignoreList = ignoreUpdateTargets;
-    }
-  }
-
-  let outElement = [] as HTMLElement[];
-
-  if (focusUpdateTargets) {
-    let eleList: any[];
-    let isEle = false;
-    if (typeof focusUpdateTargets !== "string") {
-      eleList = focusUpdateTargets;
-      isEle = true;
-    } else {
-      // 处理逗号分割query
+function getElementList(targets?: string | HTMLElement | HTMLElement[]) {
+  let list: HTMLElement[] = [];
+  if (targets) {
+    if (typeof targets === "string") {
       let query = "";
-      const list = focusUpdateTargets.split(", ");
-      list.forEach((v, i) => {
+      const _list = targets.split(", ");
+      _list.forEach((v, i) => {
         v = v.trim();
-        if (i === list.length - 1) {
+        if (i === _list.length - 1) {
           query += `${v}[aoife-next], ${v} [aoife-next]`;
         } else {
           query += `${v}[aoife-next], ${v} [aoife-next],`;
         }
       });
-      eleList = document.body.querySelectorAll(query) as any;
+      list = document.body.querySelectorAll(query) as any;
+    } else if (Object.prototype.toString.call(targets) === "[object Array]") {
+      list = [...(targets as any[])];
+      (targets as any[]).forEach((e) => {
+        list.push(...e.querySelectorAll("*"));
+      });
+    } else {
+      list = [targets as any];
+      list.push(...(targets as any).querySelectorAll("*"));
     }
+  }
+  return list;
+}
 
-    const len = eleList.length;
-    for (let i = 0; i < len; i++) {
-      const ele = eleList[i];
-      if ((ele as any).__next) {
-        // 判断元素是否存在
-        if (isEle || document.body.contains(ele)) {
-          // 忽略元素及其子元素的更新
-          if (ignoreList) {
-            const len = ignoreList.length;
-            let isUseIgnoreList = false;
-            for (let i = 0; i < len; i++) {
-              const parent = ignoreList[i] as HTMLElement;
-              if (parent === ele || parent.contains(ele)) {
-                isUseIgnoreList = true;
-                break;
-              }
-            }
-            if (isUseIgnoreList) {
-              continue;
+export const next = (
+  focusUpdateTargets?: string | HTMLElement | HTMLElement[],
+  ignoreUpdateTargets?: string | HTMLElement | HTMLElement[]
+) => {
+  if (!focusUpdateTargets) {
+    focusUpdateTargets = "*";
+  }
+  let ignoreList = getElementList(ignoreUpdateTargets);
+  let eleList = getElementList(focusUpdateTargets);
+  let outElement = [] as HTMLElement[];
+
+  const len = eleList.length;
+  for (let i = 0; i < len; i++) {
+    const ele = eleList[i] as any;
+    if ((ele as any).__next) {
+      // 判断元素是否存在
+      if (document.body.contains(ele)) {
+        // 忽略元素及其子元素的更新
+        if (ignoreList.length) {
+          const len = ignoreList.length;
+          let isUseIgnoreList = false;
+          for (let i = 0; i < len; i++) {
+            const parent = ignoreList[i] as HTMLElement;
+            if (parent === ele || parent.contains(ele)) {
+              isUseIgnoreList = true;
+              break;
             }
           }
-
-          if (ele.__memo) {
-            Promise.resolve(ele.__memo()).then((data) => {
-              const isUpdate = !equal(ele.__memoLast, data);
-              ele.__memoLast = data;
-              if (isUpdate) {
-                ((ele as any).__next as Map<string, Function>).forEach((fn) => {
-                  fn();
-                });
-              }
-            });
-          } else {
-            ((ele as any).__next as Map<string, Function>).forEach((fn) => {
-              fn();
-            });
+          if (isUseIgnoreList) {
+            continue;
           }
-          outElement.push(ele);
         }
+
+        if (ele.__memo) {
+          Promise.resolve(ele.__memo()).then((data) => {
+            const isUpdate = !deepEqual(ele.__memoLast, data);
+            ele.__memoLast = data;
+            if (isUpdate) {
+              ((ele as any).__next as Map<string, Function>).forEach((fn) => {
+                fn();
+              });
+            }
+          });
+        } else {
+          ((ele as any).__next as Map<string, Function>).forEach((fn) => {
+            fn();
+          });
+        }
+        outElement.push(ele);
       }
     }
   }

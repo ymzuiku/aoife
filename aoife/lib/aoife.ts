@@ -9,7 +9,8 @@ import { events, next, subscribe } from "./state";
 import { propFn } from "./propFn";
 import { stringToHex } from "./stringToHex";
 import { memo } from "./memo";
-import { equal } from "./equal";
+import { deepEqual } from "./deepEqual";
+import { deepMerge } from "./deepMerge";
 import { svgList } from "./svgList";
 
 const ignoreKeys: any = {
@@ -32,10 +33,20 @@ const ignoreKeys: any = {
 
 const classKeys = ["className", "classPick"];
 
-export const aoife = (tag: ChildOne, attrs?: ChildOne, ...child: ChildOne[]): HTMLElement => {
+export const aoife = (
+  tag: ChildOne,
+  attrs?: ChildOne,
+  ...child: ChildOne[]
+): HTMLElement => {
   let props = {} as IProps;
 
-  if (attrs && (typeof attrs === "function" || Array.isArray(attrs) || isString(attrs) || isElement(attrs))) {
+  if (
+    attrs &&
+    (typeof attrs === "function" ||
+      Array.isArray(attrs) ||
+      isString(attrs) ||
+      isElement(attrs))
+  ) {
     child = [attrs, ...child];
   } else if (attrs) {
     props = attrs as any;
@@ -63,17 +74,41 @@ export const aoife = (tag: ChildOne, attrs?: ChildOne, ...child: ChildOne[]): HT
       });
       return temp;
     }
+    return ele;
   }
 
   // 兼容第二个参数，attrs是child
   if (typeof tag === "string") {
+    if (tag === "style" && props["global"]) {
+      if (child && typeof child[0] === "string") {
+        const cssTxt = child[0];
+        const sty = document.createElement("style");
+        sty.textContent = cssTxt;
+        document.head.append(sty);
+        return sty;
+      }
+    }
+    if (tag === "template" && props.children) {
+      // props.children.forEach()
+      let html = "";
+      props.children.forEach((v) => {
+        if (typeof v === "string" || typeof v === "number") {
+          html += v;
+        }
+      });
+      ele = document.createElement("template");
+      ele.innerHTML = html;
+    }
     // 若 tag 是一个函数组件，attrs 就作为 props 使用，并且实力化这个组件
-    if (uiCaches[tag]) {
+    else if (uiCaches[tag]) {
       ele = loadable(uiCaches[tag], [props, ...child]);
       return ele;
     } else {
       if (svgList[tag]) {
-        ele = document.createElementNS("http://www.w3.org/2000/svg", tag as any);
+        ele = document.createElementNS(
+          "http://www.w3.org/2000/svg",
+          tag as any
+        );
         ele.__isSvg = true;
       } else {
         ele = document.createElement(tag as any);
@@ -138,8 +173,11 @@ export const aoife = (tag: ChildOne, attrs?: ChildOne, ...child: ChildOne[]): HT
   return ele as any;
 };
 
-export const jsxFrag = (children: any, ...attrs: any[]) => {
-  return attrs;
+export const jsxFrag = (props: any, ...attrs: any[]) => {
+  if (props && props.children) {
+    return aoife("span", { style: { all: "unset" } }, ...props.children);
+  }
+  return "";
 };
 
 aoife.jsxFrag = jsxFrag;
@@ -152,7 +190,8 @@ aoife.registerTag = registerTag;
 aoife.propFn = propFn;
 aoife.waitValue = waitValue;
 aoife.memo = memo;
-aoife.equal = equal;
+aoife.deepEqual = deepEqual;
+aoife.deepMerge = deepMerge;
 aoife.styles = <T extends { [key: string]: IStyled }>(sheet: T): T => sheet;
 
 (window as any).aoife = aoife;

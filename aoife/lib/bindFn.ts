@@ -1,9 +1,12 @@
 import { stringToHex } from "./stringToHex";
+// import { cssInJs } from "./cssInJs";
 
 const attrKeys: any = {
   autofocus: true,
   role: true,
   viewBox: true,
+  flavor: true,
+  "flavor-ignore": true,
 };
 
 function getValue(ele: any, value: any) {
@@ -40,7 +43,8 @@ export function bindFn(ele: any, key: string, value: any): any {
         (ele as HTMLElement).style.cssText = v;
         return;
       }
-      Object.keys(value).forEach((k) => {
+      // cssInJs(ele, v);
+      Object.keys(v).forEach((k) => {
         if (/-/.test(k)) {
           (ele as HTMLElement).style.setProperty(k, value[k]);
         } else {

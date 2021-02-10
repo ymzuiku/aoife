@@ -1,3 +1,4 @@
+import { deepMerge } from "./deepMerge";
 import { stringToHex } from "./stringToHex";
 
 let cssKeyNum = 0;
@@ -80,13 +81,15 @@ function styleAddCss({ ele, elKey, select, cssName, style }: IStyleAddCss) {
   el.id = cssName;
   el.textContent = css;
   cssCache[cssName] = true;
-  if (/media/.test(css)) {
-    console.log(css);
-  }
   document.head.appendChild(el);
 }
 
-function makeCss(ele: any, style: any, type: string, fn: (cssName: string) => string) {
+function makeCss(
+  ele: any,
+  style: any,
+  type: string,
+  fn: (cssName: string) => string
+) {
   let cssName = stringToHex(JSON.stringify(style), type);
   // cssName 转化 为有序短名
   const oldCssNameNum = cssKeyMap[cssName];
@@ -106,50 +109,63 @@ function makeCss(ele: any, style: any, type: string, fn: (cssName: string) => st
   });
 }
 
+const UA = navigator.userAgent;
+const isAndroid = /(?:Android)/.test(UA);
+const isIos = /(?:iPhone)/.test(UA);
+const isPc = !isIos && !isAndroid;
+
 const mediaKeys = {
-  onXs: "480px",
-  onSm: "640px",
-  onMd: "720px",
-  onLg: "1024px",
-  onXl: "1280px",
+  "media-xs": "480px",
+  "media-sm": "640px",
+  "media-md": "720px",
+  "media-lg": "1024px",
+  "media-xl": "1280px",
+  "media-2xl": "1920px",
+  "media-android": isAndroid ? "9999px" : "0px",
+  "media-ios": isIos ? "9999px" : "0px",
+  "media-pc": isPc ? "9999px" : "0px",
+  "media-pone": !isPc ? "9999px" : "0px",
 } as any;
 
 const pesudoKeys = {
-  onHover: ":hover",
-  onFocus: ":focus",
-  onActive: ":active",
-  onFirstChild: ":first-child",
-  onLastChild: ":last-child",
-  onBlank: ":blank",
-  onChecked: ":checked",
-  onCurrent: ":current",
-  onDisabled: ":disabled",
-  onFocusWithin: ":focus-within",
-  onInRange: ":in-range",
-  onVisited: ":visited",
-  onEven: ":nth-child(even)",
-  onOdd: ":nth-child(odd)",
-  onAfter: "::after",
-  onBefore: "::before",
-  onPlaceholderShown: ":placeholder-shown",
+  ":hover": ":hover",
+  ":focus": ":focus",
+  ":active": ":active",
+  ":first-child": ":first-child",
+  ":last-child": ":last-child",
+  ":blank": ":blank",
+  ":checked": ":checked",
+  ":current": ":current",
+  ":disabled": ":disabled",
+  ":focus-within": ":focus-within",
+  ":in-range": ":in-range",
+  ":visited": ":visited",
+  ":nth-child(even)": ":nth-child(even)",
+  ":nth-child(odd)": ":nth-child(odd)",
+  ":placeholder-shown": ":placeholder-shown",
+  "::after": "::after",
+  "::before": "::before",
 } as any;
 
 // 伪类
 const _pseudoStyle = {
-  onHover: (ele: any, style: any) => {
-    makeCss(ele, style, "onHover", (c) => `@media (min-width:${mediaKeys.onMd}) {.${c}:hover`);
+  ":hover": (ele: any, style: any) => {
+    makeCss(
+      ele,
+      style,
+      "onHover",
+      (c) => `@media (min-width: ${isPc ? "9999px" : "0px"}) {.${c}:hover`
+    );
   },
 } as any;
 Object.keys(pesudoKeys).forEach((k) => {
-  if (k !== "onHover") {
+  if (k !== ":hover") {
     const v = pesudoKeys[k];
     _pseudoStyle[k] = (ele: any, style: any) => {
       makeCss(ele, style, k, (c) => `.${c}${v}`);
     };
   }
 });
-
-// const _pseudoStyleKeys = Object.keys(_pseudoStyle);
 
 // 媒体查询
 const _mediaStyle = {} as any;
@@ -161,51 +177,29 @@ Object.keys(mediaKeys).forEach((k) => {
   };
 });
 
-const just = {
-  start: "flex-start",
-  center: "center",
-  end: "flex-end",
-  around: "space-around",
-  between: "space-between",
-  evenly: "space-evenly",
-} as any;
-const align = {
-  start: "flex-start",
-  center: "center",
-  end: "flex_end",
-  stretch: "stretch",
-  baseline: "baseline",
-} as any;
-
-function setJustItem(ele: HTMLElement, val: string) {
-  const [a, b] = val.split("-");
-  ele.style.display = "flex";
-  ele.style.justifyContent = just[a];
-  ele.style.alignItems = align[b];
-}
-
 const fixCssInJsKey = {
   ..._pseudoStyle,
   ..._mediaStyle,
-  setRow: (ele: HTMLElement, val: string) => {
-    setJustItem(ele, val);
-    ele.style.flexDirection = "row";
-  },
-  setCol: (ele: HTMLElement, val: string) => {
-    setJustItem(ele, val);
-    ele.style.flexDirection = "column";
-  },
-  setNowrap: (ele: HTMLElement, val: "clip" | "ellipsis") => {
-    ele.style.whiteSpace = "nowrap";
-    ele.style.overflow = "hidden";
-    ele.style.wordBreak = "break-all";
-    ele.style.textOverflow = val;
-  },
 };
 
 const fixCssInJsKeys = Object.keys(fixCssInJsKey);
 
 export const cssInJs = (ele: HTMLElement, value: any) => {
+  if (
+    Object.prototype.toString.call(value) === "[object Array]" &&
+    value.length > 0
+  ) {
+    if (value.length === 1) {
+      value = value[0];
+    } else {
+      const obj = {};
+      value.forEach((v: any) => {
+        deepMerge(obj, v);
+      });
+      cssInJs(ele, obj);
+      return;
+    }
+  }
   fixCssInJsKeys.forEach((k) => {
     if (value[k]) {
       const pesudo = (fixCssInJsKey as any)[k];
@@ -220,4 +214,5 @@ export const cssInJs = (ele: HTMLElement, value: any) => {
       (ele.style as any)[k] = value[k];
     }
   });
+  (ele as any).__style_old = value;
 };

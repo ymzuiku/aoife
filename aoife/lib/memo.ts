@@ -1,4 +1,4 @@
-import { equal } from "./equal";
+import { deepEqual } from "./deepEqual";
 
 export const memo = (blocker: () => any) => {
   const cache = { fixed: 0, data: null as any, value: null as any };
@@ -9,7 +9,7 @@ export const memo = (blocker: () => any) => {
       cache.data = data;
       return true;
     }
-    const isEqual = equal(cache.data, data);
+    const isEqual = deepEqual(cache.data, data);
     cache.data = data;
     return !isEqual;
   };
