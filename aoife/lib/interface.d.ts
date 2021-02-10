@@ -1136,21 +1136,32 @@ declare interface IProps extends AddEventOptions {
   watch?: () => any;
   /** 当元素 onappend 到文档中时执行 */
   onappend?: RefOne;
+  debounce?: string | string[];
+  debounceTime?: number;
+  throttle?: string | string[];
+  throttleTime?: number;
   /** 当元素 create 时回调 */
   oncreate?: RefOne;
   /** 自动 append style 至 body.head */
   global?: boolean | string;
   class?:
     | string
-    | string[]
-    | ((e: any) => string | string[] | Promise<string | string[]>);
+    | (string | boolean)[]
+    | ((
+        e: any
+      ) =>
+        | string
+        | (string | boolean)[]
+        | Promise<string | (string | boolean)[]>);
   className?:
     | string
-    | string[]
-    | ((e: any) => string | string[] | Promise<string | string[]>);
-  classPick?:
-    | { [key: string]: any }
-    | ((e: any) => { [key: string]: any } | Promise<{ [key: string]: any }>);
+    | (string | boolean)[]
+    | ((
+        e: any
+      ) =>
+        | string
+        | (string | boolean)[]
+        | Promise<string | (string | boolean)[]>);
   href?: string | ((e: any) => string | Promise<string>);
   rel?: string | ((e: any) => string | Promise<string>);
   // cssText?: string | ((e: any) => string);

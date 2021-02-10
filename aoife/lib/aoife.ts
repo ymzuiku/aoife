@@ -11,12 +11,13 @@ import { stringToHex } from "./stringToHex";
 import { memo } from "./memo";
 import { deepEqual } from "./deepEqual";
 import { deepMerge } from "./deepMerge";
+import { debounce } from "./debounce";
+import { throttle } from "./throttle";
 import { svgList } from "./svgList";
 
 const ignoreKeys: any = {
   class: 1,
   className: 1,
-  classPick: 1,
   onsubmit: 1,
   oncreate: 1,
   onappend: 1,
@@ -31,7 +32,7 @@ const ignoreKeys: any = {
   __proxyEle: 1,
 };
 
-const classKeys = ["className", "classPick"];
+const classKeys = ["className"];
 
 export const aoife = (
   tag: ChildOne,
@@ -133,14 +134,17 @@ export const aoife = (
     };
   }
 
+  if (typeof props.debounce === "string") {
+    props.debounce = [props.debounce];
+  }
+  if (typeof props.throttle === "string") {
+    props.throttle = [props.throttle];
+  }
+
   classKeys.forEach((key) => {
     if (props[key]) {
-      const fn = bindFn(ele, key, props[key]);
+      const fn = bindFn(ele, key, props);
       if (fn) {
-        // if (props.memo) {
-        //   subscribeElement(ele, key, memo(props.memo)(fn));
-        // } else {
-        // }
         subscribeElement(ele, key, fn);
       }
     }
@@ -150,12 +154,8 @@ export const aoife = (
     if (ignoreKeys[key]) {
       return;
     }
-    let fn = bindFn(ele, key, props[key]);
+    let fn = bindFn(ele, key, props);
     if (fn) {
-      // if (props.memo) {
-      //   subscribeElement(ele, key, memo(props.memo)(fn));
-      // } else {
-      // }
       subscribeElement(ele, key, fn);
     }
   });
@@ -192,6 +192,8 @@ aoife.waitValue = waitValue;
 aoife.memo = memo;
 aoife.deepEqual = deepEqual;
 aoife.deepMerge = deepMerge;
+aoife.debounce = debounce;
+aoife.throttle = throttle;
 aoife.styles = <T extends { [key: string]: IStyled }>(sheet: T): T => sheet;
 
 (window as any).aoife = aoife;

@@ -1,6 +1,5 @@
-import { stringToHex } from "./stringToHex";
-// import { cssInJs } from "./cssInJs";
-
+import { debounce } from "./debounce";
+import { throttle } from "./throttle";
 const attrKeys: any = {
   autofocus: true,
   role: true,
@@ -13,7 +12,22 @@ function getValue(ele: any, value: any) {
   return typeof value === "function" ? Promise.resolve(value(ele)) : value;
 }
 
-export function bindFn(ele: any, key: string, value: any): any {
+export function bindFn(ele: any, key: string, props: IProps): any {
+  let value = props[key] as any;
+  if (
+    props.debounce! &&
+    typeof value === "function" &&
+    props.debounce!.indexOf(key) > -1
+  ) {
+    value = debounce(value, props.debounceTime);
+  } else if (
+    props.throttle! &&
+    typeof value === "function" &&
+    props.throttle!.indexOf(key) > -1
+  ) {
+    value = throttle(value, props.throttleTime);
+  }
+
   if (/^on/.test(key)) {
     ele[key] = value;
     return null;
@@ -27,13 +41,17 @@ export function bindFn(ele: any, key: string, value: any): any {
     fn = async () => {
       const v = await getValue(ele, value);
       if (ele.getAttribute(key) !== v) {
-        ele.setAttribute(key, v);
+        if (v === false) {
+          (ele as HTMLElement).removeAttribute(key);
+        } else {
+          ele.setAttribute(key, v);
+        }
       }
     };
   } else if (key === "style") {
-    if (typeof ele.className === "undefined") {
-      ele.className = " ";
-    }
+    // if (typeof ele.className === "undefined") {
+    //   ele.className = " ";
+    // }
     fn = async () => {
       const v = await getValue(ele, value);
       if (!v) {
@@ -61,34 +79,6 @@ export function bindFn(ele: any, key: string, value: any): any {
       if ((ele as HTMLElement).className !== v) {
         (ele as HTMLElement).className = v;
       }
-    };
-  } else if (key === "classPick") {
-    if (typeof ele.className === "undefined") {
-      ele.className = " ";
-    }
-    fn = async () => {
-      const v = await getValue(ele, value);
-      if (!v) {
-        return;
-      }
-      Object.keys(v).forEach((k) => {
-        const right = v[k];
-        const hex = stringToHex(k);
-        if (!ele.__isFirstClassPick) {
-          (ele as HTMLElement).className += " " + (right ? k : hex) + " ";
-        } else {
-          let newVal: any;
-          if (right) {
-            newVal = (ele as HTMLElement).className.replace(hex, k);
-          } else {
-            newVal = (ele as HTMLElement).className.replace(k, hex);
-          }
-          if (newVal !== ele.className) {
-            ele.className = newVal;
-          }
-        }
-      });
-      ele.__isFirstClassPick = true;
     };
   } else {
     fn = async () => {

@@ -4,6 +4,8 @@ import { propFn } from "./propFn";
 import { stringToHex } from "./stringToHex";
 import { deepEqual } from "./deepEqual";
 import { deepMerge } from "./deepMerge";
+import { debounce } from "./debounce";
+import { throttle } from "./throttle";
 export declare const aoife: {
     (tag: any, attrs?: any, ...child: any[]): HTMLElement;
     jsxFrag: (props: any, ...attrs: any[]) => HTMLElement | "";
@@ -18,6 +20,8 @@ export declare const aoife: {
     memo: (blocker: () => any) => (fn: any) => () => Promise<any>;
     deepEqual: typeof deepEqual;
     deepMerge: typeof deepMerge;
+    debounce: typeof debounce;
+    throttle: typeof throttle;
     styles<T extends {
         [key: string]: IStyled;
     }>(sheet: T): T;

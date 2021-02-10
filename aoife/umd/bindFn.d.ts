@@ -1,1 +1,1 @@
-export declare function bindFn(ele: any, key: string, value: any): any;
+export declare function bindFn(ele: any, key: string, props: IProps): any;
