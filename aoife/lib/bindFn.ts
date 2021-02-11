@@ -1,5 +1,6 @@
 import { debounce } from "./debounce";
 import { throttle } from "./throttle";
+
 const attrKeys: any = {
   autofocus: true,
   role: true,
@@ -14,17 +15,9 @@ function getValue(ele: any, value: any) {
 
 export function bindFn(ele: any, key: string, props: IProps): any {
   let value = props[key] as any;
-  if (
-    props.debounce! &&
-    typeof value === "function" &&
-    props.debounce!.indexOf(key) > -1
-  ) {
+  if (props.debounce! && typeof value === "function" && props.debounce!.indexOf(key) > -1) {
     value = debounce(value, props.debounceTime);
-  } else if (
-    props.throttle! &&
-    typeof value === "function" &&
-    props.throttle!.indexOf(key) > -1
-  ) {
+  } else if (props.throttle! && typeof value === "function" && props.throttle!.indexOf(key) > -1) {
     value = throttle(value, props.throttleTime);
   }
 
@@ -64,9 +57,9 @@ export function bindFn(ele: any, key: string, props: IProps): any {
       // cssInJs(ele, v);
       Object.keys(v).forEach((k) => {
         if (/-/.test(k)) {
-          (ele as HTMLElement).style.setProperty(k, value[k]);
+          (ele as HTMLElement).style.setProperty(k, v[k]);
         } else {
-          (ele.style as any)[k] = value[k];
+          (ele.style as any)[k] = v[k];
         }
       });
     };
