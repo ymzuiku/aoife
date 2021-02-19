@@ -23,9 +23,8 @@
     "noResolve": false,
     "noEmit": true,
     "inlineSourceMap": false,
-    "declaration": true,
+    "declaration": false,
     "outDir": "./umd",
-    "declarationDir": "example/lib",
     "jsxFactory": "h",
     "jsx": "preserve"
   },

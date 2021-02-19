@@ -7,13 +7,13 @@ import { waitAppend, waitValue } from "./waitAppend";
 
 import { events, next, subscribe } from "./state";
 import { propFn } from "./propFn";
-import { stringToHex } from "./stringToHex";
 import { memo } from "./memo";
 import { deepEqual } from "./deepEqual";
 import { deepMerge } from "./deepMerge";
 import { debounce } from "./debounce";
 import { throttle } from "./throttle";
 import { svgList } from "./svgList";
+import { flattenOnce } from "./flatten";
 
 const ignoreKeys: any = {
   class: 1,
@@ -34,28 +34,27 @@ const ignoreKeys: any = {
 
 const classKeys = ["className"];
 
-export const aoife = (
-  tag: ChildOne,
-  attrs?: ChildOne,
-  ...child: ChildOne[]
-): HTMLElement => {
+export const aoife = (tag: ChildOne, attrs?: ChildOne, ...child: ChildOne[]): HTMLElement => {
   let props = {} as IProps;
 
-  if (
-    attrs &&
-    (typeof attrs === "function" ||
-      Array.isArray(attrs) ||
-      isString(attrs) ||
-      isElement(attrs))
-  ) {
-    child = [attrs, ...child];
-  } else if (attrs) {
-    props = attrs as any;
+  if (attrs) {
+    if (typeof attrs === "function" || isString(attrs) || isElement(attrs)) {
+      child = [attrs, ...child];
+    } else if (Array.isArray(attrs)) {
+      child = [...attrs, ...child];
+    } else {
+      props = attrs as any;
+    }
   }
+
+  // 兼容数组嵌套
+  child = flattenOnce(child);
+
   props.children = [...child];
 
   if (props.class) {
     props.className = props.class;
+    delete props.class;
   }
 
   if (Array.isArray(tag)) {
@@ -64,11 +63,13 @@ export const aoife = (
 
   let ele: any;
 
+  // 若对象是函数，就是 aoife 组件，直接执行获取返回值
   if (typeof tag === "function") {
-    ele = (tag as any)(props, ...child) as any;
-    // 适配 promise 类型的组件
+    ele = (tag as any)(props) as any;
+    // 适配 promise 类型的组件，异步渲染
     if (ele && typeof ele.then === "function") {
       const temp = document.createElement("span");
+      // temp.style.all = "unset";
       temp.setAttribute("promise-span", "");
       ele.then((el: any) => {
         temp.replaceWith(el);
@@ -106,10 +107,7 @@ export const aoife = (
       return ele;
     } else {
       if (svgList[tag]) {
-        ele = document.createElementNS(
-          "http://www.w3.org/2000/svg",
-          tag as any
-        );
+        ele = document.createElementNS("http://www.w3.org/2000/svg", tag as any);
         ele.__isSvg = true;
       } else {
         ele = document.createElement(tag as any);
@@ -170,6 +168,14 @@ export const aoife = (
     waitAppend(ele).then(props.onappend as any);
   }
 
+  if (props.global) {
+    if (props.global === "head") {
+      document.head.appendChild(ele);
+    } else {
+      document.body.appendChild(ele);
+    }
+  }
+
   return ele as any;
 };
 
@@ -181,7 +187,6 @@ export const jsxFrag = (props: any, ...attrs: any[]) => {
 };
 
 aoife.jsxFrag = jsxFrag;
-aoife.stringToHex = stringToHex;
 aoife.waitAppend = waitAppend;
 aoife.subscribe = subscribe;
 aoife.next = next;
@@ -194,6 +199,5 @@ aoife.deepEqual = deepEqual;
 aoife.deepMerge = deepMerge;
 aoife.debounce = debounce;
 aoife.throttle = throttle;
-aoife.styles = <T extends { [key: string]: IStyled }>(sheet: T): T => sheet;
 
 (window as any).aoife = aoife;
