@@ -50,7 +50,9 @@ export const aoife = (tag: ChildOne, attrs?: ChildOne, ...child: ChildOne[]): HT
   // 兼容数组嵌套
   child = flattenOnce(child);
 
-  props.children = [...child];
+  if (!props.children || !props.children.length) {
+    props.children = [...child];
+  }
 
   if (props.class) {
     props.className = props.class;
@@ -158,7 +160,7 @@ export const aoife = (tag: ChildOne, attrs?: ChildOne, ...child: ChildOne[]): HT
     }
   });
 
-  parseChildren(child, ele);
+  parseChildren(props.children, ele);
 
   if (typeof props.oncreate === "function") {
     props.oncreate(ele);

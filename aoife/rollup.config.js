@@ -66,6 +66,13 @@ const watchOptions = [
 ];
 const watcher = rollup.watch(watchOptions);
 
+const package = require("./package.json");
+function updateOtherVersion(url) {
+  const json = fs.readJSONSync(url);
+  json.dependencies.aoife = "^" + package.version;
+  fs.writeFileSync(url, JSON.stringify(json, null, 2), { encoding: "utf8" });
+}
+
 // event.code can be one of:
 //   START        — the watcher is (re)starting
 //   BUNDLE_START — building an individual bundle
@@ -83,5 +90,7 @@ watcher.on("event", (event) => {
     if (!haveArgv("--watch", "-w")) {
       watcher.close();
     }
+    updateOtherVersion(pwd("../create-aoife-app/webpack/package.json"));
+    updateOtherVersion(pwd("../create-aoife-app/vite/package.json"));
   }
 });
