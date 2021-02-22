@@ -163,7 +163,7 @@ function App() {
 
 aoife 的核心设计理念就是用原生 JS 解决生态问题，任何一个函数，其返回值是一个 HTMLElement，就可以在 aoife 中作为标签进行使用。
 
-### 非原生 JS 和 aoife 混用的例子
+### 原生 JS 和 aoife 混用的例子
 
 vanilla-pop 组件是一个由 tippy.js 封装的函数，内部并无引入 aoife， 使用方法：
 
