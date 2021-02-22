@@ -2,7 +2,7 @@
 
 使用 jsx 开发 native-js 程序, 每个组件都是一个原始的 HTMLElment，可以和所有原生 js 库很好的兼容使用。
 
-aoife 非常小, gzip 3kb
+aoife 非常小, gzip 5kb
 
 ## 安装 / 启动
 
@@ -34,20 +34,23 @@ aoife 是一个全局函数, 用于 jsx 解析，其中 aoife.next 用于更新�
 
 ```ts
 declare const aoife: {
-  (tag: any, attrs?: any, ...child: any[]): HTMLElement;
-  stringToHex(str: string, start?: string): string;
-  waitAppend(ele: HTMLElement, max?: number): Promise<HTMLElement>;
-  subscribe: (fn: any) => () => void;
+  (tag: any, attrs?: ChildOne, ...child: ChildOne[]): HTMLElement;
   next: (
     focusUpdateTargets?: string | undefined,
     ignoreUpdateTargets?: string | any[] | undefined
   ) => HTMLElement[];
+  waitAppend(ele: HTMLElement | string, max?: number): Promise<HTMLElement>;
+  subscribe: (fn: any) => () => void;
   events: Set<Function>;
   registerTag(data: { [key: string]: any }): void;
   propFn(
     target: any,
-    fn: (val: any) => IStyled | string | boolean | number | any[] | object
+    fn: (val: any) => IStyle | string | boolean | number | any[] | object
   ): any;
+  waitValue<T>(fn: () => T, max?: number): Promise<T>;
+  memo: (blocker: () => any) => (fn: any) => Promise<any>;
+  deepEqual: (a: any, b: any) => boolean;
+  deepMerge: <T, U>(a: T, b: U) => T & U;
 };
 ```
 
@@ -162,11 +165,11 @@ aoife 的核心设计理念就是用原生 JS 解决生态问题，任何一个�
 
 ### 非原生 JS 和 aoife 混用的例子
 
-aoife-pop 组件是一个由 tippy.js 封装的函数，内部并无引入 aoife， 使用方法：
+vanilla-pop 组件是一个由 tippy.js 封装的函数，内部并无引入 aoife， 使用方法：
 
 ```jsx
-// npm i --save aoife-app
-import Pop from "aoife-pop";
+// npm i --save vanilla-app
+import Pop from "vanilla-pop";
 
 const App = () => {
   return (

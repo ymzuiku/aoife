@@ -165,11 +165,11 @@ aoife 的核心设计理念就是用原生 JS 解决生态问题，任何一个�
 
 ### 非原生 JS 和 aoife 混用的例子
 
-aoife-pop 组件是一个由 tippy.js 封装的函数，内部并无引入 aoife， 使用方法：
+vanilla-pop 组件是一个由 tippy.js 封装的函数，内部并无引入 aoife， 使用方法：
 
 ```jsx
-// npm i --save aoife-app
-import Pop from "aoife-pop";
+// npm i --save vanilla-app
+import Pop from "vanilla-pop";
 
 const App = () => {
   return (
