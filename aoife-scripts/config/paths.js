@@ -56,6 +56,14 @@ const resolveModule = (resolveFn, filePath) => {
   return resolveFn(`${filePath}.js`);
 };
 
+let customConfig;
+const configPath = path.resolve(process.cwd(), "./webpackDevServer.config.js");
+if (!fs.existsSync(configPath)) {
+  customConfig = (v) => v;
+} else {
+  customConfig = require(configPath);
+}
+
 // config after eject: we're in ./config/
 module.exports = {
   dotenv: resolveApp(".env"),

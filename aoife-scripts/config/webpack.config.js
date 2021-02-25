@@ -10,6 +10,7 @@
 
 const HardSourceWebpackPlugin = require("hard-source-webpack-plugin");
 const MonacoWebpackPlugin = require("monaco-editor-webpack-plugin");
+const { ESBuildPlugin, ESBuildMinifyPlugin } = require("esbuild-loader");
 
 const fs = require("fs");
 const path = require("path");
@@ -44,8 +45,17 @@ const postcssNormalize = require("postcss-normalize");
 
 const appPackageJson = require(paths.appPackageJson);
 
+let customConfig;
+const configPath = path.resolve(process.cwd(), "./webpack.config.js");
+if (!fs.existsSync(configPath)) {
+  customConfig = (v) => v;
+} else {
+  customConfig = require(configPath);
+}
+
 // Source maps are resource heavy and can cause out of memory issue for large source files.
-const shouldUseSourceMap = process.env.GENERATE_SOURCEMAP !== "false";
+// const shouldUseSourceMap = process.env.GENERATE_SOURCEMAP !== "false";
+const shouldUseSourceMap = false;
 
 const webpackDevClientEntry = require.resolve(
   "react-dev-utils/webpackHotDevClient"
@@ -60,6 +70,7 @@ const shouldInlineRuntimeChunk = process.env.INLINE_RUNTIME_CHUNK !== "false";
 const useMonaco = process.env.monaco !== void 0;
 const useHard = process.env.hard !== void 0;
 const useSingle = process.env.single !== void 0;
+const useBabel = process.env.babel !== void 0;
 
 const imageInlineSizeLimit = parseInt(
   process.env.IMAGE_INLINE_SIZE_LIMIT || "10000"
@@ -172,7 +183,7 @@ module.exports = function (webpackEnv) {
     return loaders;
   };
 
-  return {
+  const out = {
     mode: isEnvProduction ? "production" : isEnvDevelopment && "development",
     // Stop compilation early in production
     bail: isEnvProduction,
@@ -247,6 +258,10 @@ module.exports = function (webpackEnv) {
     optimization: {
       minimize: isEnvProduction,
       minimizer: [
+        !useBabel &&
+          new ESBuildMinifyPlugin({
+            target: "es2015", // Syntax to compile to (see options below for possible values)
+          }),
         // This is only used in production mode
         new TerserPlugin({
           terserOptions: {
@@ -410,7 +425,7 @@ module.exports = function (webpackEnv) {
             },
             // Process application JS with Babel.
             // The preset includes JSX, Flow, TypeScript, and some ESnext features.
-            {
+            useBabel && {
               test: /\.(js|mjs|jsx|ts|tsx)$/,
               include: paths.appSrc,
               loader: require.resolve("babel-loader"),
@@ -477,7 +492,7 @@ module.exports = function (webpackEnv) {
             },
             // Process any JS outside of the app with Babel.
             // Unlike the application JS, we only compile the standard ES features.
-            {
+            useBabel && {
               test: /\.(js|mjs)$/,
               exclude: /@babel(?:\/|\\{1,2})runtime/,
               loader: require.resolve("babel-loader"),
@@ -512,6 +527,17 @@ module.exports = function (webpackEnv) {
                 // show incorrect code and set breakpoints on the wrong lines.
                 sourceMaps: shouldUseSourceMap,
                 inputSourceMap: shouldUseSourceMap,
+              },
+            },
+            !useBabel && {
+              test: /\.(ts|tsx)?$/,
+              // test: /\.(js|mjs|jsx|ts|tsx)$/,
+              loader: "esbuild-loader",
+              options: {
+                loader: "tsx", // Or 'ts' if you don't need tsx
+                target: "es2015",
+                jsxFactory: "aoife",
+                jsxFragment: "aoife.Frag",
               },
             },
             // "postcss" loader applies autoprefixer to our CSS.
@@ -606,11 +632,12 @@ module.exports = function (webpackEnv) {
             },
             // ** STOP ** Are you adding a new loader?
             // Make sure to add the new loader(s) before the "file" loader.
-          ],
+          ].filter(Boolean),
         },
-      ],
+      ].filter(Boolean),
     },
     plugins: [
+      !useBabel && new ESBuildPlugin(),
       useMonaco && new MonacoWebpackPlugin(),
       useHard &&
         new HardSourceWebpackPlugin({
@@ -836,4 +863,6 @@ module.exports = function (webpackEnv) {
     // our own hints via the FileSizeReporter
     performance: false,
   };
+
+  return customConfig(out);
 };

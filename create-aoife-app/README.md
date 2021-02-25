@@ -21,12 +21,13 @@ $ yarn dev # 开发环境
 $ yarn build # 编译
 ```
 
-<!-- 其它扩展
+其它扩展
 
 ```sh
+$ babel=1 yarn start # 开发环境 (放弃使用 esbuild 改为 使用 babel 编译)
 $ hard=1 yarn start # 开发环境 (使用缓存编译)
 $ hard=1 monaco=1 yarn start # 开发环境 (使用缓存编译、应用 monaco 插件)
-``` -->
+```
 
 ## API
 

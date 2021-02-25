@@ -1,6 +1,6 @@
 {
   "name": "aoife-scripts",
-  "version": "4.0.5",
+  "version": "4.0.12",
   "description": "Configuration and scripts for Create Aoife App, fork react-scripts.",
   "repository": {
     "type": "git",
@@ -43,6 +43,7 @@
     "css-loader": "4.3.0",
     "dotenv": "8.2.0",
     "dotenv-expand": "5.1.0",
+    "esbuild-loader": "^2.9.2",
     "eslint": "^7.11.0",
     "eslint-config-react-app": "^6.0.0",
     "eslint-plugin-flowtype": "^5.2.0",
