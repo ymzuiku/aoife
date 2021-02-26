@@ -34,7 +34,11 @@ const ignoreKeys: any = {
 
 const classKeys = ["className"];
 
-export const aoife = (tag: ChildOne, attrs?: ChildOne, ...child: ChildOne[]): HTMLElement => {
+export const aoife = (
+  tag: ChildOne,
+  attrs?: ChildOne,
+  ...child: ChildOne[]
+): HTMLElement => {
   let props = {} as IProps;
 
   if (attrs) {
@@ -71,7 +75,6 @@ export const aoife = (tag: ChildOne, attrs?: ChildOne, ...child: ChildOne[]): HT
     // 适配 promise 类型的组件，异步渲染
     if (ele && typeof ele.then === "function") {
       const temp = document.createElement("span");
-      // temp.style.all = "unset";
       temp.setAttribute("promise-span", "");
       ele.then((el: any) => {
         temp.replaceWith(el);
@@ -83,15 +86,6 @@ export const aoife = (tag: ChildOne, attrs?: ChildOne, ...child: ChildOne[]): HT
 
   // 兼容第二个参数，attrs是child
   if (typeof tag === "string") {
-    if (tag === "style" && props["global"]) {
-      if (child && typeof child[0] === "string") {
-        const cssTxt = child[0];
-        const sty = document.createElement("style");
-        sty.textContent = cssTxt;
-        document.head.append(sty);
-        return sty;
-      }
-    }
     if (tag === "template" && props.children) {
       // props.children.forEach()
       let html = "";
@@ -109,7 +103,10 @@ export const aoife = (tag: ChildOne, attrs?: ChildOne, ...child: ChildOne[]): HT
       return ele;
     } else {
       if (svgList[tag]) {
-        ele = document.createElementNS("http://www.w3.org/2000/svg", tag as any);
+        ele = document.createElementNS(
+          "http://www.w3.org/2000/svg",
+          tag as any
+        );
         ele.__isSvg = true;
       } else {
         ele = document.createElement(tag as any);
@@ -154,7 +151,7 @@ export const aoife = (tag: ChildOne, attrs?: ChildOne, ...child: ChildOne[]): HT
     if (ignoreKeys[key]) {
       return;
     }
-    let fn = bindFn(ele, key, props);
+    const fn = bindFn(ele, key, props);
     if (fn) {
       subscribeElement(ele, key, fn);
     }
@@ -170,18 +167,10 @@ export const aoife = (tag: ChildOne, attrs?: ChildOne, ...child: ChildOne[]): HT
     waitAppend(ele).then(props.onappend as any);
   }
 
-  if (props.global) {
-    if (props.global === "head") {
-      document.head.appendChild(ele);
-    } else {
-      document.body.appendChild(ele);
-    }
-  }
-
   return ele as any;
 };
 
-export const jsxFrag = (props: any, ...attrs: any[]) => {
+export const jsxFrag = (props: any) => {
   if (props && props.children) {
     return aoife("span", { style: { all: "unset" } }, ...props.children);
   }

@@ -1,3 +1,5 @@
+/* eslint-disable prefer-rest-params */
+/* eslint-disable prefer-const */
 function AppendChild(this: any, ...args: any[]) {
   args.forEach((item) => {
     this.prototype.appendChild(item);
@@ -8,7 +10,7 @@ if (typeof HTMLElement.prototype.append === "undefined") {
   Element.prototype.append = AppendChild;
 }
 
-function Remove(this: any, ...args: any[]) {
+function Remove(this: any) {
   if (this.prototype.parentNode) {
     this.prototype.parentNode.removeChild(this);
   }
@@ -18,8 +20,7 @@ if (typeof HTMLElement.prototype.remove === "undefined") {
 }
 
 function ReplaceWithPolyfill(this: any) {
-  "use-strict"; // For safari, and IE > 10
-  var parent = this.parentNode,
+  let parent = this.parentNode,
     i = arguments.length,
     currentNode;
   if (!parent) return;
@@ -42,8 +43,11 @@ function ReplaceWithPolyfill(this: any) {
     else parent.insertBefore(currentNode, this.nextSibling);
   }
 }
-if (!Element.prototype.replaceWith) Element.prototype.replaceWith = ReplaceWithPolyfill;
-if (!CharacterData.prototype.replaceWith) CharacterData.prototype.replaceWith = ReplaceWithPolyfill;
-if (!DocumentType.prototype.replaceWith) DocumentType.prototype.replaceWith = ReplaceWithPolyfill;
+if (!Element.prototype.replaceWith)
+  Element.prototype.replaceWith = ReplaceWithPolyfill;
+if (!CharacterData.prototype.replaceWith)
+  CharacterData.prototype.replaceWith = ReplaceWithPolyfill;
+if (!DocumentType.prototype.replaceWith)
+  DocumentType.prototype.replaceWith = ReplaceWithPolyfill;
 
 export const a = 0;

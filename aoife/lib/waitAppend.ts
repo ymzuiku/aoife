@@ -16,7 +16,7 @@ export function waitValue<T>(fn: () => T, max = 5000): Promise<T> {
   });
 }
 
-export function waitAppend(ele: HTMLElement | string, max = 300): Promise<HTMLElement> {
+export function waitAppend(ele: HTMLElement | string): Promise<HTMLElement> {
   let fn: any;
   if (typeof ele === "string") {
     fn = () => document.querySelector(ele);

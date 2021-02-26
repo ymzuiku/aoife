@@ -37,9 +37,9 @@ export const next = (
   if (!focusUpdateTargets) {
     focusUpdateTargets = "*";
   }
-  let ignoreList = getElementList(ignoreUpdateTargets);
-  let eleList = getElementList(focusUpdateTargets);
-  let outElement = [] as HTMLElement[];
+  const ignoreList = getElementList(ignoreUpdateTargets);
+  const eleList = getElementList(focusUpdateTargets);
+  const outElement = [] as HTMLElement[];
 
   const len = eleList.length;
   for (let i = 0; i < len; i++) {

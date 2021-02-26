@@ -73,7 +73,7 @@ export function parseChildren(_childs: any[], ele: HTMLElement) {
           });
 
           // 遍历数组，替换旧的元素或插入之前没有的
-          child.forEach((c, i) => {
+          child.forEach((c) => {
             const oldEl = oldKeys[c.key] as HTMLElement;
             if (oldEl) {
               if (!oldEl.isEqualNode(c)) {
@@ -107,7 +107,7 @@ export function parseChildren(_childs: any[], ele: HTMLElement) {
       ele.append(ch);
     } else if (ch !== false) {
       if (Object.prototype.toString.call(ch) === "[object Array]") {
-        let nextCh = [];
+        const nextCh = [];
         for (let i = 0; i < ch.length; i++) {
           const c = ch[i];
           if (c !== false) {

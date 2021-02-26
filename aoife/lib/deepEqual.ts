@@ -1,10 +1,12 @@
+/* eslint-disable prefer-const */
+/* eslint-disable eqeqeq */
 export function deepEqual(a: any, b: any) {
   if (a === b) return true;
 
   if (a && b && typeof a == "object" && typeof b == "object") {
     if (a.constructor !== b.constructor) return false;
 
-    var length, i, keys;
+    let length, i, keys;
     if (Array.isArray(a)) {
       length = a.length;
       if (length != b.length) return false;
@@ -49,7 +51,7 @@ export function deepEqual(a: any, b: any) {
       if (!Object.prototype.hasOwnProperty.call(b, keys[i])) return false;
 
     for (i = length; i-- !== 0; ) {
-      var key = keys[i];
+      let key = keys[i];
 
       if (!deepEqual(a[key], b[key])) return false;
     }
