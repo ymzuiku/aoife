@@ -1,7 +1,7 @@
 import { debounce } from "./debounce";
 import { throttle } from "./throttle";
 
-const attrKeys: any = {
+export const attributeKeys: any = {
   autofocus: true,
   role: true,
   viewBox: true,
@@ -62,17 +62,9 @@ function getValue(ele: any, value: any) {
 
 export function bindFn(ele: any, key: string, props: IProps): any {
   let value = props[key] as any;
-  if (
-    props.debounce! &&
-    typeof value === "function" &&
-    props.debounce!.indexOf(key) > -1
-  ) {
+  if (props.debounce! && typeof value === "function" && props.debounce!.indexOf(key) > -1) {
     value = debounce(value, props.debounceTime);
-  } else if (
-    props.throttle! &&
-    typeof value === "function" &&
-    props.throttle!.indexOf(key) > -1
-  ) {
+  } else if (props.throttle! && typeof value === "function" && props.throttle!.indexOf(key) > -1) {
     value = throttle(value, props.throttleTime);
   }
 
@@ -85,7 +77,7 @@ export function bindFn(ele: any, key: string, props: IProps): any {
     return null;
   }
   let fn: Function;
-  if (ele.__isSvg || attrKeys[key] || /-/.test(key)) {
+  if (ele.__isSvg || attributeKeys[key] || /-/.test(key)) {
     fn = async () => {
       const v = await getValue(ele, value);
       if (ele.getAttribute(key) !== v) {

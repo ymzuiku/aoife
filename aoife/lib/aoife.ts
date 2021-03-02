@@ -1,6 +1,6 @@
 import { subscribeElement } from "./state";
 import { loadable } from "./loadable";
-import { bindFn } from "./bindFn";
+import { bindFn, attributeKeys } from "./bindFn";
 import { isElement, isString, uiCaches, registerTag } from "./helper";
 import { parseChildren } from "./parseChildren";
 import { waitAppend, waitValue } from "./waitAppend";
@@ -34,11 +34,7 @@ const ignoreKeys: any = {
 
 const classKeys = ["className"];
 
-export const aoife = (
-  tag: ChildOne,
-  attrs?: ChildOne,
-  ...child: ChildOne[]
-): HTMLElement => {
+export const aoife = (tag: ChildOne, attrs?: ChildOne, ...child: ChildOne[]): HTMLElement => {
   let props = {} as IProps;
 
   if (attrs) {
@@ -103,10 +99,7 @@ export const aoife = (
       return ele;
     } else {
       if (svgList[tag]) {
-        ele = document.createElementNS(
-          "http://www.w3.org/2000/svg",
-          tag as any
-        );
+        ele = document.createElementNS("http://www.w3.org/2000/svg", tag as any);
         ele.__isSvg = true;
       } else {
         ele = document.createElement(tag as any);
@@ -190,5 +183,6 @@ aoife.deepEqual = deepEqual;
 aoife.deepMerge = deepMerge;
 aoife.debounce = debounce;
 aoife.throttle = throttle;
+aoife.attributeKeys = attributeKeys;
 
 (window as any).aoife = aoife;
