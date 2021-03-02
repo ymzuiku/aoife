@@ -1,40 +1,25 @@
-# Aoife 简介
+# aoife
 
 使用 jsx 开发 native-js 程序, 每个组件都是一个原始的 HTMLElment，可以和所有原生 js 库很好的兼容使用。
 
 > aoife 非常小, gzip 5kb
-
-社区已经有了 React/Vue/Ag 为什么还需要 Aoife？
 
 ## 特性
 
-使用 jsx 开发 native-js 程序, 每个组件都是一个原始的 HTMLElment，可以和所有原生 js 库很好的兼容使用。
-
 * 核心 API 只有一个: aoife.next
 * 极简的组件声明
 * 每次更新只会更新一次，不会有重复渲染
 * 拥抱原生 JS 生态，可以和原生 JS 库很好的兼容使用
-
-> aoife 非常小, gzip 5kb
 
 ## 安装 / 启动
 
-### 特性
-
 安装
-
-* 核心 API 只有一个: aoife.next
-* 极简的组件声明
-* 每次更新只会更新一次，不会有重复渲染
-* 拥抱原生 JS 生态，可以和原生 JS 库很好的兼容使用
 
 ```bash
 $ npm init aoife-app <project-name>
 $ cd <project-name>
 $ yarn install
 ```
-
-
 
 启动：
 
