@@ -6,7 +6,7 @@
     "build": "tsc && vite build"
   },
   "dependencies": {
-    "aoife": "^1.7.0"
+    "aoife": "^1.7.1"
   },
   "devDependencies": {
     "vite": "^2.0.0-beta.12"
