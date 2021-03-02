@@ -2,7 +2,14 @@
 
 使用 jsx 开发 native-js 程序, 每个组件都是一个原始的 HTMLElment，可以和所有原生 js 库很好的兼容使用。
 
-aoife 非常小, gzip 5kb
+> aoife 非常小, gzip 5kb
+
+## 特性
+
+- 核心 API 只有一个: aoife.next
+- 极简的组件声明
+- 每次更新只会更新一次，不会有重复渲染
+- 拥抱原生 JS 生态，可以和原生 JS 库很好的兼容使用
 
 ## 安装 / 启动
 
@@ -158,6 +165,38 @@ function App() {
 1. 为了延续声明式的开发方式，`aoife.next` 函数并没有传递值，仅仅是派发了更新命令，元素的属性还是由内部状态管理的逻辑来解决状态分支问题
 2. 我们移除了类似 React 中 SCU，purecomponent、memo 等解决重绘问题的概念，因为**一次** aoife.next 执行仅仅更新**一次**局部元素的**属性**，并不会造成大规模重绘
 3. `aoife.next` 已经是全局可选则的更新，所以失去了传统的状态管理库的必要；合理规范好 `aoife.next` 的调用即可。
+
+## 常用额外方法
+
+### 去抖动 debounce
+
+```jsx
+<button debounce="onclick,ontouchstart" onclick={handleClick}>
+  频繁点击我
+</button>
+```
+
+### 节流 throttle
+
+```jsx
+<button throttle="onclick" onclick={handleClick}>
+  频繁点击我
+</button>
+```
+
+### 编写 css
+
+```jsx
+const css = (
+  <style>{`
+.hello {
+  background: #f00;
+}
+`}</style>
+);
+
+document.body.append(css);
+```
 
 ## 生态
 

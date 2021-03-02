@@ -388,37 +388,17 @@ interface CSSPropertiesComplete {
   /**
    * Aligns a flex container's lines within the flex container when there is extra space in the cross-axis, similar to how justify-content aligns individual items within the main-axis.
    */
-  alignContent?:
-    | CSSWideKeyword
-    | "flex-start"
-    | "flex-end"
-    | "center"
-    | "space-between"
-    | "space-around"
-    | "stretch";
+  alignContent?: CSSWideKeyword | "flex-start" | "flex-end" | "center" | "space-between" | "space-around" | "stretch";
 
   /**
    * Sets the default alignment in the cross axis for all of the flex container's items, including anonymous flex items, similarly to how justify-content aligns items along the main axis.
    */
-  alignItems?:
-    | CSSWideKeyword
-    | "flex-start"
-    | "flex-end"
-    | "center"
-    | "baseline"
-    | "stretch";
+  alignItems?: CSSWideKeyword | "flex-start" | "flex-end" | "center" | "baseline" | "stretch";
 
   /**
    * Allows the default alignment to be overridden for individual flex items.
    */
-  alignSelf?:
-    | CSSWideKeyword
-    | "auto"
-    | "flex-start"
-    | "flex-end"
-    | "center"
-    | "baseline"
-    | "stretch";
+  alignSelf?: CSSWideKeyword | "auto" | "flex-start" | "flex-end" | "center" | "baseline" | "stretch";
 
   /**
    * This property allows precise alignment of elements, such as graphics, that do not have a baseline-table or lack the desired baseline in their baseline-table. With the alignment-adjust property, the position of the baseline identified by the alignment-baseline can be explicitly determined. It also determines precisely the alignment point for each glyph within a textual element.
@@ -449,12 +429,7 @@ interface CSSPropertiesComplete {
   /**
    * Defines whether an animation should run in reverse on some or all cycles.
    */
-  animationDirection?:
-    | CSSWideKeyword
-    | "normal"
-    | "reverse"
-    | "alternate"
-    | "alternate-reverse";
+  animationDirection?: CSSWideKeyword | "normal" | "reverse" | "alternate" | "alternate-reverse";
 
   /**
    * Specifies how many times an animation cycle should play.
@@ -535,11 +510,7 @@ interface CSSPropertiesComplete {
   /**
    * Specifies what the background-position property is relative to.
    */
-  backgroundOrigin?:
-    | CSSWideKeyword
-    | "border-box"
-    | "padding-box"
-    | "content-box";
+  backgroundOrigin?: CSSWideKeyword | "border-box" | "padding-box" | "content-box";
 
   /**
    * Sets the position of a background image.
@@ -783,13 +754,7 @@ interface CSSPropertiesComplete {
   /**
    * Obsolete.
    */
-  boxAlign?:
-    | CSSWideKeyword
-    | "start"
-    | "center"
-    | "end"
-    | "baseline"
-    | "stretch";
+  boxAlign?: CSSWideKeyword | "start" | "center" | "end" | "baseline" | "stretch";
 
   /**
    * Breaks a box into fragments creating new borders, padding and repeating backgrounds or lets it stay as a continuous box on a page break, column break, or, for inline elements, at a line break.
@@ -880,25 +845,12 @@ interface CSSPropertiesComplete {
   /**
    * Control page/column/region breaks that fall within a block of content
    */
-  breakInside?:
-    | CSSWideKeyword
-    | "auto"
-    | "avoid"
-    | "avoid-page"
-    | "avoid-column"
-    | "avoid-region";
+  breakInside?: CSSWideKeyword | "auto" | "avoid" | "avoid-page" | "avoid-column" | "avoid-region";
 
   /**
    * The clear CSS property specifies if an element can be positioned next to or must be positioned below the floating elements that precede it in the markup.
    */
-  clear?:
-    | CSSWideKeyword
-    | "none"
-    | "left"
-    | "right"
-    | "both"
-    | "inline-start"
-    | "inline-end";
+  clear?: CSSWideKeyword | "none" | "left" | "right" | "both" | "inline-start" | "inline-end";
 
   /**
    * Deprecated; see clip-path.
@@ -1088,12 +1040,7 @@ interface CSSPropertiesComplete {
   /**
    * The flex-direction CSS property describes how flex items are placed in the flex container, by setting the direction of the flex container's main axis.
    */
-  flexDirection?:
-    | CSSWideKeyword
-    | "row"
-    | "row-reverse"
-    | "column"
-    | "column-reverse";
+  flexDirection?: CSSWideKeyword | "row" | "row-reverse" | "column" | "column-reverse";
 
   /**
    * The flex-flow CSS property defines the flex container's main and cross axis. It is a shorthand property for the flex-direction and flex-wrap properties.
@@ -1174,13 +1121,7 @@ interface CSSPropertiesComplete {
   /**
    * Elements which have the style float are floated horizontally. These elements can move as far to the left or right of the containing element. All elements after the floating element will flow around it, but elements before the floating element are not impacted. If several floating elements are placed after each other, they will float next to each other as long as there is room.
    */
-  float?:
-    | CSSWideKeyword
-    | "left"
-    | "right"
-    | "none"
-    | "inline-start"
-    | "inline-end";
+  float?: CSSWideKeyword | "left" | "right" | "none" | "inline-start" | "inline-end";
 
   /**
    * Flows content from a named flow (specified by a corresponding flow-into) through selected elements to form a dynamic chain of layout regions.
@@ -1349,13 +1290,7 @@ interface CSSPropertiesComplete {
    */
   hyphens?: CSSWideKeyword | "none" | "manual" | "auto";
 
-  imeMode?:
-    | CSSWideKeyword
-    | "auto"
-    | "normal"
-    | "active"
-    | "inactive"
-    | "disabled";
+  imeMode?: CSSWideKeyword | "auto" | "normal" | "active" | "inactive" | "disabled";
 
   /**
    * Defines how the browser distributes space between and around flex items
@@ -1579,12 +1514,7 @@ interface CSSPropertiesComplete {
   /**
    * Specifies the preferred scrolling methods for elements that overflow.
    */
-  overflowStyle?:
-    | CSSWideKeyword
-    | "auto"
-    | "none"
-    | "scrollbar"
-    | "-ms-autohiding-scrollbar";
+  overflowStyle?: CSSWideKeyword | "auto" | "none" | "scrollbar" | "-ms-autohiding-scrollbar";
 
   /**
    * Controls how extra content exceeding the x-axis of the bounding box of an element is rendered.
@@ -1625,24 +1555,12 @@ interface CSSPropertiesComplete {
   /**
    * The page-break-after property is supported in all major browsers. With CSS3, page-break-* properties are only aliases of the break-* properties. The CSS3 Fragmentation spec defines breaks for all CSS box fragmentation.
    */
-  pageBreakAfter?:
-    | CSSWideKeyword
-    | "auto"
-    | "always"
-    | "avoid"
-    | "left"
-    | "right";
+  pageBreakAfter?: CSSWideKeyword | "auto" | "always" | "avoid" | "left" | "right";
 
   /**
    * The page-break-before property sets the page-breaking behavior before an element. With CSS3, page-break-* properties are only aliases of the break-* properties. The CSS3 Fragmentation spec defines breaks for all CSS box fragmentation.
    */
-  pageBreakBefore?:
-    | CSSWideKeyword
-    | "auto"
-    | "always"
-    | "avoid"
-    | "left"
-    | "right";
+  pageBreakBefore?: CSSWideKeyword | "auto" | "always" | "avoid" | "left" | "right";
 
   /**
    * Sets the page-breaking behavior inside an element. With CSS3, page-break-* properties are only aliases of the break-* properties. The CSS3 Fragmentation spec defines breaks for all CSS box fragmentation.
@@ -1697,25 +1615,13 @@ interface CSSPropertiesComplete {
   /**
    * The position property controls the type of positioning used by an element within its parent elements. The effect of the position property depends on a lot of factors, for example the position property of parent elements.
    */
-  position?:
-    | CSSWideKeyword
-    | "static"
-    | "relative"
-    | "absolute"
-    | "sticky"
-    | "fixed";
+  position?: CSSWideKeyword | "static" | "relative" | "absolute" | "sticky" | "fixed";
 
   /**
    * Obsolete: unsupported.
    * This property determines whether or not a full-width punctuation mark character should be trimmed if it appears at the beginning of a line, so that its "ink" lines up with the first glyph in the line above and below.
    */
-  punctuationTrim?:
-    | CSSWideKeyword
-    | "none"
-    | "start"
-    | "end"
-    | "allow-end"
-    | "adjacent";
+  punctuationTrim?: CSSWideKeyword | "none" | "start" | "end" | "allow-end" | "adjacent";
 
   /**
    * Sets the type of quotation marks for embedded quotations.
@@ -1742,12 +1648,7 @@ interface CSSPropertiesComplete {
    */
   right?: CSSWideKeyword | string | number;
 
-  rubyAlign?:
-    | CSSWideKeyword
-    | "start"
-    | "center"
-    | "space-between"
-    | "space-around";
+  rubyAlign?: CSSWideKeyword | "start" | "center" | "space-between" | "space-around";
 
   rubyPosition?: CSSWideKeyword | "over" | "under" | "inter-character";
 
@@ -1806,28 +1707,12 @@ interface CSSPropertiesComplete {
   /**
    * The text-align CSS property describes how inline content like text is aligned in its parent block element. text-align does not control the alignment of block elements itself, only their inline content.
    */
-  textAlign?:
-    | CSSWideKeyword
-    | "start"
-    | "end"
-    | "left"
-    | "right"
-    | "center"
-    | "justify"
-    | "match-parent";
+  textAlign?: CSSWideKeyword | "start" | "end" | "left" | "right" | "center" | "justify" | "match-parent";
 
   /**
    * The text-align-last CSS property describes how the last line of a block element or a line before line break is aligned in its parent block element.
    */
-  textAlignLast?:
-    | CSSWideKeyword
-    | "auto"
-    | "start"
-    | "end"
-    | "left"
-    | "right"
-    | "center"
-    | "justify";
+  textAlignLast?: CSSWideKeyword | "auto" | "start" | "end" | "left" | "right" | "center" | "justify";
 
   /**
    * The text-decoration CSS property is used to set the text formatting to underline, overline, line-through or blink.
@@ -1961,12 +1846,7 @@ interface CSSPropertiesComplete {
   /**
    * The text-rendering CSS property provides information to the browser about how to optimize when rendering text. Options are: legibility, speed or geometric precision.
    */
-  textRendering?:
-    | CSSWideKeyword
-    | "auto"
-    | "optimizeSpeed"
-    | "optimizeLegibility"
-    | "geometricPrecision";
+  textRendering?: CSSWideKeyword | "auto" | "optimizeSpeed" | "optimizeLegibility" | "geometricPrecision";
 
   /**
    * Obsolete: unsupported.
@@ -1981,13 +1861,7 @@ interface CSSPropertiesComplete {
   /**
    * This property transforms text for styling purposes. (It has no effect on the underlying content.)
    */
-  textTransform?:
-    | CSSWideKeyword
-    | "none"
-    | "capitalize"
-    | "uppercase"
-    | "lowercase"
-    | "full-width";
+  textTransform?: CSSWideKeyword | "none" | "capitalize" | "uppercase" | "lowercase" | "full-width";
 
   /**
    * Unsupported.
@@ -2059,14 +1933,7 @@ interface CSSPropertiesComplete {
   /**
    * The unicode-bidi CSS property specifies the level of embedding with respect to the bidirectional algorithm.
    */
-  unicodeBidi?:
-    | CSSWideKeyword
-    | "normal"
-    | "embed"
-    | "isolate"
-    | "bidi-override"
-    | "isolate-override"
-    | "plaintext";
+  unicodeBidi?: CSSWideKeyword | "normal" | "embed" | "isolate" | "bidi-override" | "isolate-override" | "plaintext";
 
   /**
    * unicode-range allows you to set a specific range of characters to be downloaded from a font (embedded using @font-face) and made available for use on the current page.
@@ -2105,14 +1972,7 @@ interface CSSPropertiesComplete {
   /**
    * The voice-balance property sets the apparent position (in stereo sound) of the synthesized voice for spoken media.
    */
-  voiceBalance?:
-    | CSSWideKeyword
-    | number
-    | "left"
-    | "center"
-    | "right"
-    | "leftwards"
-    | "rightwards";
+  voiceBalance?: CSSWideKeyword | number | "left" | "center" | "right" | "leftwards" | "rightwards";
 
   /**
    * The voice-duration property allows the author to explicitly set the amount of time it should take a speech synthesizer to read an element's content, for example to allow the speech to be synchronized with other media. With a value of auto (the default) the length of time it takes to read the content is determined by the content itself and the voice-rate property.
@@ -2152,13 +2012,7 @@ interface CSSPropertiesComplete {
   /**
    * The white-space property controls whether and how white space inside the element is collapsed, and whether lines may wrap at unforced "soft wrap" opportunities.
    */
-  whiteSpace?:
-    | CSSWideKeyword
-    | "normal"
-    | "pre"
-    | "nowrap"
-    | "pre-wrap"
-    | "pre-line";
+  whiteSpace?: CSSWideKeyword | "normal" | "pre" | "nowrap" | "pre-wrap" | "pre-line";
 
   /**
    * Obsolete: unsupported.
@@ -2180,12 +2034,7 @@ interface CSSPropertiesComplete {
   /**
    * The word-break property is often used when there is long generated content that is strung together without and spaces or hyphens to beak apart. A common case of this is when there is a long URL that does not have any hyphens. This case could potentially cause the breaking of the layout as it could extend past the parent element.
    */
-  wordBreak?:
-    | CSSWideKeyword
-    | "normal"
-    | "break-all"
-    | "keep-all"
-    | "break-word";
+  wordBreak?: CSSWideKeyword | "normal" | "break-all" | "keep-all" | "break-word";
 
   /**
    * The word-spacing CSS property specifies the spacing behavior between "words".
@@ -2200,14 +2049,7 @@ interface CSSPropertiesComplete {
   /**
    * Specifies how exclusions affect inline content within block-level elements. Elements lay out their inline content in their content area but wrap around exclusion areas.
    */
-  wrapFlow?:
-    | CSSWideKeyword
-    | "auto"
-    | "both"
-    | "start"
-    | "end"
-    | "maximum"
-    | "clear";
+  wrapFlow?: CSSWideKeyword | "auto" | "both" | "start" | "end" | "maximum" | "clear";
 
   /**
    * Set the value that is used to offset the inner wrap shape from other shapes. Inline content that intersects a shape with this property will be pushed by this shape's margin.
@@ -2223,13 +2065,7 @@ interface CSSPropertiesComplete {
   /**
    * writing-mode specifies if lines of text are laid out horizontally or vertically, and the direction which lines of text and blocks progress.
    */
-  writingMode?:
-    | CSSWideKeyword
-    | "horizontal-tb"
-    | "vertical-rl"
-    | "vertical-lr"
-    | "sideways-rl"
-    | "sideways-lr";
+  writingMode?: CSSWideKeyword | "horizontal-tb" | "vertical-rl" | "vertical-lr" | "sideways-rl" | "sideways-lr";
 
   /**
    * The z-index property specifies the z-order of an element and its descendants.
@@ -2321,10 +2157,7 @@ interface CSSPropertiesLossy {
     | CSSPropertiesLossy;
 }
 
-interface CSSProperties
-  extends CSSPropertiesComplete,
-    CSSPropertiesPseudo,
-    CSSPropertiesLossy {}
+interface CSSProperties extends CSSPropertiesComplete, CSSPropertiesPseudo, CSSPropertiesLossy {}
 
 interface IStyle extends CSSProperties {
   className?: string;
@@ -2412,9 +2245,7 @@ interface EventOptions {
   onreset?: (ev: HTMLElementEventMap["reset"]) => any;
   onresize?: (ev: HTMLElementEventMap["resize"]) => any;
   onscroll?: (ev: HTMLElementEventMap["scroll"]) => any;
-  onsecuritypolicyviolation?: (
-    ev: HTMLElementEventMap["securitypolicyviolation"]
-  ) => any;
+  onsecuritypolicyviolation?: (ev: HTMLElementEventMap["securitypolicyviolation"]) => any;
   onseeked?: (ev: HTMLElementEventMap["seeked"]) => any;
   onseeking?: (ev: HTMLElementEventMap["seeking"]) => any;
   onselect?: (ev: HTMLElementEventMap["select"]) => any;
@@ -2432,9 +2263,7 @@ interface EventOptions {
   ontransitioncancel?: (ev: HTMLElementEventMap["transitioncancel"]) => any;
   ontransitionend?: (ev: HTMLElementEventMap["transitionend"]) => any;
   ontransitionrun?: (ev: HTMLElementEventMap["transitionrun"]) => any;
-  ontransitionstart?: (
-    ev: HTMLElementCustomeEventMap["transitionstart"]
-  ) => any;
+  ontransitionstart?: (ev: HTMLElementCustomeEventMap["transitionstart"]) => any;
   onvolumechange?: (ev: HTMLElementEventMap["volumechange"]) => any;
   onwaiting?: (ev: HTMLElementEventMap["waiting"]) => any;
   onwheel?: (ev: HTMLElementEventMap["wheel"]) => any;
@@ -2445,9 +2274,7 @@ interface AddEventOptions extends EventOptions {
   listenabort?: (ev: HTMLElementEventMap["abort"]) => any;
   listenanimationcancel?: (ev: HTMLElementEventMap["animationcancel"]) => any;
   listenanimationend?: (ev: HTMLElementEventMap["animationend"]) => any;
-  listenanimationiteration?: (
-    ev: HTMLElementEventMap["animationiteration"]
-  ) => any;
+  listenanimationiteration?: (ev: HTMLElementEventMap["animationiteration"]) => any;
   listenanimationstart?: (ev: HTMLElementEventMap["animationstart"]) => any;
   listenauxclick?: (ev: HTMLElementEventMap["auxclick"]) => any;
   listenblur?: (ev: HTMLElementEventMap["blur"]) => any;
@@ -2479,9 +2306,7 @@ interface AddEventOptions extends EventOptions {
   listenfocusout?: (ev: HTMLElementEventMap["focusout"]) => any;
   listenfullscreenchange?: (ev: HTMLElementEventMap["fullscreenchange"]) => any;
   listenfullscreenerror?: (ev: HTMLElementEventMap["fullscreenerror"]) => any;
-  listengotpointercapture?: (
-    ev: HTMLElementEventMap["gotpointercapture"]
-  ) => any;
+  listengotpointercapture?: (ev: HTMLElementEventMap["gotpointercapture"]) => any;
   listeninput?: (ev: HTMLElementCustomeEventMap["input"]) => any;
   listeninvalid?: (ev: HTMLElementCustomeEventMap["invalid"]) => any;
   listenkeydown?: (ev: HTMLElementEventMap["keydown"]) => any;
@@ -2491,9 +2316,7 @@ interface AddEventOptions extends EventOptions {
   listenloadeddata?: (ev: HTMLElementEventMap["loadeddata"]) => any;
   listenloadedmetadata?: (ev: HTMLElementEventMap["loadedmetadata"]) => any;
   listenloadstart?: (ev: HTMLElementEventMap["loadstart"]) => any;
-  listenlostpointercapture?: (
-    ev: HTMLElementEventMap["lostpointercapture"]
-  ) => any;
+  listenlostpointercapture?: (ev: HTMLElementEventMap["lostpointercapture"]) => any;
   listenmousedown?: (ev: HTMLElementCustomeEventMap["mousedown"]) => any;
   listenmouseenter?: (ev: HTMLElementCustomeEventMap["mouseenter"]) => any;
   listenmouseleave?: (ev: HTMLElementCustomeEventMap["mouseleave"]) => any;
@@ -2505,9 +2328,7 @@ interface AddEventOptions extends EventOptions {
   listenpause?: (ev: HTMLElementEventMap["pause"]) => any;
   listenplay?: (ev: HTMLElementEventMap["play"]) => any;
   listenplaying?: (ev: HTMLElementEventMap["playing"]) => any;
-  listenpointercancel?: (
-    ev: HTMLElementCustomeEventMap["pointercancel"]
-  ) => any;
+  listenpointercancel?: (ev: HTMLElementCustomeEventMap["pointercancel"]) => any;
   listenpointerdown?: (ev: HTMLElementCustomeEventMap["pointerdown"]) => any;
   listenpointerenter?: (ev: HTMLElementCustomeEventMap["pointerenter"]) => any;
   listenpointerleave?: (ev: HTMLElementCustomeEventMap["pointerleave"]) => any;
@@ -2520,9 +2341,7 @@ interface AddEventOptions extends EventOptions {
   listenreset?: (ev: HTMLElementEventMap["reset"]) => any;
   listenresize?: (ev: HTMLElementEventMap["resize"]) => any;
   listenscroll?: (ev: HTMLElementEventMap["scroll"]) => any;
-  listensecuritypolicyviolation?: (
-    ev: HTMLElementEventMap["securitypolicyviolation"]
-  ) => any;
+  listensecuritypolicyviolation?: (ev: HTMLElementEventMap["securitypolicyviolation"]) => any;
   listenseeked?: (ev: HTMLElementEventMap["seeked"]) => any;
   listenseeking?: (ev: HTMLElementEventMap["seeking"]) => any;
   listenselect?: (ev: HTMLElementEventMap["select"]) => any;
@@ -2550,15 +2369,7 @@ interface AddEventOptions extends EventOptions {
 type RefOne = (e: HTMLInputElement) => any;
 type RefList = ((e: HTMLInputElement) => any)[];
 
-type ChildOne =
-  | Element
-  | string
-  | number
-  | boolean
-  | undefined
-  | IProps
-  | ChildFn
-  | ChildJsx;
+type ChildOne = Element | string | number | boolean | undefined | IProps | ChildFn | ChildJsx;
 type ChildJsx = ChildOne[];
 
 type ChildFn = (list: any[], i: number) => ChildOne;
@@ -2571,11 +2382,7 @@ type StyleFn =
 
 declare interface IProps extends AddEventOptions {
   tabIndex?: number | ((e: any) => number | Promise<number>);
-  tag?:
-    | string
-    | ((e: any) => string | Promise<string>)
-    | HTMLInputElement
-    | Function;
+  tag?: string | ((e: any) => string | Promise<string>) | HTMLInputElement | Function;
   // 当 next 时，重绘整个 children
   // render?: (v?: any) => ChildOne;
   children?: ChildOne[];
@@ -2585,34 +2392,25 @@ declare interface IProps extends AddEventOptions {
   watch?: () => any;
   /** 当元素 onappend 到文档中时执行 */
   onappend?: RefOne;
+  /** 防抖 */
   debounce?: string | string[];
   debounceTime?: number;
+  /** 节流 */
   throttle?: string | string[];
   throttleTime?: number;
   /** 当元素 create 时回调 */
   oncreate?: RefOne;
   /** 自动 append style 至 body 或 head， 默认为 body */
   // global?: boolean | string;
-  class?:
-    | string
-    | any[]
-    | ((e: any) => string | any[] | Promise<string | any[]>);
+  class?: string | any[] | ((e: any) => string | any[] | Promise<string | any[]>);
   className?:
     | string
     | (string | boolean)[]
-    | ((
-        e: any
-      ) =>
-        | string
-        | (string | boolean)[]
-        | Promise<string | (string | boolean)[]>);
+    | ((e: any) => string | (string | boolean)[] | Promise<string | (string | boolean)[]>);
   href?: string | ((e: any) => string | Promise<string>);
   rel?: string | ((e: any) => string | Promise<string>);
   // cssText?: string | ((e: any) => string);
-  id?:
-    | string
-    | number
-    | ((e: any) => (string | number) | Promise<string | number>);
+  id?: string | number | ((e: any) => (string | number) | Promise<string | number>);
   style?: StyleFn;
   textContent?: any | ((e: any) => any);
   accessKey?: string | ((e: any) => any);
@@ -2682,21 +2480,13 @@ declare const aoife: {
   // stringToHex(str: string, start?: string): string;
   waitAppend(ele: HTMLElement | string, max?: number): Promise<HTMLElement>;
   subscribe: (fn: any) => () => void;
-  next: (
-    focusUpdateTargets?: string | undefined,
-    ignoreUpdateTargets?: string | any[] | undefined
-  ) => HTMLElement[];
+  next: (focusUpdateTargets?: string | undefined, ignoreUpdateTargets?: string | any[] | undefined) => HTMLElement[];
   events: Set<Function>;
   registerTag(data: { [key: string]: any }): void;
-  propFn(
-    target: any,
-    fn: (val: any) => IStyle | string | boolean | number | any[] | object
-  ): any;
+  propFn(target: any, fn: (val: any) => IStyle | string | boolean | number | any[] | object): any;
   waitValue<T>(fn: () => T, max?: number): Promise<T>;
   memo: (blocker: () => any) => (fn: any) => Promise<any>;
   deepEqual: (a: any, b: any) => boolean;
   deepMerge: <T, U>(a: T, b: U) => T & U;
-  cssSheet: <T extends { [key: string]: IStyle }>(
-    sheet: T
-  ) => { [P in keyof T]: string };
+  cssSheet: <T extends { [key: string]: IStyle }>(sheet: T) => { [P in keyof T]: string };
 };
