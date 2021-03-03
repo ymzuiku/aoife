@@ -5,8 +5,10 @@
     "create-aoife-app": "bin.js"
   },
   "dependencies": {
-    "@types/fs-extra": "^9.0.5",
     "fs-extra": "^9.0.1"
+  },
+  "devDependencies": {
+    "@types/fs-extra": "^9.0.5"
   },
   "repository": {
     "type": "git",
