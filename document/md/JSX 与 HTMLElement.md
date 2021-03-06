@@ -1,15 +1,21 @@
+# JSX 与 HTMLElement
+
 JSX 对 aoife 非常重要，`注意 aoife 并不是 React 的轮子`。
 
 aoife 仅仅保留了 JSX 相关的概念，移除了 React 所有非 JSX 相关的概念，所以 aoife 没有生命周期，hooks、diffDOM。
+
+我们假定您已有基础的 JSX 基础或 React 基础，下文仅仅说明了 JSX 在 aoife 的细微差异。
 
 本章我们会参数一些 JSX 语法，并且说清楚 JSX 在 Aoife 的关系。
 
 ## JSX 表达式
 
-在 Aoife 中，每个 JSX 表达式的值是一个原生 HTMLElement , 所以可以直接 append 到 document.body 中:
+首先 JSX 是一个表达式，即 JSX 会得到一个值
+
+在 Aoife 中，每个 JSX 表达式的值是一个原生 HTMLElement , 如 `<div />` 表达式的值是一个 Div 元素，所以可以直接 append 到 document.body 中:
 
 ```jsx
-const hello = <div id="foo">Hello world</div>;
+const hello = <div>Hello world</div>;
 
 document.body.append(hello);
 ```
