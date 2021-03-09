@@ -1,5 +1,7 @@
 # Aoife 简介
 
+[完整文档](https://aoife.writeflowy.com)
+
 使用 jsx 开发 native-js 程序, 每个组件都是一个原始的 HTMLElment，可以和所有原生 js 库很好的兼容使用。
 
 > aoife 非常小, gzip 5kb
@@ -10,10 +12,10 @@
 
 使用 jsx 开发 native-js 程序, 每个组件都是一个原始的 HTMLElment，可以和所有原生 js 库很好的兼容使用。
 
-* 核心 API 只有一个: aoife.next
-* 极简的组件声明
-* 每次更新只会更新一次，不会有重复渲染
-* 拥抱原生 JS 生态，可以和原生 JS 库很好的兼容使用
+- 核心 API 只有一个: aoife.next
+- 极简的组件声明
+- 每次更新只会更新一次，不会有重复渲染
+- 拥抱原生 JS 生态，可以和原生 JS 库很好的兼容使用
 
 > aoife 非常小, gzip 5kb
 
@@ -23,18 +25,16 @@
 
 安装
 
-* 核心 API 只有一个: aoife.next
-* 极简的组件声明
-* 每次更新只会更新一次，不会有重复渲染
-* 拥抱原生 JS 生态，可以和原生 JS 库很好的兼容使用
+- 核心 API 只有一个: aoife.next
+- 极简的组件声明
+- 每次更新只会更新一次，不会有重复渲染
+- 拥抱原生 JS 生态，可以和原生 JS 库很好的兼容使用
 
 ```bash
 $ npm init aoife-app <project-name>
 $ cd <project-name>
 $ yarn install
 ```
-
-
 
 启动：
 
@@ -229,7 +229,6 @@ const App = () => {
 
 从这个案例可以看到，一个原生 JS 组件，本身可以不需要包含 aoife，也可以被 aoife 使用；只需要此组件满足 3 个规则：
 
-* 1. 组件是一个函数，返回值是一个 HTMLElement 类型
-* 1. 组件的参数是一个对象
-* 1. 若 JSX 传递了 children，在组件第一个参数中会包含 children 字段，值是一个 HTMLElement 数组
-
+- 1. 组件是一个函数，返回值是一个 HTMLElement 类型
+- 1. 组件的参数是一个对象
+- 1. 若 JSX 传递了 children，在组件第一个参数中会包含 children 字段，值是一个 HTMLElement 数组
