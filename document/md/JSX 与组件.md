@@ -1,4 +1,4 @@
-# JSX 与 HTMLElement
+# JSX 与组件
 
 JSX 对 aoife 非常重要，`注意 aoife 并不是 React 的轮子`。
 
@@ -29,6 +29,15 @@ hello.textContent = "Hello world";
 
 document.body.append(hello);
 ```
+
+## 组件约定
+
+aoife 的组件有两个基本约定：
+
+1. 任何返回 HTMLElement 的函数，都可以是 aoife 的组件
+2. 组件只会读取第一个参数，参数类型是一个 object，参数是可选的
+
+由于组件不继承任何对象，所以实现 aoife 的组件的第三方库可以不需要引入 aoife。甚至在 aoife 诞生之前，JS 的世界中就已经有许许多多 aoife 组件了。
 
 ## 一个简单的组件
 
