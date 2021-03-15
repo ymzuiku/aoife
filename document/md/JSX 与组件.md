@@ -6,13 +6,13 @@ aoife 仅仅保留了 JSX 相关的概念，移除了 React 所有非 JSX 相关
 
 我们假定您已有基础的 JSX 基础或 React 基础，下文仅仅说明了 JSX 在 aoife 的细微差异。
 
-本章我们会参数一些 JSX 语法，并且说清楚 JSX 在 Aoife 的关系。
+本章我们会参数一些 JSX 语法，并且说清楚 JSX 在 aoife 的关系。
 
 ## JSX 表达式
 
 首先 JSX 是一个表达式，即 JSX 会得到一个值
 
-在 Aoife 中，每个 JSX 表达式的值是一个原生 HTMLElement , 如 `<div />` 表达式的值是一个 Div 元素，所以可以直接 append 到 document.body 中:
+在 aoife 中，每个 JSX 表达式的值是一个原生 HTMLElement , 如 `<div />` 表达式的值是一个 Div 元素，所以可以直接 append 到 document.body 中:
 
 ```jsx
 const hello = <div id="foo">Hello world</div>;
@@ -41,7 +41,7 @@ aoife 的组件有两个基本约定：
 
 ## 一个简单的组件
 
-由于 JSX 表达式在 Aoife 中就是一个 HTMLElement 声明语法，所以 Aoife 的组件只是一个普通的函数，函数的返回值是一个 JSX 表达式。
+由于 JSX 表达式在 aoife 中就是一个 HTMLElement 声明语法，所以 aoife 的组件只是一个普通的函数，函数的返回值是一个 JSX 表达式。
 
 ```jsx
 const App = () => {
@@ -51,7 +51,7 @@ const App = () => {
 document.body.append(<App />);
 ```
 
-同时我们可以放心，在 Aoife 中没有 React.hooks 的概念，我们不需要担心这个组件函数最后会变得很复杂。
+同时我们可以放心，在 aoife 中没有 React.hooks 的概念，我们不需要担心这个组件函数最后会变得很复杂。
 
 ## 原生 HTMLElement 和 JSX 可以混合使用
 
@@ -69,7 +69,7 @@ function App() {
 document.body.append(<App />);
 ```
 
-我们也可以将 HTMLElement 封装成一个 Aoife 组件:
+我们也可以将 HTMLElement 封装成一个 aoife 组件:
 
 ```jsx
 // 纯原生的组件
