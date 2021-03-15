@@ -8,7 +8,7 @@
 
 ## JSX 表达式
 
-首先 JSX 是一个表达式，即 JSX 会得到一个值
+首先 JSX 是一个表达式，即 JSX 会得到一个值。
 
 在 aoife 中，每个 JSX 表达式的值是一个原生 HTMLElement , 如 `<div />` 表达式的值是一个 Div 元素，所以可以直接 append 到 document.body 中:
 
