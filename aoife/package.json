@@ -36,6 +36,7 @@
     "rollup-plugin-node-resolve": "^5.2.0",
     "rollup-plugin-typescript2": "^0.24.3",
     "rollup-plugin-uglify": "^6.0.3",
+    "tslib": "^2.1.0",
     "typescript": "3.5.2"
   },
   "repository": {
