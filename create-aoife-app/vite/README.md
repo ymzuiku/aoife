@@ -1,21 +1,36 @@
-# aoife
+# Aoife 简介
+
+## [完整文档](https://aoife.writeflowy.com)
 
 使用 jsx 开发 native-js 程序, 每个组件都是一个原始的 HTMLElment，可以和所有原生 js 库很好的兼容使用。
 
 > aoife 非常小, gzip 5kb
 
+社区已经有了 React/Vue/Ag 为什么还需要 Aoife？
+
 ## 特性
+
+使用 jsx 开发 native-js 程序, 每个组件都是一个原始的 HTMLElment，可以和所有原生 js 库很好的兼容使用。
 
 - 核心 API 只有一个: aoife.next
 - 极简的组件声明
 - 每次更新只会更新一次，不会有重复渲染
 - 拥抱原生 JS 生态，可以和原生 JS 库很好的兼容使用
 
+> aoife 非常小, gzip 5kb
+
 ## 安装 / 启动
+
+### 特性
 
 安装
 
-```sh
+- 核心 API 只有一个: aoife.next
+- 极简的组件声明
+- 每次更新只会更新一次，不会有重复渲染
+- 拥抱原生 JS 生态，可以和原生 JS 库很好的兼容使用
+
+```bash
 $ npm init aoife-app <project-name>
 $ cd <project-name>
 $ yarn install
@@ -23,23 +38,16 @@ $ yarn install
 
 启动：
 
-```sh
+```bash
 $ yarn dev # 开发环境
 $ yarn build # 编译
 ```
-
-<!-- 其它扩展
-
-```sh
-$ hard=1 yarn start # 开发环境 (使用缓存编译)
-$ hard=1 monaco=1 yarn start # 开发环境 (使用缓存编译、应用 monaco 插件)
-``` -->
 
 ## API
 
 aoife 是一个全局函数, 用于 jsx 解析，其中 aoife.next 用于更新元素
 
-```ts
+```typescript
 declare const aoife: {
   (tag: any, attrs?: ChildOne, ...child: ChildOne[]): HTMLElement;
   next: (
@@ -75,7 +83,7 @@ aoife 仅仅保留了 JSX 相关的概念，移除了 React 所有非 JSX 相关
 
 我们看一个例子
 
-```tsx
+```text
 import "aoife"; // 在项目入口处引入一次，注册全局 dom 对象
 
 // 这是一个普通的 jsx 组件
@@ -121,8 +129,7 @@ document.body.append(<App />);
 
 ## 异步 JSX
 
-aoife 可以异步取值和异步插入 children，这可以简化远程获取数据渲染的业务。
-注意，aoife.next 仅仅是一个派发更新，并不会等待所有异步更新的回调
+aoife 可以异步取值和异步插入 children，这可以简化远程获取数据渲染的业务。 注意，aoife.next 仅仅是一个派发更新，并不会等待所有异步更新的回调
 
 ```jsx
 import "aoife";
@@ -223,5 +230,5 @@ const App = () => {
 从这个案例可以看到，一个原生 JS 组件，本身可以不需要包含 aoife，也可以被 aoife 使用；只需要此组件满足 3 个规则：
 
 - 1. 组件是一个函数，返回值是一个 HTMLElement 类型
-- 2. 组件的参数是一个对象
-- 3. 若 JSX 传递了 children，在组件第一个参数中会包含 children 字段，值是一个 HTMLElement 数组
+- 1. 组件的参数是一个对象
+- 1. 若 JSX 传递了 children，在组件第一个参数中会包含 children 字段，值是一个 HTMLElement 数组
