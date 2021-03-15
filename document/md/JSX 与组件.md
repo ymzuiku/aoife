@@ -1,8 +1,8 @@
 # JSX 与组件
 
-JSX 对 aoife 非常重要，`注意 aoife 并不是 React 的轮子`。
+经过前端这些年的历程，认为 JSX 是已知描述 DOM 的最舒心的方案，所以 aoife 选择使用 JSX 来描述 DOM。
 
-aoife 仅仅保留了 JSX 相关的概念，移除了 React 所有非 JSX 相关的概念，所以 aoife 没有生命周期，hooks、diffDOM。
+`注意 aoife 并不是 React 的轮子`，aoife 仅仅保留了 JSX 相关的概念，移除了 React 所有非 JSX 相关的概念，所以 aoife 没有生命周期，hooks、diffDOM。
 
 我们假定您已有基础的 JSX 基础或 React 基础，下文仅仅说明了 JSX 在 aoife 的细微差异。
 
