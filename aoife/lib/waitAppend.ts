@@ -1,22 +1,26 @@
 export function waitValue<T>(fn: () => T, max = 5000): Promise<T> {
+  let time = Date.now();
   return new Promise((res, rej) => {
     let n = 0;
     const check = () => {
       const v = fn();
       if (v) {
         res(v);
-      } else if (n < max) {
-        n++;
-        setTimeout(check, 20 + n);
+      } else if (time+max > Date.now()) {
+        if (window.requestAnimationFrame) {
+          window.requestAnimationFrame(check)
+        } else {
+          setTimeout(check, 20);
+        }
       } else {
-        rej();
+        rej("waitValue is timeout: \n" + fn.toString());
       }
     };
     check();
   });
 }
 
-export function waitAppend(ele: HTMLElement | string): Promise<HTMLElement> {
+export function waitAppend(ele: HTMLElement | string, max = 5000): Promise<HTMLElement> {
   let fn: any;
   if (typeof ele === "string") {
     fn = () => document.querySelector(ele);
@@ -27,5 +31,5 @@ export function waitAppend(ele: HTMLElement | string): Promise<HTMLElement> {
       }
     };
   }
-  return waitValue(fn);
+  return waitValue(fn, max);
 }

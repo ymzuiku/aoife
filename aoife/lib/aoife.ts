@@ -5,8 +5,7 @@ import { isElement, isString, uiCaches, registerTag } from "./helper";
 import { parseChildren } from "./parseChildren";
 import { waitAppend, waitValue } from "./waitAppend";
 
-import { events, next, subscribe } from "./state";
-import { propFn } from "./propFn";
+import { next, subscribe } from "./state";
 import { memo } from "./memo";
 import { deepEqual } from "./deepEqual";
 import { deepMerge } from "./deepMerge";

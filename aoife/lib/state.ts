@@ -35,7 +35,8 @@ export const next = (
   ignoreUpdateTargets?: string | HTMLElement | HTMLElement[]
 ) => {
   if (!focusUpdateTargets) {
-    focusUpdateTargets = "*";
+    console.error("aoife.next() need target");
+    return;
   }
   const ignoreList = getElementList(ignoreUpdateTargets);
   const eleList = getElementList(focusUpdateTargets);
