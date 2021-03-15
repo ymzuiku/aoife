@@ -15,7 +15,7 @@ aoife 仅仅保留了 JSX 相关的概念，移除了 React 所有非 JSX 相关
 在 Aoife 中，每个 JSX 表达式的值是一个原生 HTMLElement , 如 `<div />` 表达式的值是一个 Div 元素，所以可以直接 append 到 document.body 中:
 
 ```jsx
-const hello = <div>Hello world</div>;
+const hello = <div id="foo">Hello world</div>;
 
 document.body.append(hello);
 ```
