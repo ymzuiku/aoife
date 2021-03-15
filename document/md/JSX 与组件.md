@@ -1,10 +1,10 @@
 # JSX 与组件
 
-经过前端这些年的历程，认为 JSX 是已知描述 DOM 的最舒心的方案，所以 aoife 选择使用 JSX 来描述 DOM。
+经过前端这些年的历程，社区普遍认可 JSX 是轻松高效描述 DOM 的方案，所以 aoife 选择使用 JSX 来描述 DOM。
 
 `注意 aoife 并不是 React 的轮子`，aoife 仅仅保留了 JSX 相关的概念，移除了 React 所有非 JSX 相关的概念，所以 aoife 没有生命周期，hooks、diffDOM。
 
-我们假定您已有了 JSX 基础。本章我们会阐述一些 JSX 语法，并且说清楚 JSX 在 aoife 的关系。
+本章我们会阐述一些 JSX 语法，并且说清楚 JSX 在 aoife 的关系。
 
 ## JSX 表达式
 
