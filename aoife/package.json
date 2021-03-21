@@ -1,14 +1,9 @@
 {
   "name": "aoife",
-  "version": "1.7.5",
+  "version": "1.7.6",
   "main": "umd/index.js",
-  "exports": {
-    "require": "./umd/index.js",
-    "import": "./lib/index.ts"
-  },
   "types": "aoife.d.ts",
   "exports": {
-    "require": "./es/index.js",
     "import": "./lib/index.ts"
   },
   "private": false,
