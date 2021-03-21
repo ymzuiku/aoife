@@ -11,6 +11,7 @@ import { deepEqual } from "./deepEqual";
 import { deepMerge } from "./deepMerge";
 import { debounce } from "./debounce";
 import { throttle } from "./throttle";
+import { use, middlewares } from "./middleware";
 import { svgList } from "./svgList";
 import { flattenOnce } from "./flatten";
 
@@ -159,6 +160,12 @@ export const aoife = (tag: ChildOne, attrs?: ChildOne, ...child: ChildOne[]): HT
     waitAppend(ele).then(props.onappend as any);
   }
 
+  if (middlewares.length) {
+    middlewares.forEach(fn=>{
+      fn(ele, props);
+    });
+  }
+
   return ele as any;
 };
 
@@ -182,5 +189,6 @@ aoife.deepMerge = deepMerge;
 aoife.debounce = debounce;
 aoife.throttle = throttle;
 aoife.attributeKeys = attributeKeys;
+aoife.use = use;
 
 (window as any).aoife = aoife;

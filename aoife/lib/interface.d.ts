@@ -2488,5 +2488,8 @@ declare const aoife: {
   memo: (blocker: () => any) => (fn: any) => Promise<any>;
   deepEqual: (a: any, b: any) => boolean;
   deepMerge: <T, U>(a: T, b: U) => T & U;
-  cssSheet: <T extends { [key: string]: IStyle }>(sheet: T) => { [P in keyof T]: string };
+  use:(fn:(ele:HTMLElement, props:IProps)=>any)=>void;
+  cssSheet: <T extends { [key: string]: IStyle }>(
+    sheet: T
+  ) => { [P in keyof T]: string };
 };
