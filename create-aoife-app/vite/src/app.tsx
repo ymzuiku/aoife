@@ -1,7 +1,19 @@
 export function App() {
-  return (
+  let num = 0;
+  const ele = (
     <div id="app">
-      <p>Hello Vite + Aoife!</p>
+      <h2>Hello Vite + Aoife!</h2>
+      <h3>num: {() => num}</h3>
+      <button
+        onclick={() => {
+          num += 1;
+          aoife.next(ele);
+        }}
+      >
+        Add num
+      </button>
     </div>
   );
+
+  return ele;
 }
