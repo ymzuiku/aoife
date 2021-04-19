@@ -1,7 +1,7 @@
 {
   "name": "aoife",
-  "version": "1.7.6",
-  "main": "umd/index.js",
+  "version": "1.7.7",
+  "main": "lib/index.ts",
   "types": "aoife.d.ts",
   "exports": {
     "import": "./lib/index.ts"
@@ -32,6 +32,7 @@
     "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-jsx-control-statements": "^2.2.1",
     "eslint-plugin-prettier": "^3.1.4",
+    "fs-extra": "^9.1.0",
     "husky": "^4.2.5",
     "lint-staged": "^10.2.11",
     "prettier": "^2.0.5",
@@ -39,8 +40,8 @@
     "rollup-plugin-node-resolve": "^5.2.0",
     "rollup-plugin-typescript2": "^0.24.3",
     "rollup-plugin-uglify": "^6.0.3",
-    "tslib": "^2.1.0",
-    "typescript": "3.5.2"
+    "tslib": "^2.2.0",
+    "typescript": "^4.2.4"
   },
   "repository": {
     "type": "git",
