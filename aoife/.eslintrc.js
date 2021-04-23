@@ -1,53 +1,14 @@
-// yarn add eslint eslint-config-prettier eslint-plugin-prettier eslint-plugin-react eslint-plugin-jsx-control-statements babel-eslint @typescript-eslint/eslint-plugin @typescript-eslint/parser husky lint-staged prettier -D
-
-/*
-// .prettierrc.js 
-module.exports = {
-  printWidth: 120,
-  tabWidth: 2,
-  singleQuote: false,
-  semi: true,
-  trailingComma: 'es5',
-  bracketSpacing: true,
-  jsxBracketSameLine: true,
-  arrowParens: 'always',
-  parser: 'typescript'
-};
-
-// package.json
-"scripts": {
-  "eslint": "eslint --ext .tsx,.ts --fix ./src",
-},
-"husky": {
-  "hooks": {
-    "pre-commit": "lint-staged"
-  }
-},
-"lint-staged": {
-  "*.{ts,tsx}": [
-    "npm run eslint",
-    "prettier .prettierrc.js --write",
-    "git add"
-  ]
-},
-*/
-
 // .eslintrc.js
 module.exports = {
   parser: "@typescript-eslint/parser", // Specifies the ESLint parser
   extends: [
     "plugin:@typescript-eslint/recommended", // Uses the recommended rules from the @typescript-eslint/eslint-plugin
-    "plugin:react/recommended",
     "plugin:jsx-control-statements/recommended",
     "prettier/@typescript-eslint", // Uses eslint-config-prettier to disable ESLint rules from @typescript-eslint/eslint-plugin that would conflict with prettier
     "plugin:prettier/recommended", // Enables eslint-plugin-prettier and displays prettier errors as ESLint errors. Make sure this is always the last configuration in the extends array.
-    "prettier/react",
+    "prettier",
   ],
-  settings: {
-    react: {
-      version: "detect",
-    },
-  },
+  settings: {},
   plugins: ["@typescript-eslint", "jsx-control-statements", "prettier"],
   env: {
     browser: true,

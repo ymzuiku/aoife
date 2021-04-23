@@ -1,5 +1,6 @@
 /* eslint-disable quotes */
 /* eslint-disable @typescript-eslint/indent */
+/* eslint-disable @typescript-eslint/no-empty-interface */
 /*
 based on [CSSProperties from Galmorous Typings](https://github.com/paypal/glamorous/blob/master/typings/css-properties.d.ts)
 The MIT License (MIT)
@@ -2586,14 +2587,17 @@ declare const aoife: {
   // stringToHex(str: string, start?: string): string;
   waitAppend(ele: HTMLElement | string, max?: number): Promise<HTMLElement>;
   subscribe: (fn: any) => () => void;
-  next: (focusUpdateTargets?: string | undefined, ignoreUpdateTargets?: string | any[] | undefined) => HTMLElement[];
+  next: (
+    focusUpdateTargets?: string | HTMLElement | undefined,
+    ignoreUpdateTargets?: string | HTMLElement | any[] | undefined
+  ) => HTMLElement[];
   events: Set<Function>;
   registerTag(data: { [key: string]: any }): void;
   propFn(target: any, fn: (val: any) => IStyle | string | boolean | number | any[] | object): any;
   waitValue<T>(fn: () => T, max?: number): Promise<T>;
   memo: (blocker: () => any) => (fn: any) => Promise<any>;
   deepEqual: (a: any, b: any) => boolean;
-  deepMerge: <T, U>(a: T, b: U) => T & U;
+  // deepMerge: <T, U>(a: T, b: U) => T & U;
   use: (fn: (ele: HTMLElement, props: IProps) => any) => void;
   cssSheet: <T extends { [key: string]: IStyle }>(sheet: T) => { [P in keyof T]: string };
 };

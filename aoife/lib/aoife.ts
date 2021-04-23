@@ -8,7 +8,6 @@ import { waitAppend, waitValue } from "./waitAppend";
 import { next, subscribe } from "./state";
 import { memo } from "./memo";
 import { deepEqual } from "./deepEqual";
-import { deepMerge } from "./deepMerge";
 import { debounce } from "./debounce";
 import { throttle } from "./throttle";
 import { use, middlewares } from "./middleware";
@@ -161,7 +160,7 @@ export const aoife = (tag: ChildOne, attrs?: ChildOne, ...child: ChildOne[]): HT
   }
 
   if (middlewares.length) {
-    middlewares.forEach(fn=>{
+    middlewares.forEach((fn) => {
       fn(ele, props);
     });
   }
@@ -185,7 +184,6 @@ aoife.registerTag = registerTag;
 aoife.waitValue = waitValue;
 aoife.memo = memo;
 aoife.deepEqual = deepEqual;
-aoife.deepMerge = deepMerge;
 aoife.debounce = debounce;
 aoife.throttle = throttle;
 aoife.attributeKeys = attributeKeys;

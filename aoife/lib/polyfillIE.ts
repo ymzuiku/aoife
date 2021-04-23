@@ -1,5 +1,6 @@
 /* eslint-disable prefer-rest-params */
 /* eslint-disable prefer-const */
+/* eslint-disable @typescript-eslint/indent */
 function AppendChild(this: any, ...args: any[]) {
   args.forEach((item) => {
     this.prototype.appendChild(item);
@@ -43,11 +44,8 @@ function ReplaceWithPolyfill(this: any) {
     else parent.insertBefore(currentNode, this.nextSibling);
   }
 }
-if (!Element.prototype.replaceWith)
-  Element.prototype.replaceWith = ReplaceWithPolyfill;
-if (!CharacterData.prototype.replaceWith)
-  CharacterData.prototype.replaceWith = ReplaceWithPolyfill;
-if (!DocumentType.prototype.replaceWith)
-  DocumentType.prototype.replaceWith = ReplaceWithPolyfill;
+if (!Element.prototype.replaceWith) Element.prototype.replaceWith = ReplaceWithPolyfill;
+if (!CharacterData.prototype.replaceWith) CharacterData.prototype.replaceWith = ReplaceWithPolyfill;
+if (!DocumentType.prototype.replaceWith) DocumentType.prototype.replaceWith = ReplaceWithPolyfill;
 
 export const a = 0;

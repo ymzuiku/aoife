@@ -1,6 +1,6 @@
 {
   "name": "aoife",
-  "version": "1.7.7",
+  "version": "1.7.8",
   "main": "lib/index.ts",
   "types": "aoife.d.ts",
   "exports": {
@@ -8,9 +8,8 @@
   },
   "private": false,
   "scripts": {
-    "eslint": "eslint --ext .tsx,.ts --fix ./lib",
-    "dev": "cd example && yarn dev",
-    "lib": "node rollup.config.js"
+    "lint": "eslint --ext .tsx,.ts --fix ./lib",
+    "es": "esbuild --define:process.env.NODE_ENV=\\\"production\\\" lib/index.ts --outdir=es --bundle --format=esm --jsx-factory=aoife --jsx-fragment=aoife.Frag --minify --splitting"
   },
   "husky": {
     "hooks": {
@@ -19,7 +18,7 @@
   },
   "lint-staged": {
     "./{lib}/**/*.{ts,tsx}": [
-      "npm run eslint",
+      "npm run lint",
       "prettier --write",
       "git add"
     ]
@@ -27,6 +26,7 @@
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^3.7.0",
     "@typescript-eslint/parser": "^3.7.0",
+    "@typescript-eslint/typescript-estree": "^4.22.0",
     "babel-eslint": "^10.1.0",
     "eslint": "^7.5.0",
     "eslint-config-prettier": "^6.11.0",
@@ -36,10 +36,6 @@
     "husky": "^4.2.5",
     "lint-staged": "^10.2.11",
     "prettier": "^2.0.5",
-    "rollup": "^1.24.0",
-    "rollup-plugin-node-resolve": "^5.2.0",
-    "rollup-plugin-typescript2": "^0.24.3",
-    "rollup-plugin-uglify": "^6.0.3",
     "tslib": "^2.2.0",
     "typescript": "^4.2.4"
   },

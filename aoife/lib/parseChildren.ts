@@ -12,9 +12,7 @@ export function parseChildren(_childs: any[], ele: HTMLElement) {
     return;
   }
 
-  const childs = (_childs as any).filter(
-    (v: any) => v !== undefined && v !== null
-  );
+  const childs = (_childs as any).filter((v: any) => v !== undefined && v !== null);
 
   childs.forEach((ch: any, index: number) => {
     if (isString(ch)) {

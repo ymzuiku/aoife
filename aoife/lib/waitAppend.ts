@@ -1,14 +1,14 @@
 export function waitValue<T>(fn: () => T, max = 5000): Promise<T> {
-  let time = Date.now();
+  const time = Date.now();
   return new Promise((res, rej) => {
-    let n = 0;
+    const n = 0;
     const check = () => {
       const v = fn();
       if (v) {
         res(v);
-      } else if (time+max > Date.now()) {
+      } else if (time + max > Date.now()) {
         if (window.requestAnimationFrame) {
-          window.requestAnimationFrame(check)
+          window.requestAnimationFrame(check);
         } else {
           setTimeout(check, 20);
         }
