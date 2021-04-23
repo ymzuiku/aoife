@@ -234,3 +234,5 @@ const App = () => {
 - 1. 组件是一个函数，返回值是一个 HTMLElement 类型
 - 1. 组件的参数是一个对象
 - 1. 若 JSX 传递了 children，在组件第一个参数中会包含 children 字段，值是一个 HTMLElement 数组
+
+## [完整文档](https://aoife.writeflowy.com)
