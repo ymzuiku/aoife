@@ -1,16 +1,11 @@
+import { onAppend, onRemove, onEntry } from "vanilla-life";
 import { subscribeElement } from "./state";
-import { loadable } from "./loadable";
 import { bindFn, attributeKeys } from "./bindFn";
-import { isElement, isString, uiCaches, registerTag } from "./helper";
+import { isElement, isString } from "./helper";
 import { parseChildren } from "./parseChildren";
-import { waitAppend, waitValue } from "./waitAppend";
 
-import { next, subscribe } from "./state";
-import { memo } from "./memo";
-import { deepEqual } from "./deepEqual";
-import { debounce } from "./debounce";
-import { throttle } from "./throttle";
-import { use, middlewares } from "./middleware";
+import { nextState } from "./state";
+import { useMiddleware, middlewares } from "./middleware";
 import { svgList } from "./svgList";
 import { flattenOnce } from "./flatten";
 
@@ -18,22 +13,17 @@ const ignoreKeys: any = {
   class: 1,
   className: 1,
   onsubmit: 1,
-  oncreate: 1,
-  onappend: 1,
+  onAppend: 1,
+  onRemove: 1,
+  onEntry: 1,
   child: 1,
   children: 1,
   length: 1,
-  memo: 1,
-  __memo: 1,
-  __memoLast: 1,
-  __memoSeted: 1,
-  __proxy: 1,
-  __proxyEle: 1,
 };
 
 const classKeys = ["className"];
 
-export const aoife = (tag: ChildOne, attrs?: ChildOne, ...child: ChildOne[]): HTMLElement => {
+export const aoife = (tag: any, attrs?: IProps, ...child: any[]): HTMLElement => {
   let props = {} as IProps;
 
   if (attrs) {
@@ -50,7 +40,7 @@ export const aoife = (tag: ChildOne, attrs?: ChildOne, ...child: ChildOne[]): HT
   child = flattenOnce(child);
 
   if (!props.children || !props.children.length) {
-    props.children = [...child];
+    (props as any).children = [...child];
   }
 
   if (props.class) {
@@ -84,18 +74,13 @@ export const aoife = (tag: ChildOne, attrs?: ChildOne, ...child: ChildOne[]): HT
     if (tag === "template" && props.children) {
       // props.children.forEach()
       let html = "";
-      props.children.forEach((v) => {
+      (props as any).children.forEach((v: any) => {
         if (typeof v === "string" || typeof v === "number") {
           html += v;
         }
       });
       ele = document.createElement("template");
       ele.innerHTML = html;
-    }
-    // 若 tag 是一个函数组件，attrs 就作为 props 使用，并且实力化这个组件
-    else if (uiCaches[tag]) {
-      ele = loadable(uiCaches[tag], [props, ...child]);
-      return ele;
     } else {
       if (svgList[tag]) {
         ele = document.createElementNS("http://www.w3.org/2000/svg", tag as any);
@@ -108,30 +93,15 @@ export const aoife = (tag: ChildOne, attrs?: ChildOne, ...child: ChildOne[]): HT
     ele = tag as any;
   }
 
-  if (props.memo) {
-    ele.__memo = props.memo;
-    ele.__memoSeted = 1;
-    Promise.resolve(props.memo()).then((res) => {
-      ele.__memoLast = res;
-    });
-  }
-
   if (props.onsubmit) {
     ele.onsubmit = (e: any) => {
       e.preventDefault();
-      props.onsubmit && props.onsubmit(e as any);
+      props.onsubmit && (props as any).onsubmit(e as any);
     };
   }
 
-  if (typeof props.debounce === "string") {
-    props.debounce = [props.debounce];
-  }
-  if (typeof props.throttle === "string") {
-    props.throttle = [props.throttle];
-  }
-
   classKeys.forEach((key) => {
-    if (props[key]) {
+    if ((props as any)[key]) {
       const fn = bindFn(ele, key, props);
       if (fn) {
         subscribeElement(ele, key, fn);
@@ -149,14 +119,18 @@ export const aoife = (tag: ChildOne, attrs?: ChildOne, ...child: ChildOne[]): HT
     }
   });
 
-  parseChildren(props.children, ele);
+  parseChildren((props as any).children, ele);
 
-  if (typeof props.oncreate === "function") {
-    props.oncreate(ele);
+  if (typeof props.onAppend === "function") {
+    onAppend(ele, props.onAppend);
   }
 
-  if (typeof props.onappend === "function") {
-    waitAppend(ele).then(props.onappend as any);
+  if (typeof props.onRemove === "function") {
+    onRemove(ele, props.onRemove);
+  }
+
+  if (typeof props.onEntry === "function") {
+    onEntry(ele, props.onEntry);
   }
 
   if (middlewares.length) {
@@ -176,17 +150,8 @@ export const jsxFrag = (props: any) => {
 };
 
 aoife.jsxFrag = jsxFrag;
-aoife.waitAppend = waitAppend;
-aoife.subscribe = subscribe;
-aoife.next = next;
-// aoife.events = events;
-aoife.registerTag = registerTag;
-aoife.waitValue = waitValue;
-aoife.memo = memo;
-aoife.deepEqual = deepEqual;
-aoife.debounce = debounce;
-aoife.throttle = throttle;
+aoife.next = nextState;
 aoife.attributeKeys = attributeKeys;
-aoife.use = use;
+aoife.useMiddleware = useMiddleware;
 
 (window as any).aoife = aoife;

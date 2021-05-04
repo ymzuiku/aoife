@@ -9,7 +9,8 @@
   "private": false,
   "scripts": {
     "lint": "eslint --ext .tsx,.ts --fix ./lib",
-    "es": "esbuild --define:process.env.NODE_ENV=\\\"production\\\" lib/index.ts --outdir=es --bundle --format=esm --jsx-factory=aoife --jsx-fragment=aoife.Frag --minify --splitting"
+    "cp_readme":"cp -rf ../README.md ./README.md && cp -rf ../README.md ../create-aoife-app/README.md",
+    "es": "yarn cp_readme && esbuild --define:process.env.NODE_ENV=\\\"production\\\" lib/index.ts --outdir=es --bundle --format=esm --jsx-factory=aoife --jsx-fragment=aoife.Frag --minify --splitting"
   },
   "husky": {
     "hooks": {
@@ -45,5 +46,8 @@
   },
   "bugs": {
     "url": "git+https://github.com/ymzuiku/aoife.git"
+  },
+  "dependencies": {
+    "vanilla-life": "^0.1.5"
   }
 }

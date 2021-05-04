@@ -1,5 +1,3 @@
-import { deepEqual } from "./deepEqual";
-
 export const events = new Set<Function>();
 
 function getElementList(targets?: string | HTMLElement | HTMLElement[]) {
@@ -30,7 +28,7 @@ function getElementList(targets?: string | HTMLElement | HTMLElement[]) {
   return list;
 }
 
-export const next = (
+export const nextState = (
   focusUpdateTargets?: string | HTMLElement | HTMLElement[],
   ignoreUpdateTargets?: string | HTMLElement | HTMLElement[]
 ) => {
@@ -40,7 +38,6 @@ export const next = (
   }
   const ignoreList = getElementList(ignoreUpdateTargets);
   const eleList = getElementList(focusUpdateTargets);
-  const outElement = [] as HTMLElement[];
 
   const len = eleList.length;
   for (let i = 0; i < len; i++) {
@@ -64,37 +61,22 @@ export const next = (
           }
         }
 
-        if (ele.__memo) {
-          Promise.resolve(ele.__memo()).then((data) => {
-            const isUpdate = !deepEqual(ele.__memoLast, data);
-            ele.__memoLast = data;
-            if (isUpdate) {
-              ((ele as any).__next as Map<string, Function>).forEach((fn) => {
-                fn();
-              });
-            }
-          });
-        } else {
-          ((ele as any).__next as Map<string, Function>).forEach((fn) => {
-            fn();
-          });
-        }
-        outElement.push(ele);
+        ((ele as any).__next as Map<string, Function>).forEach((fn) => {
+          fn();
+        });
       }
     }
   }
 
   events.forEach((fn) => fn());
-
-  return outElement;
 };
 
-export const subscribe = (fn: any) => {
-  events.add(fn);
-  return () => {
-    events.delete(fn);
-  };
-};
+// export const subscribe = (fn: any) => {
+//   events.add(fn);
+//   return () => {
+//     events.delete(fn);
+//   };
+// };
 
 export const subscribeElement = (ele: any, key: string, fn: any) => {
   if (!ele.__next) {
