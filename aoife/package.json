@@ -12,7 +12,7 @@
     "cp_readme": "cp -rf ../README.md ./README.md && cp -rf ../README.md ../create-aoife-app/README.md",
     "update_version": "node ../update_version.js",
     "es": "esbuild --define:process.env.NODE_ENV=\\\"production\\\" lib/index.ts --outdir=es --target=es6  --bundle --external:vanilla-ob --external:vanilla-life --external:vanilla-svg-tags --format=esm --minify --splitting",
-    "lib": "yarn cp_readme && yarn es"
+    "lib": "yarn cp_readme && yarn es && yarn update_version"
   },
   "husky": {
     "hooks": {
