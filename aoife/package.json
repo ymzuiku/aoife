@@ -1,6 +1,6 @@
 {
   "name": "aoife",
-  "version": "1.7.8",
+  "version": "1.8.0",
   "main": "lib/index.ts",
   "types": "aoife.d.ts",
   "exports": {
@@ -9,7 +9,7 @@
   "private": false,
   "scripts": {
     "lint": "eslint --ext .tsx,.ts --fix ./lib",
-    "cp_readme":"cp -rf ../README.md ./README.md && cp -rf ../README.md ../create-aoife-app/README.md",
+    "cp_readme": "cp -rf ../README.md ./README.md && cp -rf ../README.md ../create-aoife-app/README.md",
     "es": "yarn cp_readme && esbuild --define:process.env.NODE_ENV=\\\"production\\\" lib/index.ts --outdir=es --bundle --format=esm --jsx-factory=aoife --jsx-fragment=aoife.Frag --minify --splitting"
   },
   "husky": {
@@ -48,6 +48,8 @@
     "url": "git+https://github.com/ymzuiku/aoife.git"
   },
   "dependencies": {
-    "vanilla-life": "^0.1.5"
+    "vanilla-life": "^0.1.5",
+    "vanilla-ob": "^0.3.0",
+    "vanilla-svg-tags": "^0.1.2"
   }
 }

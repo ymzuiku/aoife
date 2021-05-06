@@ -1,5 +1,5 @@
-import { isElement, isString } from "./helper";
-import { subscribeElement } from "./state";
+import { isElement, isText } from "./helper";
+import { bindState } from "vanilla-ob";
 
 function replace(old: HTMLElement, ele: HTMLElement) {
   if (!old.isEqualNode(ele)) {
@@ -15,7 +15,7 @@ export function parseChildren(_childs: any[], ele: HTMLElement) {
   const childs = (_childs as any).filter((v: any) => v !== undefined && v !== null);
 
   childs.forEach((ch: any, index: number) => {
-    if (isString(ch)) {
+    if (isText(ch)) {
       const text = document.createTextNode(ch) as any;
       text.key = index;
       ele.append(text);
@@ -24,7 +24,7 @@ export function parseChildren(_childs: any[], ele: HTMLElement) {
       ele.append(temp);
       const fn = async () => {
         const child = await Promise.resolve(ch());
-        if (isString(child)) {
+        if (isText(child)) {
           const text = document.createTextNode(child) as any;
           text.key = index;
           let isHave = false;
@@ -100,7 +100,7 @@ export function parseChildren(_childs: any[], ele: HTMLElement) {
         }
       };
       fn();
-      subscribeElement(ele, "children", fn);
+      bindState(ele, null, fn);
     } else if (isElement(ch)) {
       ele.append(ch);
     } else if (ch !== false) {

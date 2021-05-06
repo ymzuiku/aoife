@@ -10,10 +10,6 @@ type PartialJSX<T> =
       [E in keyof ExtendHTML]?: ExtendHTML<E>;
     };
 
-// type PartialJSXCustom<T> = {
-//   [E in keyof ExtendHTML]?: ExtendHTML<E>;
-// };
-
 type JSXHTML<T> = {
   [P in keyof HTMLElementTagNameMap]?: Partial<HTMLElementTagNameMap[P]>;
 };
@@ -31,7 +27,6 @@ type ExtendHTML = {
   onRemove?: RefOne;
   /** 当元素 entry 时回调 */
   onEntry?: any;
-  children?: any[] | (() => any[]);
   [key: string]: any;
 };
 
@@ -40,7 +35,12 @@ type ExtendHTML = {
 
 // 标准元素列表
 type AoifeJSX = PartialJSX<HTMLElementTagNameMap>;
-interface IProps extends PartialDetail<HTMLInputElement>, ExtendHTML {}
+interface IProps extends PartialDetail<HTMLElement>, ExtendHTML {
+  children?: (HTMLElement | string)[];
+  onclick?: (e: any) => any;
+  onchange?: (e: any) => any;
+  oninput?: (e: any) => any;
+}
 
 declare namespace JSX {
   interface IntrinsicElements extends AoifeJSX {
@@ -51,9 +51,9 @@ declare namespace JSX {
 
 declare const aoife: {
   <K extends keyof HTMLElementTagNameMap>(
-    tag: K,
-    attrs?: PartialDetail<HTMLElementTagNameMap[K]>,
-    ...child: any[]
+    tag: K | Element,
+    attrs?: IProps | null,
+    ...children: any[]
   ): HTMLElementTagNameMap[K];
   next: (
     focusUpdateTargets?: string | HTMLElement | undefined,
@@ -62,5 +62,5 @@ declare const aoife: {
   attributeKeys: {
     [key: string]: boolean;
   };
-  useMiddleware: (fn: (ele: HTMLElement, props: IProps) => any) => void;
+  subscrib<T extends HTMLElement, K extends keyof T>(target: T, param: K, props: IProps): any;
 };

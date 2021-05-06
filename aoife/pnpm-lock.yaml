@@ -16,9 +16,13 @@ specifiers:
   tslib: ^2.2.0
   typescript: ^4.2.4
   vanilla-life: ^0.1.5
+  vanilla-ob: ^0.3.0
+  vanilla-svg-tags: ^0.1.2
 
 dependencies:
   vanilla-life: 0.1.5
+  vanilla-ob: 0.3.0
+  vanilla-svg-tags: 0.1.2
 
 devDependencies:
   '@typescript-eslint/eslint-plugin': 3.10.1_255de9fa17ffdbcaa917a8737ab54a19
@@ -1687,6 +1691,14 @@ packages:
 
   /vanilla-life/0.1.5:
     resolution: {integrity: sha512-51dI4GdeKoVTLAlVhozx29LxtEQ1NiU44Ct8VD1d00GakTOohbQx29BN/Ixn7M3yju10Mh1xJUazqCzj6q06mw==}
+    dev: false
+
+  /vanilla-ob/0.3.0:
+    resolution: {integrity: sha512-kAF4ZQrnknjDWqW1oP8g/fs5cJ83gKPonof+zRhP7tzDEBkF688WEhu5koY1QQN1zAbWEXTfGCxz/pzdhW2iNQ==}
+    dev: false
+
+  /vanilla-svg-tags/0.1.2:
+    resolution: {integrity: sha512-RiD+2zaLtHGE9XsakFFxo0vsQUXcDims/5bZvGzb2UXz/pRx7fa8VrCOxhmbrN+biYUazcpefzYwJ1eRB/TiYA==}
     dev: false
 
   /which-pm-runs/1.0.0:
