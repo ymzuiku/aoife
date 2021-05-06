@@ -6,7 +6,7 @@
     "build": "vite build"
   },
   "dependencies": {
-    "aoife": "^2.0.2"
+    "aoife": "^2.0.3"
   },
   "devDependencies": {
     "vite": "^2.2.4"

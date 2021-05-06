@@ -1,6 +1,6 @@
 {
   "name": "aoife",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "main": "lib/index.ts",
   "types": "aoife.d.ts",
   "exports": {
@@ -10,7 +10,8 @@
   "scripts": {
     "lint": "eslint --ext .tsx,.ts --fix ./lib",
     "cp_readme": "cp -rf ../README.md ./README.md && cp -rf ../README.md ../create-aoife-app/README.md",
-    "es": "yarn cp_readme && esbuild --define:process.env.NODE_ENV=\\\"production\\\" lib/index.ts --outdir=es --bundle --format=esm --jsx-factory=aoife --jsx-fragment=aoife.Frag --minify --splitting"
+    "es": "esbuild --define:process.env.NODE_ENV=\\\"production\\\" lib/index.ts --outdir=es --target=es6  --bundle --external:vanilla-ob --external:vanilla-life --external:vanilla-svg-tags --format=esm --minify --splitting",
+    "lib": "yarn cp_readme && yarn es"
   },
   "husky": {
     "hooks": {
