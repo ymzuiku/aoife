@@ -6,6 +6,7 @@ import { svgTags } from "vanilla-svg-tags";
 
 const ignoreKeys: any = {
   class: 1,
+  onUpdate: 1,
   onAppend: 1,
   onRemove: 1,
   onEntry: 1,
@@ -94,6 +95,10 @@ export const aoife = (tag: any, attrs?: any, ...children: any[]): HTMLElement =>
   });
 
   parseChildren((props as any).children, ele);
+
+  if (typeof props.onUpdate === "function") {
+    bindState(ele, null, props.onUpdate);
+  }
 
   if (typeof props.onAppend === "function") {
     onAppend(ele, props.onAppend);

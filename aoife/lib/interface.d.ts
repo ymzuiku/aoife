@@ -20,6 +20,8 @@ type ExtendHTML = {
   class?: any;
   ref?: RefOne;
   /** 当元素 append 时回调 */
+  onUpdate?: RefOne;
+  /** 当元素 append 时回调 */
   onAppend?: RefOne;
   /** 当元素 remove 时回调 */
   onRemove?: RefOne;
