@@ -1,6 +1,6 @@
 {
   "name": "aoife",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "main": "lib/index.ts",
   "types": "aoife.d.ts",
   "exports": {

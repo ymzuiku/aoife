@@ -19,8 +19,6 @@ type RefOne = (e: HTMLInputElement) => any;
 type ExtendHTML = {
   class?: any;
   ref?: RefOne;
-  /** 当元素更新时执行 */
-  watch?: RefOne;
   /** 当元素 append 时回调 */
   onAppend?: RefOne;
   /** 当元素 remove 时回调 */
