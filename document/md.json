@@ -1,7 +1,7 @@
 {
   "title": "aoife",
   "homepage":"https://github.com/ymzuiku/aoife",
-  "version": "1.7.17",
+  "version": "2.0.0",
   "path": "/md/",
   "files": [
     "开始一段旅途",
@@ -10,7 +10,7 @@
     "动态属性",
     "状态管理",
     "异步组件",
-    "无生命周期",
+    "生命周期",
     "路由",
     "常用小方法",
     "结束语"

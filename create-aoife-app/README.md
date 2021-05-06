@@ -51,23 +51,19 @@ aoife 是一个全局函数, 用于 jsx 解析，其中 aoife.next 用于更新�
 
 ```typescript
 declare const aoife: {
-  (tag: any, attrs?: ChildOne, ...child: ChildOne[]): HTMLElement;
+  <K extends keyof HTMLElementTagNameMap>(
+    tag: K,
+    attrs?: PartialDetail<HTMLElementTagNameMap[K]>,
+    ...child: any[]
+  ): HTMLElementTagNameMap[K];
   next: (
-    focusUpdateTargets?: string | undefined,
-    ignoreUpdateTargets?: string | any[] | undefined
-  ) => HTMLElement[];
-  waitAppend(ele: HTMLElement | string, max?: number): Promise<HTMLElement>;
-  subscribe: (fn: any) => () => void;
-  events: Set<Function>;
-  registerTag(data: { [key: string]: any }): void;
-  propFn(
-    target: any,
-    fn: (val: any) => IStyle | string | boolean | number | any[] | object
-  ): any;
-  waitValue<T>(fn: () => T, max?: number): Promise<T>;
-  memo: (blocker: () => any) => (fn: any) => Promise<any>;
-  deepEqual: (a: any, b: any) => boolean;
-  deepMerge: <T, U>(a: T, b: U) => T & U;
+    focusUpdateTargets?: string | HTMLElement | undefined,
+    ignoreUpdateTargets?: string | HTMLElement | HTMLElement[]
+  ) => void;
+  attributeKeys: {
+    [key: string]: boolean;
+  };
+  useMiddleware: (fn: (ele: HTMLElement, props: IProps) => any) => void;
 };
 ```
 
@@ -175,24 +171,6 @@ function App() {
 2. 我们移除了类似 React 中 SCU，purecomponent、memo 等解决重绘问题的概念，因为**一次** aoife.next 执行仅仅更新**一次**局部元素的**属性**，并不会造成大规模重绘
 3. `aoife.next` 已经是全局可选则的更新，所以失去了传统的状态管理库的必要；合理规范好 `aoife.next` 的调用即可。
 
-## 常用额外方法
-
-### 去抖动 debounce
-
-```jsx
-<button debounce="onclick,ontouchstart" onclick={handleClick}>
-  频繁点击我
-</button>
-```
-
-### 节流 throttle
-
-```jsx
-<button throttle="onclick" onclick={handleClick}>
-  频繁点击我
-</button>
-```
-
 ### 编写 css
 
 ```jsx
@@ -235,4 +213,6 @@ const App = () => {
 - 1. 组件的参数是一个对象
 - 1. 若 JSX 传递了 children，在组件第一个参数中会包含 children 字段，值是一个 HTMLElement 数组
 
-## [完整文档](https://aoife.writeflowy.com)
+## 完整文档
+
+[aoife.writeflowy.com](https://aoife.writeflowy.com)
