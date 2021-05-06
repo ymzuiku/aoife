@@ -1,12 +1,12 @@
 {
   "name": "aoife-project",
-  "version": "0.0.0",
+  "version": "2.0.4",
   "scripts": {
     "dev": "vite",
     "build": "vite build"
   },
   "dependencies": {
-    "aoife": "^2.0.3"
+    "aoife": "^2.0.4"
   },
   "devDependencies": {
     "vite": "^2.2.4"
