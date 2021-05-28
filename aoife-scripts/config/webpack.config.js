@@ -9,7 +9,7 @@
 "use strict";
 
 const HardSourceWebpackPlugin = require("hard-source-webpack-plugin");
-const MonacoWebpackPlugin = require("monaco-editor-webpack-plugin");
+// const MonacoWebpackPlugin = require("monaco-editor-webpack-plugin");
 const { ESBuildPlugin, ESBuildMinifyPlugin } = require("esbuild-loader");
 
 const fs = require("fs");
@@ -220,6 +220,7 @@ module.exports = function (webpackEnv) {
           ]
         : paths.appIndexJs,
     output: {
+
       // The build folder.
       path: isEnvProduction ? paths.appBuild : undefined,
       // Add /* filename */ comments to generated require()s in the output.
@@ -638,7 +639,7 @@ module.exports = function (webpackEnv) {
     },
     plugins: [
       !useBabel && new ESBuildPlugin(),
-      useMonaco && new MonacoWebpackPlugin(),
+      // useMonaco && new MonacoWebpackPlugin(),
       useHard &&
         new HardSourceWebpackPlugin({
           // cacheDirectory是在高速缓存写入。默认情况下，将缓存存储在node_modules下的目录中，因此如

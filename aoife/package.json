@@ -4,6 +4,7 @@
   "main": "lib/index.ts",
   "types": "aoife.d.ts",
   "exports": {
+    "require":"./es/index.js",
     "import": "./lib/index.ts"
   },
   "private": false,
