@@ -1,10 +1,10 @@
 {
   "name": "aoife",
-  "version": "2.0.6",
+  "version": "2.0.7",
   "main": "lib/index.ts",
   "types": "aoife.d.ts",
   "exports": {
-    "require":"./es/index.js",
+    "require": "./es/index.js",
     "import": "./lib/index.ts"
   },
   "private": false,
@@ -51,8 +51,8 @@
     "url": "git+https://github.com/ymzuiku/aoife.git"
   },
   "dependencies": {
-    "vanilla-life": "^0.1.5",
-    "vanilla-ob": "^0.3.5",
+    "vanilla-life": "^0.1.7",
+    "vanilla-ob": "^0.3.6",
     "vanilla-svg-tags": "^0.1.2"
   }
 }

@@ -15,13 +15,13 @@ specifiers:
   prettier: ^2.0.5
   tslib: ^2.2.0
   typescript: ^4.2.4
-  vanilla-life: ^0.1.5
-  vanilla-ob: ^0.3.5
+  vanilla-life: ^0.1.7
+  vanilla-ob: ^0.3.6
   vanilla-svg-tags: ^0.1.2
 
 dependencies:
-  vanilla-life: 0.1.5
-  vanilla-ob: 0.3.5
+  vanilla-life: 0.1.7
+  vanilla-ob: 0.3.6
   vanilla-svg-tags: 0.1.2
 
 devDependencies:
@@ -1689,12 +1689,12 @@ packages:
     resolution: {integrity: sha512-l8lCEmLcLYZh4nbunNZvQCJc5pv7+RCwa8q/LdUx8u7lsWvPDKmpodJAJNwkAhJC//dFY48KuIEmjtd4RViDrA==}
     dev: true
 
-  /vanilla-life/0.1.5:
-    resolution: {integrity: sha512-51dI4GdeKoVTLAlVhozx29LxtEQ1NiU44Ct8VD1d00GakTOohbQx29BN/Ixn7M3yju10Mh1xJUazqCzj6q06mw==}
+  /vanilla-life/0.1.7:
+    resolution: {integrity: sha512-WNS1W8WhS8xDzhbNXoV6yLVBah3PK76tKe3FErnp2FkDt9QhrA8TCRbUn4MsS1kw6Y7ueo71qbmYu7EthxFe4A==}
     dev: false
 
-  /vanilla-ob/0.3.5:
-    resolution: {integrity: sha512-zt9pvNgCBp9UJBAl+FWCOTBXMX04HWi72s9pL07DXtYsXePqeBNiXkxBiwjp+wwaZgat/1EpeUmBY33TVJWDnA==}
+  /vanilla-ob/0.3.6:
+    resolution: {integrity: sha512-nxP8F1J1ZlDxWbMwUboIlC5H/Jh36afYUrGtoOgE5IGfming9SncXEvvTp7TfCZ2LAw7n9gmgg9F3PPcrvZZRw==}
     dev: false
 
   /vanilla-svg-tags/0.1.2:
