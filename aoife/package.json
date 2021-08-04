@@ -1,6 +1,6 @@
 {
   "name": "aoife",
-  "version": "2.0.11",
+  "version": "2.0.12",
   "main": "./lib/index.ts",
   "types": "aoife.d.ts",
   "exports": {
@@ -51,8 +51,8 @@
     "url": "git+https://github.com/ymzuiku/aoife.git"
   },
   "dependencies": {
-    "vanilla-life": "^0.1.7",
-    "vanilla-ob": "^0.3.6",
-    "vanilla-svg-tags": "^0.1.2"
+    "vanilla-life": "^0.1.11",
+    "vanilla-ob": "^0.3.8",
+    "vanilla-svg-tags": "^0.1.3"
   }
 }
