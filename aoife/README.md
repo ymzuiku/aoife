@@ -81,7 +81,7 @@ aoife 仅仅保留了 JSX 相关的概念，移除了 React 所有非 JSX 相关
 
 我们看一个例子
 
-```text
+```tsx
 import "aoife"; // 在项目入口处引入一次，注册全局 dom 对象
 
 // 这是一个普通的 jsx 组件

@@ -1,19 +1,20 @@
 {
   "name": "aoife",
-  "version": "2.0.7",
+  "version": "2.0.8",
   "main": "lib/index.ts",
   "types": "aoife.d.ts",
   "exports": {
-    "require": "./es/index.js",
-    "import": "./lib/index.ts"
+    "require": "./cjs/index.js",
+    "import": "./esm/index.js"
   },
   "private": false,
   "scripts": {
     "lint": "eslint --ext .tsx,.ts --fix ./lib",
     "cp_readme": "cp -rf ../README.md ./README.md && cp -rf ../README.md ../create-aoife-app/README.md",
     "update_version": "node ../update_version.js",
-    "es": "esbuild --define:process.env.NODE_ENV=\\\"production\\\" lib/index.ts --outdir=es --target=es6  --bundle --external:vanilla-ob --external:vanilla-life --external:vanilla-svg-tags --format=esm --minify --splitting",
-    "lib": "yarn cp_readme && yarn es && yarn update_version"
+    "esm": "esbuild --define:process.env.NODE_ENV=\\\"production\\\" lib/index.ts --outdir=esm --target=es6  --bundle --external:vanilla-ob --external:vanilla-life --external:vanilla-svg-tags --format=esm --minify --splitting",
+    "cjs": "esbuild --define:process.env.NODE_ENV=\\\"production\\\" lib/index.ts --outdir=cjs --target=es6  --bundle --external:vanilla-ob --external:vanilla-life --external:vanilla-svg-tags --format=cjs --minify",
+    "lib": "yarn cp_readme && yarn esm && yarn cjs && yarn update_version"
   },
   "husky": {
     "hooks": {
