@@ -1,6 +1,6 @@
 {
   "name": "aoife-project",
-  "version": "2.0.7",
+  "version": "2.0.13",
   "private": true,
   "scripts": {
     "start": "aoife-scripts start",
@@ -9,7 +9,7 @@
     "eject": "aoife-scripts eject"
   },
   "dependencies": {
-    "aoife": "^2.0.7"
+    "aoife": "^2.0.13"
   },
   "devDependencies": {
     "aoife-scripts": "^4.0.12",

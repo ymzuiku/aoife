@@ -1,7 +1,7 @@
 import { onAppend, onRemove, onEntry } from "vanilla-life";
 import { isElement, isText, flattenOnce } from "./helper";
 import { parseChildren } from "./parseChildren";
-import { bindState, nextState, attributeKeys } from "vanilla-ob";
+import { ob, attributeKeys } from "vanilla-ob";
 import { svgTags } from "vanilla-svg-tags";
 
 const ignoreKeys: any = {
@@ -91,13 +91,13 @@ export const aoife = (tag: any, attrs?: any, ...children: any[]): HTMLElement =>
       return;
     }
 
-    bindState(ele, key, props[key]);
+    ob(ele, key, props[key]);
   });
 
   parseChildren((props as any).children, ele);
 
   if (typeof props.onUpdate === "function") {
-    bindState(ele, null, props.onUpdate);
+    ob(ele, null, props.onUpdate);
   }
 
   if (typeof props.onAppend === "function") {
@@ -123,7 +123,7 @@ export const jsxFrag = (props: any) => {
 };
 
 aoife.jsxFrag = jsxFrag;
-aoife.next = nextState;
+aoife.next = ob.next;
 aoife.attributeKeys = attributeKeys;
 
 (window as any).aoife = aoife;

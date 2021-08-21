@@ -1,5 +1,5 @@
 import { isElement, isText } from "./helper";
-import { bindState } from "vanilla-ob";
+import { ob } from "vanilla-ob";
 
 function replace(old: HTMLElement, ele: HTMLElement) {
   if (!old.isEqualNode(ele)) {
@@ -100,7 +100,7 @@ export function parseChildren(_childs: any[], ele: HTMLElement) {
         }
       };
       fn();
-      bindState(ele, null, fn);
+      ob(ele, null, fn);
     } else if (isElement(ch)) {
       ele.append(ch);
     } else if (ch !== false) {

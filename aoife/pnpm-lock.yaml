@@ -16,12 +16,12 @@ specifiers:
   tslib: ^2.2.0
   typescript: ^4.2.4
   vanilla-life: ^0.1.11
-  vanilla-ob: ^0.3.8
+  vanilla-ob: ^0.4.0
   vanilla-svg-tags: ^0.1.3
 
 dependencies:
   vanilla-life: 0.1.11
-  vanilla-ob: 0.3.8
+  vanilla-ob: 0.4.0
   vanilla-svg-tags: 0.1.3
 
 devDependencies:
@@ -1693,8 +1693,8 @@ packages:
     resolution: {integrity: sha512-PqX1rs7RzLcLPxsz7yshIb+f2qzk62z53lejpUyGpFUGdFaZJLsQsa8za2LNbdHEMUnHo06gNFgfuZzoKOr6rA==}
     dev: false
 
-  /vanilla-ob/0.3.8:
-    resolution: {integrity: sha512-+WwV1XDB+rmIO3kIZreY5+LC/fo5KrBDJTsSdvfq4Ri0ghvRdbRebNENepGE1AS/DLAfU6OWFPaNsXnJWz6jwA==}
+  /vanilla-ob/0.4.0:
+    resolution: {integrity: sha512-76Xafg1zjeecCYu0Ii6ojWlKtG1atGZeEd5T0Vd7YAGUBTMFHeC/B/en8kaAi1aRK12ghuskTZwIF8EcDREk1Q==}
     dev: false
 
   /vanilla-svg-tags/0.1.3:

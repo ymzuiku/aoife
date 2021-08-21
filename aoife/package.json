@@ -1,6 +1,6 @@
 {
   "name": "aoife",
-  "version": "2.0.12",
+  "version": "2.0.13",
   "main": "./lib/index.ts",
   "types": "aoife.d.ts",
   "exports": {
@@ -52,7 +52,7 @@
   },
   "dependencies": {
     "vanilla-life": "^0.1.11",
-    "vanilla-ob": "^0.3.8",
+    "vanilla-ob": "^0.4.0",
     "vanilla-svg-tags": "^0.1.3"
   }
 }
