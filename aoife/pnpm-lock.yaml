@@ -13,7 +13,7 @@ specifiers:
   husky: ^4.2.5
   lint-staged: ^10.2.11
   prettier: ^2.0.5
-  tslib: ^2.2.0
+  tslib: ^2.3.1
   typescript: ^4.2.4
   vanilla-life: ^0.1.11
   vanilla-ob: ^0.4.0
@@ -37,7 +37,7 @@ devDependencies:
   husky: 4.3.8
   lint-staged: 10.5.4
   prettier: 2.2.1
-  tslib: 2.2.0
+  tslib: 2.3.1
   typescript: 4.2.4
 
 packages:
@@ -1632,8 +1632,8 @@ packages:
     resolution: {integrity: sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==}
     dev: true
 
-  /tslib/2.2.0:
-    resolution: {integrity: sha512-gS9GVHRU+RGn5KQM2rllAlR3dU6m7AcpJKdtH8gFvQiC4Otgk98XnmMU+nZenHt/+VhnBPWwgrJsyrdcw6i23w==}
+  /tslib/2.3.1:
+    resolution: {integrity: sha512-77EbyPPpMz+FRFRuAFlWMtmgUWGe9UOG2Z25NqCwiIjRhOf5iKGuzSe5P2w1laq+FkRy4p+PCuVkJSGkzTEKVw==}
     dev: true
 
   /tsutils/3.21.0_typescript@4.2.4:
