@@ -1,0 +1,4 @@
+# 忽略自动生成的文件
+rightos/src/apis.ts
+**/i18n/index.ts
+**/i18n/serveLang.ts

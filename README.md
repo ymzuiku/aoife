@@ -35,7 +35,7 @@
 ```bash
 $ npm init aoife-app <project-name>
 $ cd <project-name>
-$ yarn install
+$ pnpm install
 ```
 
 启动：
@@ -58,7 +58,7 @@ declare const aoife: {
   ): HTMLElementTagNameMap[K];
   next: (
     focusUpdateTargets?: string | HTMLElement | undefined,
-    ignoreUpdateTargets?: string | HTMLElement | HTMLElement[]
+    ignoreUpdateTargets?: string | HTMLElement | HTMLElement[],
   ) => void;
   attributeKeys: {
     [key: string]: boolean;
@@ -96,9 +96,7 @@ function App() {
 
 // 这是一个用于演示 函数赋值/更新 的组件
 function StatefulExample({ name }: { name: string }) {
-  console.log(
-    "这个日志仅会打印一次，因为 aoife.next 更新仅仅会派发元素的子属性，不会重绘整个组件"
-  );
+  console.log("这个日志仅会打印一次，因为 aoife.next 更新仅仅会派发元素的子属性，不会重绘整个组件");
   let num = 0;
   return (
     <div>
@@ -106,16 +104,14 @@ function StatefulExample({ name }: { name: string }) {
         onclick={() => {
           num += 1;
           aoife.next(".add");
-        }}
-      >
+        }}>
         {name}
       </button>
       <div
         class="add"
         style={() => ({
           fontSize: 20 + num + "px",
-        })}
-      >
+        })}>
         <p>{() => num}</p>
       </div>
     </div>

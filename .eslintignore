@@ -1,0 +1,13 @@
+*.js
+*.css
+**/vite.config.ts
+**/vite.server.ts
+**/vitest.config.ts
+**/vitest.setup.ts
+**/cypress
+**/constant/lang.ts
+config/**
+# 忽略自动生成的文件
+**/i18n/index.ts
+**/i18n/serveLang.ts
+**/apiModels

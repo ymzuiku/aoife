@@ -1,0 +1,44 @@
+{
+  "name": "gewu-client",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "build": "turbo run build",
+    "dev": "turbo run dev --parallel",
+    "test": "vitest",
+    "test-ui": "vitest --ui",
+    "types": "tsc --noemit --incremental --tsBuildInfoFile './node_modules/.tsbuildinfo'",
+    "lint": "eslint --cache --fix '**/*.{tsx,ts}'",
+    "prepare": "husky install",
+    "format": "prettier --cache --write --loglevel=warn \"**/*.{ts,tsx,md}\"",
+    "check": "npm run format && git add . && npm run types && npm run lint && vitest run"
+  },
+  "dependencies": {
+    "eslint-config-custom": "workspace:*",
+    "husky": "^8.0.1",
+    "lint-staged": "^13.0.3",
+    "prettier": "latest",
+    "prettier-plugin-tailwindcss": "^0.1.11",
+    "ts-config-custom": "workspace:*",
+    "tslib": "^2.4.0",
+    "turbo": "latest",
+    "typescript": "^4.7.4",
+    "vite-config-custom": "workspace:*",
+    "vitest": "^0.16.0",
+    "vitest-config-custom": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/node": "^18.0.0",
+    "@vitest/ui": "^0.16.0",
+    "terser": "^5.14.2"
+  },
+  "lint-staged": {
+    "./**/*": "prettier --write --ignore-unknown",
+    "./**/*.{tsx,ts}": "eslint --cache --fix"
+  },
+  "engines": {
+    "npm": ">=7.0.0",
+    "node": ">=14.0.0"
+  },
+  "packageManager": "pnpm@6.32.4"
+}

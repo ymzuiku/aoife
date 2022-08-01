@@ -1,0 +1,5 @@
+{
+  "extends": "ts-config-custom/aoife.json",
+  "include": ["**/*.ts", "**/*.tsx"],
+  "exclude": ["node_modules", "**/node_modules"]
+}
