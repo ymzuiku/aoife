@@ -1,0 +1,14 @@
+{
+  "name": "aoife-project",
+  "version": "2.0.13",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build"
+  },
+  "dependencies": {
+    "aoife": "workspace:*"
+  },
+  "devDependencies": {
+    "vite": "3.0.4"
+  }
+}
